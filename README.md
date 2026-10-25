@@ -1,11 +1,50 @@
-# 麦麦黄道吉日 · mcd-fortune-meal
+<div align="center">
 
-> 万事皆有宜忌，唯有吃麦当劳，日日皆宜。
+<img src="封面.jpg" alt="麦麦黄道吉日" width="640">
+
+# 麦麦黄道吉日 · McDonald's Lucky Day
+
+🍟 **AI × McDonald's × Chinese Almanac!** Tear off your daily fortune, discover your lucky meal, find the best coupons, and make every day a McDonald's day!
+
+**万事皆有宜忌，唯有吃麦当劳，日日皆宜。**
+
+[![1024 切磋大会 · 用餐赛道](https://img.shields.io/badge/1024切磋大会-用餐赛道-C8102E)](https://1024.waytoagi.com)
+[![麦当劳 MCP 大赛报名 Issue](https://img.shields.io/badge/报名Issue-%231373-FFC72C)](https://github.com/M-China/mcd-developer-innovation-challenge/issues/1373)
+[![Powered by McDonald's MCP](https://img.shields.io/badge/Powered%20by-McDonald's%20MCP%2035%20tools-2B211C)](https://open.mcd.cn/mcp)
+[![Built with WorkBuddy](https://img.shields.io/badge/Built%20with-WorkBuddy-9E1226)](https://www.workbuddy.cn)
+
+</div>
+
+---
+
+## English Overview
+
+**McDonald's Lucky Day** is an ordering Skill running on the official McDonald's China MCP Server: it translates "what day is it today?" — Chinese almanac (宜忌/五行/建除), real weather, and your location — into "what should I eat today?", grounded in the store's real menu, real coupon wallet, and real price calculation, ending with a real order and a printed **Lucky Receipt**.
+
+**Key highlights**
+
+- 🔮 **Real almanac engine** — 宜忌 / 五行 / 建除十二神 / 星宿 / 喜神方位 from `lunar_python` (offline), no hardcoded fortune text; unlucky days (黑道 / 破 / 闭) switch to the **Turn-luck Set** ("凶日不慌，撕了这页吃麦当劳转运").
+- 🌦️ **Weather-aware** — Open-Meteo decides dine-in / takeaway / McDelivery (rain → delivery, heat → cold drinks).
+- 🎫 **Coupon matching that only trusts the receipt** — coupons are paired into items and priced before & after via `calculate-price`; only a verified price drop counts as "saved".
+- 🧾 **Real order loop** — `create-order` → official payment link (15-min window) → `query-order` auto-sync → "已付" stamp + pickup code; `cancel-order` really cancels.
+- 🖨️ **Ritual UI** — tear-off calendar with real tearing physics (clip-path sawtooth), hand-drawn SVG art (arches, fries, burger, receipt printer), zero emoji-as-art.
+- 🔐 **Token-zero-exposure** — all 35 MCP tools are proxied server-side; the front end never touches credentials.
+
+> [!TIP]
+> 快速导览：想看作品长什么样，直接打开 **`demo/almanac.html`**（自包含演示，双击即玩）；想看一次真实运行记录，看 **`demo/example_run.md`**；想了解 McDonald's MCP 接入细节，看 **`MCP_INTEGRATION.md`**；完整开发过程在 **`workbuddy.md`**。
+
+---
+
+## 作品介绍
 
 一个跑在麦当劳中国官方 MCP 上的点餐 Skill：**把「今天什么日子」翻译成「今天吃什么」**，
 落到门店真实在售的菜单上，用卡包里的券真实核价，最后出一张能保存、能下单的开运小票。
 
 不是把黄历贴进聊天框——是真去查这家店今天有没有这道菜、卖多少钱、能用哪张券。
+
+| 演示 · 撕日历 | 演示 · 开运小票 |
+|---|---|
+| 打开 `demo/almanac.html` 按住日历下沿往下撕 | ![开运小票](demo/receipt_example.png) |
 
 ```mermaid
 flowchart LR
@@ -143,6 +182,20 @@ demo/almanac.html           生成好的可交互页面
 demo/example_run.md         一次真实运行记录
 references/                 工具速查 + 映射规则全表
 ```
+
+---
+
+## 大赛与参赛材料
+
+本项目为 **2026 WaytoAGI 1024 切磋大会（用餐赛道）** 作品，并同步参加 **麦当劳程序员节创意开发大赛**（报名 Issue：[#1373](https://github.com/M-China/mcd-developer-innovation-challenge/issues/1373)）。
+
+| 参赛规定材料 | 说明 |
+|---|---|
+| `README.md` | 本文件：作品介绍 / 架构 / 使用说明 |
+| `CONTEST_DECLARATION.md` | 原创性 / 合规 / 信息安全 / 规则遵守声明 |
+| `MCP_INTEGRATION.md` | 麦当劳 MCP 接入说明（工具清单与调用链） |
+| `workbuddy.md` | WorkBuddy 完整开发对话记录（已脱敏） |
+| `mcp-config.example.json` | 连接器配置模板（仅环境变量占位符，无真实凭证） |
 
 ---
 
