@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#C8102E">
+<title>麦麦黄道吉日 · 日日皆宜</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 页面边缘的红黄贴纸（大屏才显示） -->
+  <div class="sticker st-red" id="stArch" aria-hidden="true"></div>
+  <div class="sticker st-gold" id="stYi" aria-hidden="true"></div>
+
+  <header class="top" id="pageTop">
+    <div class="brand">
+      <div class="brand-row">
+        <span class="arches" id="archesIco" aria-hidden="true"></span>
+        <h1>麦麦<em>黄道吉日</em></h1>
+        <span class="brand-deco" id="brandDeco" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="hero-deco" id="heroDeco" aria-hidden="true"></div>
+    <div class="loc" title="定位来源">
+      <span class="dot"></span>
+      <span><b id="locName">定位中</b> · <span class="src" id="locSrc"></span></span>
+    </div>
+  </header>
+
+  <!-- ── ① 开场：撕今天的日历 ─────────────────────── -->
+  <section class="view on" id="view-tear">
+    <div class="tear-stage" id="tearStage">
+
+      <div class="paper-box" id="paperBox">
+        <!-- 纸后面：撕开才露出来的东西（麦麦红黄包装层） -->
+        <div class="reveal" id="tearReveal">
+          <div class="rv-inner">
+            <div class="rv-kicker">今日 · 已撕开</div>
+            <div class="rv-arch" id="rvArch" aria-hidden="true"></div>
+            <div class="rv-seal"><b>吉</b><i>今日宜吃麦</i></div>
+            <div class="rv-line">今日宜吃麦当劳</div>
+            <div class="rv-sub" id="rvSub">正在看今天的黄历…</div>
+          </div>
+          <div class="rv-food" id="rvFood" aria-hidden="true"></div>
+        </div>
+
+        <!-- 纸：上半截（留在手上的那半） + 下半截（被拽走的那块） -->
+        <div class="paper paper-top" id="sheetStub"></div>
+        <div class="paper paper-bottom" id="sheetPiece"></div>
+
+        <!-- 撕口高光 -->
+        <div class="ridge" id="ridge"></div>
+      </div>
+
+      <div class="tear-ctl">
+        <div class="tear-hint" id="tearHint">
+          <span class="grab">☟</span> 按住纸的下沿，往下撕
+        </div>
+        <button class="btn btn-primary btn-block tear-auto" id="tearAuto">
+          <span class="ta-ico" id="taFries" aria-hidden="true"></span>
+          <span class="ta-txt">撕开今日麦麦好运</span>
+          <span class="ta-pull" id="taPull" aria-hidden="true"></span>
+          <span class="spark sp1" aria-hidden="true"></span>
+          <span class="spark sp2" aria-hidden="true"></span>
+          <span class="spark sp3" aria-hidden="true"></span>
+        </button>
+        <div class="tear-alt">撕开后才看今天适合吃什么 · 月历放最后</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ② 撕开后：今日黄历 + 开运小票 ──────────── -->
+  <section class="view" id="view-today">
+    <div id="warnHost"></div>
+    <div class="today-grid">
+      <div class="menu-slot" id="menuCard"></div>
+
+      <div class="alm-slot" id="almCard"></div>
+
+      <div class="rec-slot">
+        <div class="card rec-entry">
+          <div class="re-ico" id="reIco" aria-hidden="true"></div>
+          <div class="re-title">麦麦开运小票</div>
+          <div class="re-sub">撕开今天这页日历就有一张<br>下单后由麦麦出票机现打现给</div>
+          <button class="btn btn-primary btn-block" id="goReceipt">🖨 去打印我的开运小票</button>
+          <div class="re-btns">
+            <button class="btn btn-ghost" id="planSwitch">换一份好运</button>
+            <button class="btn btn-ghost" id="openCoupons">查看优惠</button>
+            <button class="btn btn-ghost" id="openStores">换餐厅</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lm-slot">
+        <div class="order-slot" id="orderCard"></div>
+        <div class="lim-slot" id="limCard"></div>
+        <div class="ate-slot" id="ateCard"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ③ 最后：出票机现打「麦麦开运小票」 ───────── -->
+  <section class="view" id="view-receipt">
+    <div class="pr-stage" id="prStage">
+      <div class="pr-machine" aria-hidden="true">
+        <span class="pr-arch" id="prArch"></span>
+        <span class="pr-label">麦麦出票机</span>
+        <span class="pr-light"></span>
+        <span class="pr-slot"></span>
+      </div>
+      <div class="pr-status" id="prStatus">还没下单 · 这台机器随时为你开工</div>
+      <div class="pr-clip" id="prClip">
+        <div class="pr-paper"><div class="receipt" id="receiptHost"></div></div>
+      </div>
+    </div>
+
+    <div class="pr-order" id="orderCardRp"></div>
+
+    <div class="actions pr-actions">
+      <button class="btn btn-primary" id="savePng">保存小票</button>
+      <button class="btn btn-ghost" id="backCal">查看黄道月历</button>
+      <button class="btn btn-ghost" id="backMenu">回今日改菜单</button>
+    </div>
+  </section>
+
+  <!-- ── ④ 最后才到的月历 ────────────────────────── -->
+  <section class="view" id="view-cal">
+    <div class="desk">
+      <div class="cal">
+        <div class="cal-head">
+          <button class="nav-btn" id="prevM" aria-label="上个月">‹</button>
+          <div class="cal-title"><span id="monthLabel">—</span><small id="monthSub"></small></div>
+          <button class="nav-btn" id="nextM" aria-label="下个月">›</button>
+        </div>
+        <div class="cal-week">
+          <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+        </div>
+        <div class="cal-grid" id="grid"></div>
+        <div class="cal-foot">
+          <span>每一格都盖了「<b>吉</b>」 · 点一格看那天的黄历</span>
+          <span>数据生成于 <span id="genAt">—</span></span>
+        </div>
+      </div>
+
+      <aside class="side" id="side"></aside>
+    </div>
+
+    <div class="cal-actions">
+      <button class="btn btn-ghost" id="backToday">看今天这顿</button>
+      <button class="btn btn-primary" id="openToday">重新撕一次今天的日历</button>
+    </div>
+  </section>
+
+</div>
+
+<div class="bag-seal" id="bagSeal" aria-hidden="true"></div>
+
+<footer class="page-foot">
+  黄历 / 五行 / 星宿 / 方位属传统民俗娱乐，不构成健康或运势建议 · 菜品与价格来自麦当劳门店实时菜单，
+  金额由 calculate-price 核出 · 未下单前一切为推荐
+</footer>
+
+<div class="modal" id="modal"></div>
+
+<script>/*__DATA__*/</script>
+<script>/*__ART__*/</script>
+<script>/*__APP__*/</script>
+</body>
+</html>

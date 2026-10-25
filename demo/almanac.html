@@ -1,0 +1,3251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#C8102E">
+<title>麦麦黄道吉日 · 日日皆宜</title>
+<style>/* ── 麦麦黄道吉日 · 页面样式 ────────────────────────────────────
+   纸感复古黄历 × 快餐红黄。全部自包含，不引外链字体与图片。 */
+
+:root{
+  --red:#C8102E;
+  --red-hot:#E4182F;
+  --red-deep:#9E1226;
+  --yellow:#FFC72C;
+  --gold:#E0A32E;
+  --cream:#FFF3D2;
+  --paper:#FDF8EC;
+  --ink:#2B211C;
+  --ink2:#6E5B4B;
+  --ink3:#9A8873;
+  --line:#EBD9B4;
+  --green:#4F7A45;
+  --shadow:0 10px 30px rgba(78,52,28,.13);
+  --radius:16px;
+  --serif:"Songti SC","STSong","SimSun","Noto Serif SC",Georgia,serif;
+  --round:"Yuanti SC","STYuanti","YouYuan","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+html,body{margin:0;padding:0}
+
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  /* 奶油黄底 + 顶部一抹麦当劳红晕 + 金黄光斑 */
+  background:
+    radial-gradient(1100px 480px at 84% -10%, rgba(228,24,47,.10) 0%, transparent 55%),
+    radial-gradient(900px 460px at 70% -4%, rgba(255,199,44,.42) 0%, transparent 58%),
+    radial-gradient(700px 380px at -6% 18%, rgba(255,199,44,.18) 0%, transparent 55%),
+    linear-gradient(172deg,#FFF7DE 0%,#FFEEC7 48%,#FBE2B0 100%);
+  min-height:100vh;
+  padding:0 0 44px;
+  overflow-x:hidden;
+}
+
+/* 纸上细纹 */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(150,120,80,.045) 0 1px,transparent 1px 4px),
+    repeating-linear-gradient(90deg,rgba(150,120,80,.03) 0 1px,transparent 1px 5px);
+  mix-blend-mode:multiply;
+}
+
+/* 隐隐的金拱门重复纹样（包装印刷感） */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cpath%20d='M16%2C52%20C16%2C24%2021%2C16%2026%2C16%20C31%2C16%2033%2C24%2034%2C34%20M30%2C34%20C31%2C24%2033%2C16%2038%2C16%20C43%2C16%2048%2C24%2048%2C52'%20fill='none'%20stroke='%23E0A32E'%20stroke-opacity='.13'%20stroke-width='7'%20stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size:68px 68px;
+}
+
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:22px 20px 0}
+
+/* ── 页头 ─────────────────────────────────────────────── */
+.top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:18px;position:relative}
+
+.brand{display:flex;flex-direction:column;gap:8px;min-width:0}
+
+.brand-row{display:flex;align-items:center;gap:12px}
+
+.arches{flex:0 0 auto;display:grid;place-items:center}
+.arches svg{display:block;filter:drop-shadow(0 5px 9px rgba(224,163,46,.4))}
+
+.brand h1{
+  font-family:var(--round);
+  font-weight:900;
+  font-size:clamp(30px,7.5vw,40px);line-height:1.04;margin:0;letter-spacing:.03em;
+  color:var(--red);
+  text-shadow:0 2px 0 rgba(255,248,228,.95),0 9px 18px rgba(200,16,46,.16);
+}
+.brand h1 em{font-style:normal;color:var(--gold);text-shadow:0 2px 0 rgba(255,248,228,.95),0 9px 18px rgba(224,163,46,.22)}
+
+.brand-deco{flex:0 0 auto;align-self:flex-end;padding-bottom:4px}
+.brand-deco svg{display:block}
+
+/* 宣传语已按需求移除，仅保留占位说明 */
+@media (max-width:560px){
+  .brand-deco{display:none}
+}
+
+/* 右上方 hero 插画：薯条盒与汉堡 */
+.hero-deco{margin-left:auto;margin-top:-4px;flex:0 0 auto;align-self:flex-start}
+.hero-deco svg{display:block;filter:drop-shadow(0 8px 16px rgba(160,110,30,.18))}
+
+.loc{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,.78);border:1px solid var(--line);
+  border-radius:999px;padding:8px 15px 8px 11px;
+  font-size:12.5px;color:var(--ink2);box-shadow:0 4px 12px rgba(120,90,50,.07);
+  backdrop-filter:blur(6px);margin-top:8px;
+}
+.loc b{color:var(--ink);font-weight:600;letter-spacing:.03em}
+.loc .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(79,122,69,.16)}
+.loc .src{color:var(--ink3);font-size:11px}
+
+/* ── 视图切换 ─────────────────────────────────────────── */
+.view{display:none;animation:rise .34s cubic-bezier(.2,.8,.3,1)}
+.view.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ── 月历 ─────────────────────────────────────────────── */
+.desk{display:grid;grid-template-columns:minmax(0,1fr) 316px;gap:20px;align-items:start}
+
+.cal{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.cal::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  border-radius:var(--radius);
+  box-shadow:inset 0 0 0 6px rgba(255,255,255,.5);
+}
+
+.cal-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:16px 18px 13px;
+  background:linear-gradient(180deg,var(--red) 0%,var(--red-deep) 100%);
+  color:#FFF3DC;position:relative;
+}
+.cal-head::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:6px;
+  background:repeating-linear-gradient(90deg,var(--yellow) 0 10px,transparent 10px 20px);
+  opacity:.85;
+}
+.cal-title{font-family:var(--serif);font-size:20px;letter-spacing:.16em}
+.cal-title small{display:block;font-size:11px;letter-spacing:.24em;opacity:.78;margin-top:4px}
+
+.nav-btn{
+  width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.34);
+  background:rgba(255,255,255,.12);color:#FFF3DC;font-size:17px;line-height:1;
+  cursor:pointer;transition:.18s;display:grid;place-items:center;
+}
+.nav-btn:hover:not(:disabled){background:rgba(255,255,255,.24);transform:scale(1.06)}
+.nav-btn:disabled{opacity:.28;cursor:not-allowed}
+
+.cal-week{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  padding:12px 12px 6px;
+  font-size:11.5px;letter-spacing:.2em;color:var(--ink3);text-align:center;
+}
+.cal-week span:first-child,.cal-week span:last-child{color:var(--red)}
+
+.cal-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  gap:6px;padding:2px 12px 14px;
+}
+
+.day{
+  position:relative;aspect-ratio:1/.94;
+  border:1px solid transparent;border-radius:12px;
+  background:rgba(255,255,255,.5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  cursor:pointer;transition:transform .16s,background .16s,box-shadow .16s;
+  padding:4px 2px;overflow:hidden;
+}
+.day .n{font-family:var(--serif);font-size:19px;line-height:1;color:#D6142F;font-weight:600}
+.day .l{font-size:9.5px;color:var(--ink3);letter-spacing:.02em;white-space:nowrap;transform:scale(.94)}
+.day .ji{
+  position:absolute;top:3px;right:4px;
+  font-family:var(--serif);font-size:9px;color:var(--red);opacity:.55;
+  border:1px solid currentColor;border-radius:3px;padding:0 2px;line-height:1.25;
+}
+.day.dim{opacity:.34;cursor:default}
+.day.past .n{color:var(--ink2)}
+.day:hover:not(.dim){background:#fff;transform:translateY(-2px);box-shadow:0 6px 16px rgba(120,90,50,.12)}
+
+.day.today{
+  background:linear-gradient(165deg,#FFF6DF,#FFE7BE);
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(224,163,46,.22),0 8px 20px rgba(224,163,46,.22);
+}
+.day.today .n{color:var(--red);font-size:22px;font-weight:700}
+.day.today::after{
+  content:"今日";position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+  font-size:8.5px;letter-spacing:.16em;color:var(--red-deep);opacity:.9;
+}
+.day.sel{border-color:var(--red);box-shadow:0 0 0 2px rgba(200,16,46,.16)}
+
+/* 今日的小装饰：星星 / 薯条 */
+.deco{position:absolute;pointer-events:none;opacity:.9}
+.deco.star{top:4px;left:4px;font-size:10px;color:var(--gold)}
+.deco.fries{bottom:6px;right:5px;width:12px;height:14px;opacity:.8}
+
+.cal-foot{
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  padding:0 18px 15px;font-size:11px;color:var(--ink3);letter-spacing:.05em;
+}
+.cal-foot b{color:var(--red);font-weight:600}
+
+/* ── 右栏：日期详情 ───────────────────────────────────── */
+.side{display:flex;flex-direction:column;gap:14px;position:sticky;top:18px}
+
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:16px 17px;
+}
+
+.side-date{display:flex;align-items:baseline;gap:9px}
+.side-date .big{font-family:var(--serif);font-size:34px;color:var(--red);line-height:1}
+.side-date .sub{font-size:11.5px;color:var(--ink2);letter-spacing:.08em}
+
+.side-lunar{
+  margin-top:8px;font-family:var(--serif);font-size:15px;color:var(--ink);
+  letter-spacing:.1em;
+}
+.side-gz{margin-top:4px;font-size:11.5px;color:var(--ink3);letter-spacing:.08em}
+
+.side-yiji{margin-top:12px;display:flex;flex-direction:column;gap:7px;font-size:12px;line-height:1.6}
+.side-yiji div{display:flex;gap:7px}
+.side-yiji span.k{
+  flex:0 0 20px;height:20px;border-radius:5px;font-family:var(--serif);
+  display:grid;place-items:center;font-size:11px;color:#fff;
+}
+.k.yi{background:var(--red)}
+.k.ji{background:#6B5B4B}
+.side-yiji span.v{color:var(--ink2);padding-top:1px}
+
+.sign-box{
+  margin-top:12px;padding:11px 12px;border-radius:10px;
+  background:rgba(255,199,44,.13);border:1px dashed rgba(224,163,46,.5);
+  font-family:var(--serif);font-size:12.5px;line-height:1.75;color:var(--ink);
+}
+
+.note{
+  margin-top:10px;font-size:11px;line-height:1.65;color:var(--ink3);
+}
+
+.btn{
+  appearance:none;border:0;cursor:pointer;font-family:var(--sans);
+  border-radius:12px;padding:12px 16px;font-size:13.5px;letter-spacing:.04em;
+  transition:transform .16s,box-shadow .16s,background .16s;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+}
+.btn:active{transform:scale(.98)}
+.btn-primary{
+  background:linear-gradient(180deg,#EE1A2F,#D6142F 55%,#B90E27);color:#FFF4DF;
+  box-shadow:0 8px 18px rgba(200,16,46,.30),inset 0 1px 0 rgba(255,255,255,.26);
+  font-weight:600;
+}
+.btn-primary:hover{box-shadow:0 10px 24px rgba(200,16,46,.34);filter:brightness(1.04)}
+.btn-ghost{
+  background:rgba(255,255,255,.8);color:var(--ink);border:1px solid var(--line);
+  box-shadow:0 3px 10px rgba(120,90,50,.07);
+}
+.btn-ghost:hover{background:#fff}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* ── 今日：黄历牌 ─────────────────────────────────────── */
+.alm{
+  position:relative;
+  background:
+    radial-gradient(420px 180px at 88% 0%,rgba(255,199,44,.23),transparent 70%),
+    var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px;
+}
+/* 卡片角落淡线稿 */
+.alm-doodle{position:absolute;right:10px;bottom:8px;pointer-events:none;opacity:.12}
+.alm-doodle svg{display:block}
+.alm-head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:16px 20px;border-bottom:1px dashed var(--line);
+}
+.alm-title{font-family:var(--serif);font-size:21px;letter-spacing:.12em;color:var(--red)}
+.alm-title small{display:block;font-size:11px;letter-spacing:.2em;color:var(--ink3);margin-top:4px}
+
+.alm-grid{display:grid;grid-template-columns:1.04fr 1fr;gap:0}
+.alm-left{padding:16px 20px;border-right:1px dashed var(--line)}
+.alm-right{padding:16px 20px}
+
+.row{display:flex;gap:10px;align-items:flex-start;margin-bottom:11px;font-size:12.5px;line-height:1.6}
+.row .lab{flex:0 0 76px;color:var(--ink3);letter-spacing:.06em;font-size:11.5px;padding-top:1px}
+.row .val{color:var(--ink);flex:1;min-width:0}
+.row .val b{color:var(--red);font-weight:600}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  font-size:11.5px;padding:3px 9px;border-radius:999px;
+  background:rgba(255,255,255,.85);border:1px solid var(--line);color:var(--ink2);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.chip svg{flex:0 0 auto;display:block}
+.chip.yi{background:rgba(200,16,46,.07);border-color:rgba(200,16,46,.22);color:var(--red-deep)}
+.chip.ji{background:rgba(101,90,80,.08);border-color:rgba(101,90,80,.22);color:#5B4B3C}
+.chip.gold{background:rgba(255,199,44,.18);border-color:rgba(224,163,46,.42);color:#8A6112}
+
+.weather-strip{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;
+  background:rgba(255,255,255,.72);border:1px solid var(--line);margin-bottom:12px;
+}
+.weather-strip .ico{width:40px;height:40px;flex:0 0 40px}
+.weather-strip .t{font-family:var(--serif);font-size:23px;color:var(--red);line-height:1}
+.weather-strip .d{font-size:11.5px;color:var(--ink2);line-height:1.5}
+
+.mode-box{
+  margin-top:4px;padding:12px 13px;border-radius:11px;
+  background:linear-gradient(135deg,rgba(255,199,44,.18),rgba(255,255,255,.6));
+  border:1px solid rgba(224,163,46,.4);
+}
+.mode-box .m{font-family:var(--serif);font-size:16px;color:var(--red-deep);letter-spacing:.06em;display:flex;align-items:center;gap:7px}
+.mode-box .m svg{flex:0 0 auto}
+.mode-box .w{font-size:11.5px;color:var(--ink2);margin-top:4px;line-height:1.55}
+
+/* ── 今日双栏 ─────────────────────────────────────────── */
+.today-grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:22px;align-items:start}
+.alm-slot{grid-column:1;grid-row:1}
+.rec-slot{grid-column:2;grid-row:1/span 2}
+.lim-slot{grid-column:1;grid-row:2}
+
+/* ── 今日页：开运小票入口卡 ───────────────────────────── */
+.rec-entry{display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;padding:22px 18px 18px}
+.rec-entry .re-ico{width:min(190px,72%)}
+.rec-entry .re-ico svg{width:100%;height:auto;filter:drop-shadow(0 8px 16px rgba(90,60,30,.16))}
+.rec-entry .re-title{font-family:var(--round);font-size:20px;color:var(--red);letter-spacing:.06em}
+.rec-entry .re-sub{font-size:11px;color:var(--ink3);line-height:1.75}
+.rec-entry .btn-block{margin-top:4px}
+.re-btns{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:2px}
+.re-btns .btn{flex:0 1 auto;padding:8px 13px;font-size:12px}
+
+/* ── 出票页：麦麦出票机 ───────────────────────────────── */
+.pr-stage{max-width:520px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.pr-machine{
+  position:relative;z-index:2;width:min(460px,100%);height:62px;
+  border-radius:16px 16px 7px 7px;
+  background:linear-gradient(180deg,#E4182F,#C8102E);
+  box-shadow:0 12px 26px rgba(200,16,46,.3),inset 0 2px 0 rgba(255,255,255,.24),inset 0 -6px 12px rgba(120,6,25,.5);
+  display:flex;align-items:center;gap:12px;padding:0 20px;color:#FFE9AE;
+}
+.pr-machine::before{ /* 机身顶部纸仓提手 */
+  content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+  width:44%;height:9px;border-radius:9px 9px 0 0;background:#9E1226;
+}
+.pr-arch{width:30px;height:27px;display:block;flex:0 0 auto}
+.pr-arch svg{width:100%;height:100%;display:block}
+.pr-label{font-family:var(--round);font-size:14.5px;letter-spacing:.24em}
+.pr-light{
+  margin-left:auto;width:10px;height:10px;border-radius:50%;flex:0 0 auto;
+  background:#7A4A12;box-shadow:inset 0 1px 2px rgba(0,0,0,.45);
+}
+.pr-stage.printing .pr-light{background:#FFE08A;box-shadow:0 0 8px rgba(255,224,138,.9);animation:prBlink .44s steps(2,end) infinite}
+@keyframes prBlink{50%{opacity:.3}}
+.pr-slot{
+  position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);
+  width:76%;height:11px;border-radius:6px;
+  background:#570D1A;box-shadow:inset 0 3px 5px rgba(0,0,0,.6);
+}
+.pr-status{margin:16px 0 4px;font-size:11px;letter-spacing:.24em;color:var(--ink3);text-align:center}
+.pr-stage.printing .pr-status{color:var(--red)}
+.pr-clip{width:min(460px,100%);margin-top:2px}
+.pr-stage.printing .pr-clip{animation:printOut 2.5s cubic-bezier(.3,.55,.45,1) forwards}
+@keyframes printOut{
+  from{clip-path:inset(0 0 100% 0)}
+  to{clip-path:inset(0 0 -6px 0)}
+}
+.pr-paper{transform-origin:50% 0}
+.pr-stage.printing .pr-paper{animation:prJitter .15s steps(2,end) infinite}
+@keyframes prJitter{from{transform:translateX(-.9px)}to{transform:translateX(.9px)}}
+.pr-paper .receipt{max-width:460px;width:100%;filter:drop-shadow(0 18px 34px rgba(90,60,30,.22))}
+.pr-paper svg{display:block;width:100%;height:auto}
+.pr-order{max-width:520px;margin:20px auto 0}
+
+.actions{
+  display:flex;gap:9px;flex-wrap:wrap;justify-content:center;
+  padding:11px;margin:18px auto 0;max-width:520px;
+  background:rgba(253,248,236,.9);border:1px solid var(--line);border-radius:15px;
+  box-shadow:0 6px 20px rgba(120,90,50,.1);
+}
+.actions .btn{flex:1 1 44%}
+.actions .btn-primary{flex:1 1 100%}
+
+/* ── 弹层 ─────────────────────────────────────────────── */
+.modal{
+  position:fixed;inset:0;z-index:60;display:none;
+  align-items:center;justify-content:center;padding:18px;
+  background:rgba(43,33,28,.42);backdrop-filter:blur(3px);
+}
+.modal.on{display:flex;animation:fade .2s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.sheet{
+  background:var(--paper);border-radius:18px;box-shadow:0 24px 60px rgba(40,26,14,.34);
+  width:100%;max-width:520px;max-height:86vh;overflow:auto;
+  border:1px solid var(--line);
+  animation:pop .26s cubic-bezier(.2,.9,.3,1);
+}
+@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+
+.sheet-head{
+  position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;
+  padding:15px 18px;background:var(--paper);border-bottom:1px dashed var(--line);z-index:2;
+}
+.sheet-head h3{margin:0;font-family:var(--serif);font-size:17px;letter-spacing:.08em;color:var(--red)}
+.sheet-body{padding:16px 18px 20px}
+.sheet-foot{padding:0 18px 18px;display:flex;gap:9px;flex-wrap:wrap}
+
+.x{
+  width:30px;height:30px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:var(--ink2);cursor:pointer;font-size:15px;line-height:1;
+}
+
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:12.5px;border-bottom:1px dotted rgba(227,213,186,.7)}
+.kv:last-child{border-bottom:0}
+.kv .k{color:var(--ink3)}
+.kv .v{color:var(--ink);text-align:right;font-weight:500}
+.kv.total .v{color:var(--red);font-family:var(--serif);font-size:20px}
+
+.coupon-item{
+  border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:9px;
+  background:rgba(255,255,255,.6);
+}
+.coupon-item .t{font-size:13px;font-weight:600;color:var(--ink)}
+.coupon-item .s{font-size:11.5px;color:var(--ink3);margin-top:4px;line-height:1.55}
+.coupon-item.ok{border-color:rgba(79,122,69,.36);background:rgba(79,122,69,.06)}
+.coupon-item.wait{border-color:rgba(224,163,46,.44);background:rgba(255,199,44,.08)}
+.coupon-item .badge{
+  display:inline-block;font-size:10px;padding:1px 7px;border-radius:999px;margin-left:6px;
+  background:var(--red);color:#fff;vertical-align:1px;
+}
+.coupon-item.wait .badge{background:var(--gold);color:#4A3405}
+
+.cmd{
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;line-height:1.65;
+  background:#2B211C;color:#F3E7CE;border-radius:10px;padding:11px 12px;
+  white-space:pre-wrap;word-break:break-all;max-height:180px;overflow:auto;
+}
+
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+  background:#2B211C;color:#FBF4E4;padding:10px 18px;border-radius:999px;
+  font-size:12.5px;opacity:0;transition:.28s;z-index:80;pointer-events:none;
+  box-shadow:0 12px 28px rgba(30,20,10,.3);
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+.warnbar{
+  display:flex;gap:8px;align-items:flex-start;
+  background:rgba(200,16,46,.06);border:1px solid rgba(200,16,46,.2);
+  border-radius:11px;padding:10px 12px;font-size:11.5px;line-height:1.6;color:var(--red-deep);
+  margin-bottom:14px;
+}
+
+/* ── 响应式：手机竖屏 ─────────────────────────────────── */
+@media (max-width:860px){
+  .wrap{padding:16px 12px 0}
+  .desk{grid-template-columns:1fr}
+  .side{position:static}
+  .today-grid{grid-template-columns:1fr;gap:14px}
+  .alm-slot{grid-column:1;grid-row:auto}
+  .rec-slot{grid-column:1;grid-row:auto}
+  .lim-slot{grid-column:1;grid-row:auto}
+  .alm-grid{grid-template-columns:1fr}
+  .alm-left{border-right:0;border-bottom:1px dashed var(--line)}
+  .brand h1{font-size:30px}
+  .arches svg{width:34px;height:37px}
+  .hero-deco svg{width:118px;height:73px}
+  .loc{order:3;margin-left:0}
+  .actions{max-width:none;padding:10px;gap:8px}
+  .actions .btn{flex:1 1 44%;padding:11px 10px;font-size:12.5px}
+  .day{aspect-ratio:1/1.02;border-radius:10px}
+  .day .n{font-size:16px}
+  .day .l{display:none}
+  .day .ji{font-size:8px}
+  .cal-grid{gap:4px;padding:2px 8px 12px}
+  .cal-week{padding:10px 8px 6px}
+}
+
+@media (max-width:520px){
+  .hero-deco svg{width:92px;height:57px}
+  .brand-deco svg{width:48px;height:40px}
+  .f-daydeco svg{width:24px;height:35px}
+}
+
+@media (max-width:400px){
+  .loc{font-size:11.5px;padding:7px 12px}
+  .alm-left,.alm-right{padding:13px 15px}
+  .row .lab{flex-basis:64px}
+  .hero-deco{display:none}   /* 窄屏让位给定位胶囊，插画在撕纸层里还有 */
+}
+
+.page-foot{
+  max-width:1080px;margin:30px auto 0;padding:16px 20px 0;
+  border-top:1px dashed var(--line);
+  font-size:10.5px;line-height:1.8;color:var(--ink3);text-align:center;
+}
+
+/* 外卖封签：虚线金圈的封条贴纸 */
+.bag-seal{
+  max-width:300px;margin:26px auto -8px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  font-size:11px;letter-spacing:.2em;color:var(--ink2);
+  background:rgba(255,252,240,.85);
+  border:1.5px dashed rgba(224,163,46,.65);
+  border-radius:999px;padding:7px 18px;
+  box-shadow:0 4px 12px rgba(120,90,50,.08);
+}
+.bag-seal svg{width:17px;height:15px;display:block;flex:0 0 auto}
+
+/* 页面边缘的红黄贴纸（只在大屏点缀，默认不显示） */
+.sticker{position:absolute;z-index:0;pointer-events:none;display:none}
+.st-red{
+  place-items:center;
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(180deg,#E4182F,#C8102E);
+  border:2px solid var(--yellow);
+  box-shadow:0 6px 14px rgba(200,16,46,.28);
+  transform:rotate(-9deg);
+}
+.st-red svg{width:26px;height:22px}
+.st-gold{
+  place-items:center;
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(180deg,#FFD34E,#FFC72C);
+  border:2px solid var(--red);
+  box-shadow:0 6px 14px rgba(224,163,46,.32);
+  transform:rotate(8deg);
+  font-family:var(--serif);font-size:19px;font-weight:700;color:var(--red);
+}
+@media (min-width:980px){
+  .st-red{display:grid;left:-64px;top:210px}
+  .st-gold{display:grid;right:-60px;top:56%}
+}
+
+/* 宜 / 忌：标签独立成行，文字整段排版 */
+.yj-line{display:flex;gap:9px;align-items:flex-start;margin-top:9px}
+.yj-line .k{
+  flex:0 0 22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-family:var(--serif);font-size:12px;color:#fff;
+}
+/* 「宜」= 麦当劳红色包装贴纸：金圈红底，像贴在餐盒上的认证标 */
+.yj-line .k.yi,.side-yiji .k.yi,.f-yj .k.yi{
+  background:linear-gradient(180deg,#E4182F,#C8102E);
+  box-shadow:inset 0 0 0 1.5px rgba(255,199,44,.65),0 2px 5px rgba(200,16,46,.28);
+}
+/* 「忌」= 深棕灰贴纸 */
+.yj-line .k.ji,.side-yiji .k.ji,.f-yj .k.ji{background:#655A50}
+.yj-line .chips{flex:1;min-width:0}
+.meat-val{display:inline-flex;align-items:center;gap:6px}
+.meat-val svg{flex:0 0 auto}
+.weather-strip .t{display:flex;align-items:baseline;gap:6px}
+.weather-strip .tt{font-family:var(--sans);font-size:12px;color:var(--ink2)}
+
+/* ══════════════════════════════════════════════════════════════
+   ① 开场：撕掉今天的日历
+   ══════════════════════════════════════════════════════════════ */
+#view-tear{padding:2px 0 0}
+
+.tear-stage{display:flex;flex-direction:column;align-items:center;gap:24px;padding:10px 0 4px}
+
+.paper-box{
+  position:relative;
+  width:min(84vw,344px);
+  height:min(60svh,470px);
+  touch-action:none;
+  user-select:none;-webkit-user-select:none;
+  cursor:grab;
+}
+.paper-box.dragging{cursor:grabbing}
+
+/* 纸后面：撕开才看得见的那层（麦麦包装层：雨棚条纹 + 金拱门） */
+.reveal{
+  position:absolute;inset:0;z-index:1;border-radius:5px;overflow:hidden;
+  background:
+    radial-gradient(120% 80% at 50% 12%, #E6153D 0%, #C8102E 44%, #8C0F23 100%);
+  display:grid;place-items:center;text-align:center;
+  color:#FFE9AE;
+  box-shadow:inset 0 0 60px rgba(0,0,0,.28);
+}
+/* 顶部：红黄相间的雨棚条纹，先露出的是包装元素 */
+.reveal::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:16px;z-index:2;
+  background:repeating-linear-gradient(90deg,var(--yellow) 0 20px,#E4182F 20px 40px);
+  border-bottom:2px solid rgba(120,8,22,.5);
+}
+.reveal::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;
+  background-image:repeating-linear-gradient(45deg,rgba(255,233,174,.14) 0 1px,transparent 1px 7px);
+}
+.rv-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:26px 18px 0}
+.rv-kicker{font-size:11px;letter-spacing:.34em;color:rgba(255,233,174,.78)}
+.rv-arch svg{width:42px;height:36px;display:block;filter:drop-shadow(0 4px 8px rgba(120,8,22,.5))}
+.rv-seal{
+  width:104px;height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  font-family:var(--serif);color:#FFF3D2;
+  border:3px solid rgba(255,243,210,.92);border-radius:12px;
+  transform:rotate(-6deg);
+  box-shadow:0 8px 18px rgba(60,4,14,.32),inset 0 0 0 3px rgba(255,243,210,.18);
+  animation:sealIn .5s cubic-bezier(.2,1.4,.4,1) both;
+}
+.rv-seal b{font-size:50px;line-height:1.05;font-weight:700}
+.rv-seal i{
+  font-style:normal;font-family:var(--sans);font-size:9px;letter-spacing:.26em;
+  color:var(--yellow);opacity:.95;padding-left:.26em;
+}
+.rv-line{font-family:var(--serif);font-size:19px;letter-spacing:.14em}
+.rv-sub{font-size:11.5px;color:rgba(255,233,174,.72);letter-spacing:.06em;line-height:1.7}
+.rv-food{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);pointer-events:none}
+.rv-food svg{display:block}
+@keyframes sealIn{from{transform:rotate(-6deg) scale(.6);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
+
+/* 纸：两半共用同一份纸面 */
+.paper{position:absolute;inset:0;will-change:clip-path,transform}
+.paper-top{z-index:3}
+.paper-bottom{z-index:4;transform-origin:50% 0;will-change:clip-path,transform}
+.paper-box.dragging .paper-top{filter:drop-shadow(0 6px 6px rgba(70,44,20,.30))}
+.paper-box.dragging .paper-bottom{filter:drop-shadow(0 -4px 5px rgba(70,44,20,.24))}
+
+.face{
+  position:absolute;inset:0;overflow:hidden;border-radius:5px;
+  display:flex;flex-direction:column;
+  padding:16px 17px 13px;
+  background:
+    radial-gradient(130% 90% at 50% -10%, #FFFDF7 0%, var(--paper) 48%, #F5E8CE 100%);
+  box-shadow:inset 0 0 0 1px rgba(178,148,108,.42);
+  font-family:var(--sans);
+}
+.face::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:9px;background:var(--red);
+  box-shadow:0 1px 0 rgba(140,15,35,.35);
+}
+.face::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(0deg,rgba(150,120,80,.05) 0 1px,transparent 1px 4px);
+}
+
+.f-brand{padding-top:7px;display:flex;align-items:baseline;justify-content:space-between}
+.f-brand b{font-family:var(--serif);font-size:12.5px;letter-spacing:.22em;color:var(--red);display:inline-flex;align-items:center;gap:4px}
+.fb-arch svg{width:15px;height:13px;display:block;transform:translateY(1px)}
+.f-brand i{font-style:normal;font-size:9.5px;letter-spacing:.16em;color:var(--ink3)}
+
+.f-year{font-size:10.5px;letter-spacing:.3em;color:var(--ink3);margin-top:9px}
+.f-month{font-family:var(--serif);font-size:16px;letter-spacing:.12em;color:var(--ink);margin-top:1px}
+
+.f-dayrow{display:flex;align-items:flex-end;gap:8px;margin-top:-2px}
+.f-day{
+  font-family:var(--serif);font-size:clamp(58px,17vw,84px);line-height:.92;
+  color:#D6142F;letter-spacing:-.02em;
+  text-shadow:0 2px 0 rgba(255,255,255,.85),0 6px 14px rgba(200,16,46,.16);
+}
+/* 日期旁的小装饰：星星 + 迷你薯条 */
+.f-daydeco{flex:0 0 auto;align-self:flex-start;padding-top:4px;opacity:.92}
+.f-daydeco svg{display:block}
+.f-week{font-family:var(--serif);font-size:13px;color:var(--ink);letter-spacing:.1em;padding-bottom:9px}
+.f-week small{display:block;font-family:var(--sans);font-size:9.5px;color:var(--ink3);letter-spacing:.14em;margin-top:3px}
+
+.f-lunar{margin-top:12px;font-family:var(--serif);font-size:14.5px;letter-spacing:.06em;color:var(--ink)}
+.f-gz{margin-top:4px;font-size:10.5px;color:var(--ink2);letter-spacing:.06em}
+.f-meta{
+  margin-top:11px;display:flex;flex-wrap:wrap;gap:5px;position:relative;z-index:2;
+}
+.f-meta span{
+  font-size:9.5px;letter-spacing:.06em;color:var(--ink2);
+  padding:2.5px 7px;border-radius:999px;
+  background:rgba(224,163,46,.13);border:1px solid rgba(224,163,46,.34);
+}
+
+.f-yj{margin-top:auto;display:flex;flex-direction:column;gap:6px;position:relative;z-index:2}
+.f-yj .ln{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;line-height:1.55}
+.f-yj .k{
+  flex:0 0 18px;height:18px;border-radius:4px;display:grid;place-items:center;
+  font-family:var(--serif);font-size:10.5px;color:#fff;margin-top:1px;
+}
+.f-yj .k.yi{background:var(--red)}
+.f-yj .k.ji{background:#5B6B5F}
+.f-yj .v{color:var(--ink2);min-width:0}
+
+.f-guide{
+  margin-top:11px;padding-top:9px;border-top:1.5px dashed rgba(160,124,78,.55);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:9.5px;color:var(--ink3);letter-spacing:.1em;
+  position:relative;z-index:2;
+}
+.f-guide .sc{font-size:13px}
+
+.f-mark{
+  position:absolute;right:2px;bottom:56px;z-index:1;pointer-events:none;
+  font-family:var(--serif);font-size:clamp(96px,30vw,140px);line-height:1;
+  color:rgba(200,16,46,.062);
+}
+/* 纸张角落：极淡的薯条/汉堡/饮料线稿 */
+.f-doodle{
+  position:absolute;left:8px;top:36%;z-index:0;pointer-events:none;opacity:.13;
+}
+.f-doodle svg{display:block}
+/* 麦麦好运认证章：金拱门 + 大字 + 「今日宜吃麦」 */
+.f-seal{
+  position:absolute;right:12px;top:41%;z-index:2;
+  width:60px;padding:5px 0 4px;
+  display:flex;flex-direction:column;align-items:center;gap:1px;border-radius:8px;
+  border:2.5px solid rgba(200,16,46,.72);
+  box-shadow:inset 0 0 0 3px rgba(224,163,46,.0);
+  outline:1.5px dashed rgba(224,163,46,.55);
+  outline-offset:2.5px;
+  transform:rotate(-8deg);
+  background:rgba(255,250,238,.55);
+}
+.f-seal .fs-arch svg{width:24px;height:21px;display:block}
+.f-seal b{font-family:var(--serif);font-size:27px;line-height:1.02;color:#C8102E;font-weight:700}
+.f-seal i{
+  font-style:normal;font-family:var(--sans);font-size:7.5px;letter-spacing:.14em;
+  color:#C8102E;opacity:.85;padding-left:.14em;white-space:nowrap;
+}
+.f-seal.two b{font-size:20px;letter-spacing:.06em}
+
+/* 撕开后：上半截塌下去、下半截飞走 */
+.paper-top{transform-origin:50% 0}
+.paper-bottom{
+  transform-origin:50% 0;
+  will-change:transform;
+}
+/* 撕脱后：整页从装订口翻着坠下去 */
+.paper-bottom.gone{
+  animation:pieceFall .9s cubic-bezier(.5,.05,.7,1) forwards;
+}
+@keyframes pieceFall{
+  0%{transform:translateY(0) rotate(0deg) skewX(0deg);opacity:1}
+  14%{transform:translateY(12px) rotate(-2.6deg) skewX(0deg);opacity:1}
+  58%{transform:translateY(46%) rotate(7deg) skewX(0deg);opacity:1}
+  100%{transform:translateY(122%) rotate(16deg) skewX(0deg);opacity:0}
+}
+
+/* 纸屑 */
+.shred{position:fixed;z-index:60;pointer-events:none;background:#FDF8EC;
+  box-shadow:0 1px 2px rgba(90,60,30,.25);animation:shredFall 1.15s ease-in forwards}
+@keyframes shredFall{
+  to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0}
+}
+
+/* 控制区 */
+.tear-ctl{width:min(88vw,344px);display:flex;flex-direction:column;gap:9px;align-items:center;text-align:center}
+.tear-hint{font-size:12.5px;color:var(--ink2);letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+.tear-hint .grab{display:inline-block;color:var(--red);animation:bob 1.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.tear-auto{
+  position:relative;max-width:344px;width:100%;
+  font-family:var(--round);font-weight:900;font-size:15.5px;letter-spacing:.1em;
+  padding:14px 15px;border-radius:14px;overflow:visible;
+  background:linear-gradient(180deg,#EE1A2F 0%,#D6142F 55%,#B90E27 100%);
+  box-shadow:0 10px 22px rgba(200,16,46,.34),inset 0 1.5px 0 rgba(255,255,255,.28),inset 0 0 0 2px rgba(120,8,22,.3);
+  border:1.5px solid rgba(255,199,44,.75);
+}
+.tear-auto .ta-ico{display:grid;place-items:center}
+.tear-auto .ta-ico svg{width:22px;height:18px;display:block}
+.tear-auto .ta-txt{flex:1;text-align:center}
+.tear-auto .ta-pull{display:grid;place-items:center;animation:bob 1.2s ease-in-out infinite}
+.tear-auto .ta-pull svg{display:block}
+/* 黄色闪光装饰 */
+.spark{position:absolute;width:12px;height:12px;pointer-events:none;filter:drop-shadow(0 0 4px rgba(255,199,44,.85));animation:twinkle 1.6s ease-in-out infinite}
+.spark svg{display:block}
+.sp1{top:-8px;left:16px}
+.sp2{top:-11px;right:30px;animation-delay:.5s}
+.sp3{bottom:-9px;left:46%;animation-delay:.95s}
+@keyframes twinkle{0%,100%{transform:scale(.55);opacity:.45}50%{transform:scale(1.15);opacity:1}}
+.tear-alt{font-size:10.5px;color:var(--ink3);letter-spacing:.04em}
+
+.cal-actions{max-width:520px;margin:16px auto 0;display:flex;gap:10px}
+.cal-actions .btn{flex:1}
+
+@media (max-width:420px){
+  .paper-box{height:min(56svh,430px)}
+  .f-yj{font-size:11px}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ④ 菜单 / 换餐厅 / 今日已吃
+   ══════════════════════════════════════════════════════════════ */
+
+.lm-slot{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:14px}
+.lm-slot .lim-slot,.lm-slot .ate-slot{grid-column:auto;grid-row:auto}
+
+/* 菜单里的小标签：上新 / 全球爆款 / 限时特惠 */
+.tagline{
+  display:inline-block;margin-left:6px;padding:0 5px;border-radius:4px;
+  font-size:9.5px;line-height:15px;letter-spacing:.06em;vertical-align:1px;
+  color:#fff;background:var(--red);
+}
+.tagline:nth-of-type(2){background:var(--gold)}
+
+/* 菜单筛选 */
+.mf-bar{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 4px}
+.mf{
+  border:1px solid var(--line);background:#fff;color:var(--ink2);
+  border-radius:999px;padding:6px 11px;font-size:12px;cursor:pointer;
+  font-family:var(--sans);transition:.15s;
+}
+.mf i{font-style:normal;color:var(--ink3);margin-left:5px;font-size:10.5px}
+.mf.on{background:var(--red);border-color:var(--red);color:#fff}
+.mf.on i{color:rgba(255,255,255,.78)}
+
+/* 菜单行 */
+.mt-list{margin-top:8px;border-top:1px dashed var(--line)}
+.mt-item{
+  display:flex;align-items:center;gap:10px;padding:10px 2px;
+  border-bottom:1px dotted rgba(227,213,186,.9);
+}
+.mt-item.on{background:rgba(255,199,44,.1)}
+.mt-names{min-width:0;flex:1}
+.mt-name{font-size:13px;color:var(--ink);line-height:1.45}
+.mt-meta{font-size:10px;color:var(--ink3);margin-top:2px;letter-spacing:.04em}
+.mt-act{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.mt-price{font-family:var(--serif);font-size:13.5px;color:var(--red);min-width:46px;text-align:right}
+.mt-act .add{
+  width:26px;height:26px;border-radius:50%;border:1px solid var(--red);
+  background:#fff;color:var(--red);font-size:15px;line-height:1;cursor:pointer;
+}
+.stepper{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.stepper button{width:24px;height:24px;border:0;background:#fff;color:var(--red);font-size:14px;cursor:pointer}
+.stepper b{font-size:12px;min-width:18px;text-align:center;color:var(--ink)}
+
+/* 已选篮子 */
+.basket-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%}
+.basket-bar>div{display:flex;flex-direction:column;line-height:1.3}
+.basket-bar b{font-size:13px;color:var(--ink)}
+.basket-bar span{font-size:11px;color:var(--ink3)}
+.basket-bar .btn{flex:0 0 auto}
+
+/* 门店列表 */
+.seg{display:flex;gap:6px;background:rgba(227,213,186,.35);padding:4px;border-radius:12px;margin-top:12px}
+.seg button{
+  flex:1;border:0;background:transparent;color:var(--ink2);border-radius:9px;
+  padding:8px 6px;font-size:12.5px;cursor:pointer;font-family:var(--sans);transition:.15s;
+}
+.seg button i{font-style:normal;font-size:10px;color:var(--ink3);margin-left:4px}
+.seg button.on{background:#fff;color:var(--red);box-shadow:0 2px 6px rgba(120,90,50,.12)}
+.st-row{
+  display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;
+  border:1px solid var(--line);background:#fff;border-radius:12px;
+  padding:10px 12px;margin-bottom:8px;cursor:pointer;font-family:var(--sans);
+}
+.st-row.on{border-color:var(--red);box-shadow:0 0 0 2px rgba(200,16,46,.1)}
+.st-rank{
+  flex:0 0 auto;font-size:9.5px;color:var(--ink3);border:1px solid var(--line);
+  border-radius:6px;padding:1px 5px;margin-top:2px;
+}
+.st-row.on .st-rank{color:#fff;background:var(--red);border-color:var(--red)}
+.st-main{display:flex;flex-direction:column;min-width:0;flex:1}
+.st-name{font-size:12.5px;color:var(--ink);line-height:1.4}
+.st-sub{font-size:10px;color:var(--ink3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-meta{font-size:10px;color:var(--ink2);margin-top:3px}
+.st-go{flex:0 0 auto;color:var(--red);font-weight:700}
+
+/* 今日已吃 */
+.ate-empty{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border:1px dashed var(--line);border-radius:14px;padding:12px 14px;
+  background:rgba(253,248,236,.8);font-size:12px;color:var(--ink2);
+}
+.ate-empty .btn{flex:0 0 auto;padding:8px 12px;font-size:12px}
+.ate-card{
+  display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;
+  border:1px solid rgba(200,16,46,.28);border-radius:14px;padding:14px 16px;
+  background:linear-gradient(150deg,#FFF9EC 0%,#FFF1DC 100%);
+  box-shadow:0 8px 22px rgba(200,16,46,.09);
+}
+.ate-seal{
+  flex:0 0 auto;width:56px;height:56px;display:grid;place-items:center;
+  font-family:var(--serif);font-size:17px;line-height:1.1;text-align:center;color:#C8102E;
+  border:2.5px solid rgba(200,16,46,.78);border-radius:9px;transform:rotate(-8deg);
+  letter-spacing:.06em;
+}
+.ate-main{min-width:0}
+.ate-title{font-family:var(--serif);font-size:17px;color:var(--red-deep);letter-spacing:.06em}
+.ate-sub{font-size:11px;color:var(--ink2);margin-top:3px}
+.ate-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:10.5px;color:var(--ink3);margin-top:5px}
+.ate-code{color:var(--red);font-weight:600}
+.ate-inline{
+  display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);
+  background:rgba(255,199,44,.16);border-radius:10px;padding:8px 10px;margin-bottom:12px;
+}
+.ate-mini{
+  font-family:var(--serif);font-size:12px;color:#fff;background:var(--red);
+  border-radius:5px;padding:2px 6px;transform:rotate(-6deg);
+}
+
+/* 付款：二维码与备用入口 */
+.pay-alt{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.pay-alt .note{margin:0;font-size:10.5px}
+.qr-wrap{display:flex;justify-content:center;padding:6px 0 4px}
+.qr-frame{
+  width:min(74vw,300px);height:min(74vw,300px);border:0;border-radius:14px;
+  background:#0d0d0d;box-shadow:0 10px 26px rgba(0,0,0,.24);
+}
+.linkbtn{
+  border:0;background:transparent;color:var(--red);font-size:10.5px;
+  text-decoration:underline;cursor:pointer;padding:0 0 0 6px;font-family:var(--sans);
+}
+
+/* 印章两个字（转运）要缩小才放得下 */
+.f-seal.two{font-size:19px;letter-spacing:.1em;line-height:1.15;text-align:center}
+
+/* ══════════════════════════════════════════════════════════════
+   ⑤ 置顶菜单卡（预配好 + 可改）与订单小票
+   ══════════════════════════════════════════════════════════════ */
+.menu-slot{grid-column:1;grid-row:1}
+.today-grid .alm-slot{grid-column:1;grid-row:2}
+.today-grid .lm-slot{grid-column:1;grid-row:3}
+@media (max-width:960px){
+  .menu-slot{grid-column:1;grid-row:auto}
+}
+
+/* 限定尝鲜 chips */
+.lim-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lim-chip{
+  border:1px solid var(--gold);background:rgba(255,199,44,.12);color:var(--ink);
+  border-radius:999px;padding:5px 10px;font-size:11.5px;cursor:pointer;font-family:var(--sans);
+}
+.lim-chip i{font-style:normal;color:var(--red);margin-left:4px;font-size:10.5px}
+.lim-chip.on{background:var(--red);border-color:var(--red);color:#fff}
+.lim-chip.on i{color:rgba(255,255,255,.85)}
+
+/* 篮子行（复用 mt-item，稍微收紧） */
+.menu-slot .mt-item{padding:8px 2px}
+.menu-slot .mt-list{border-top:0;margin-top:4px}
+
+/* ── 订单小票 ── */
+.order-slot:empty{display:none}
+.order-rec{
+  border:1.5px dashed rgba(178,148,108,.7);border-radius:6px;overflow:hidden;
+  background:
+    radial-gradient(130% 90% at 50% -10%, #FFFDF7 0%, var(--paper) 48%, #F5E8CE 100%);
+  box-shadow:0 10px 24px rgba(90,60,30,.14);
+  font-family:var(--sans);
+}
+.or-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:10px 14px 8px;border-bottom:1.5px dashed rgba(160,124,78,.5);
+  font-family:var(--serif);font-size:15px;color:var(--red);letter-spacing:.12em;
+}
+.or-head span{font-family:var(--sans);font-size:10px;color:var(--ink3);letter-spacing:.08em}
+.or-body{padding:10px 14px 12px}
+.or-row{display:flex;justify-content:space-between;gap:10px;padding:3px 0;font-size:12px}
+.or-row .k{color:var(--ink2);flex:0 0 auto}
+.or-row .v{color:var(--ink);text-align:right;min-width:0}
+.or-row.item .v b{color:var(--ink);font-weight:600}
+.or-row.total{border-top:1.5px dashed rgba(160,124,78,.5);margin-top:6px;padding-top:8px}
+.or-row.total .v{font-family:var(--serif);font-size:19px;color:var(--red);font-weight:700}
+.or-status{
+  display:inline-block;margin-top:6px;padding:2px 8px;border-radius:5px;
+  font-size:10.5px;letter-spacing:.08em;background:rgba(200,16,46,.1);color:var(--red);
+}
+.or-cd{color:var(--red)}
+.or-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.or-btns .btn{padding:7px 12px;font-size:12px}
+.or-stamp{
+  float:right;margin:2px 0 0 8px;width:44px;height:44px;display:grid;place-items:center;
+  font-family:var(--serif);font-size:13px;color:rgba(200,16,46,.8);
+  border:2px solid rgba(200,16,46,.55);border-radius:7px;transform:rotate(9deg);
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 页面边缘的红黄贴纸（大屏才显示） -->
+  <div class="sticker st-red" id="stArch" aria-hidden="true"></div>
+  <div class="sticker st-gold" id="stYi" aria-hidden="true"></div>
+
+  <header class="top" id="pageTop">
+    <div class="brand">
+      <div class="brand-row">
+        <span class="arches" id="archesIco" aria-hidden="true"></span>
+        <h1>麦麦<em>黄道吉日</em></h1>
+        <span class="brand-deco" id="brandDeco" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="hero-deco" id="heroDeco" aria-hidden="true"></div>
+    <div class="loc" title="定位来源">
+      <span class="dot"></span>
+      <span><b id="locName">定位中</b> · <span class="src" id="locSrc"></span></span>
+    </div>
+  </header>
+
+  <!-- ── ① 开场：撕今天的日历 ─────────────────────── -->
+  <section class="view on" id="view-tear">
+    <div class="tear-stage" id="tearStage">
+
+      <div class="paper-box" id="paperBox">
+        <!-- 纸后面：撕开才露出来的东西（麦麦红黄包装层） -->
+        <div class="reveal" id="tearReveal">
+          <div class="rv-inner">
+            <div class="rv-kicker">今日 · 已撕开</div>
+            <div class="rv-arch" id="rvArch" aria-hidden="true"></div>
+            <div class="rv-seal"><b>吉</b><i>今日宜吃麦</i></div>
+            <div class="rv-line">今日宜吃麦当劳</div>
+            <div class="rv-sub" id="rvSub">正在看今天的黄历…</div>
+          </div>
+          <div class="rv-food" id="rvFood" aria-hidden="true"></div>
+        </div>
+
+        <!-- 纸：上半截（留在手上的那半） + 下半截（被拽走的那块） -->
+        <div class="paper paper-top" id="sheetStub"></div>
+        <div class="paper paper-bottom" id="sheetPiece"></div>
+
+        <!-- 撕口高光 -->
+        <div class="ridge" id="ridge"></div>
+      </div>
+
+      <div class="tear-ctl">
+        <div class="tear-hint" id="tearHint">
+          <span class="grab">☟</span> 按住纸的下沿，往下撕
+        </div>
+        <button class="btn btn-primary btn-block tear-auto" id="tearAuto">
+          <span class="ta-ico" id="taFries" aria-hidden="true"></span>
+          <span class="ta-txt">撕开今日麦麦好运</span>
+          <span class="ta-pull" id="taPull" aria-hidden="true"></span>
+          <span class="spark sp1" aria-hidden="true"></span>
+          <span class="spark sp2" aria-hidden="true"></span>
+          <span class="spark sp3" aria-hidden="true"></span>
+        </button>
+        <div class="tear-alt">撕开后才看今天适合吃什么 · 月历放最后</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ② 撕开后：今日黄历 + 开运小票 ──────────── -->
+  <section class="view" id="view-today">
+    <div id="warnHost"></div>
+    <div class="today-grid">
+      <div class="menu-slot" id="menuCard"></div>
+
+      <div class="alm-slot" id="almCard"></div>
+
+      <div class="rec-slot">
+        <div class="card rec-entry">
+          <div class="re-ico" id="reIco" aria-hidden="true"></div>
+          <div class="re-title">麦麦开运小票</div>
+          <div class="re-sub">撕开今天这页日历就有一张<br>下单后由麦麦出票机现打现给</div>
+          <button class="btn btn-primary btn-block" id="goReceipt">🖨 去打印我的开运小票</button>
+          <div class="re-btns">
+            <button class="btn btn-ghost" id="planSwitch">换一份好运</button>
+            <button class="btn btn-ghost" id="openCoupons">查看优惠</button>
+            <button class="btn btn-ghost" id="openStores">换餐厅</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lm-slot">
+        <div class="order-slot" id="orderCard"></div>
+        <div class="lim-slot" id="limCard"></div>
+        <div class="ate-slot" id="ateCard"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ③ 最后：出票机现打「麦麦开运小票」 ───────── -->
+  <section class="view" id="view-receipt">
+    <div class="pr-stage" id="prStage">
+      <div class="pr-machine" aria-hidden="true">
+        <span class="pr-arch" id="prArch"></span>
+        <span class="pr-label">麦麦出票机</span>
+        <span class="pr-light"></span>
+        <span class="pr-slot"></span>
+      </div>
+      <div class="pr-status" id="prStatus">还没下单 · 这台机器随时为你开工</div>
+      <div class="pr-clip" id="prClip">
+        <div class="pr-paper"><div class="receipt" id="receiptHost"></div></div>
+      </div>
+    </div>
+
+    <div class="pr-order" id="orderCardRp"></div>
+
+    <div class="actions pr-actions">
+      <button class="btn btn-primary" id="savePng">保存小票</button>
+      <button class="btn btn-ghost" id="backCal">查看黄道月历</button>
+      <button class="btn btn-ghost" id="backMenu">回今日改菜单</button>
+    </div>
+  </section>
+
+  <!-- ── ④ 最后才到的月历 ────────────────────────── -->
+  <section class="view" id="view-cal">
+    <div class="desk">
+      <div class="cal">
+        <div class="cal-head">
+          <button class="nav-btn" id="prevM" aria-label="上个月">‹</button>
+          <div class="cal-title"><span id="monthLabel">—</span><small id="monthSub"></small></div>
+          <button class="nav-btn" id="nextM" aria-label="下个月">›</button>
+        </div>
+        <div class="cal-week">
+          <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+        </div>
+        <div class="cal-grid" id="grid"></div>
+        <div class="cal-foot">
+          <span>每一格都盖了「<b>吉</b>」 · 点一格看那天的黄历</span>
+          <span>数据生成于 <span id="genAt">—</span></span>
+        </div>
+      </div>
+
+      <aside class="side" id="side"></aside>
+    </div>
+
+    <div class="cal-actions">
+      <button class="btn btn-ghost" id="backToday">看今天这顿</button>
+      <button class="btn btn-primary" id="openToday">重新撕一次今天的日历</button>
+    </div>
+  </section>
+
+</div>
+
+<div class="bag-seal" id="bagSeal" aria-hidden="true"></div>
+
+<footer class="page-foot">
+  黄历 / 五行 / 星宿 / 方位属传统民俗娱乐，不构成健康或运势建议 · 菜品与价格来自麦当劳门店实时菜单，
+  金额由 calculate-price 核出 · 未下单前一切为推荐
+</footer>
+
+<div class="modal" id="modal"></div>
+
+<script>window.MCD_DATA = {"meta":{"generated_at":"2026-10-25 14:46","today":"2026-10-25","weekday":"日","city":"厦门市","district":"思明区","place":"福建省厦门市","loc_source":"已存配送地址（自动定位）","address":"厦门市思明区（配送地址 · 已按参赛要求脱敏）","address_id":"${ADDRESS_ID}","range":{"from":"2026-09-15","to":"2026-12-04"}},"weather":{"temp":27.9,"feels_like":28.4,"humidity":56,"precip_mm":0.0,"wind_kmh":17.7,"code":2,"desc":"多云","t_max":30.2,"t_min":23.8,"pop_max":8,"lunch":{"temp":31.4,"pop":3}},"almanac":{"solar":"2026-10-25","lunar":"二〇二六年九月十六","year_gz":"丙午","month_gz":"戊戌","day_gz":"壬申","gan":"壬","zhi":"申","nayin":"剑锋金","yi":["祭祀","祈福","求嗣","斋醮","开光","出行","嫁娶","求医","治病","动土","破土","入学","起基","扫舍","竖柱","上梁","开仓","出货财","置产","栽种","牧养","开生坟","谢土","立碑"],"ji":["安门","安床","裁衣","入宅","安葬"],"tianshen":"金匮","tianshen_type":"黄道","zhixing":"开","xiu":"虚日鼠","chong":"(丙寅)虎","xi_position":"正南","cai_position":"正南","fu_position":"东南","lucky_color":"藏蓝","lucky_numbers":[1,6],"taste":"咸"},"fortune":{"confidence":"medium","confidence_note":"有倾向但不绝对，可按口味微调","drink_bias":"ice","drink_note":"高温，冰饮 + 冰品解暑","form":"丰盛","luck":"吉","luck_note":"黄道吉日，吃麦当劳是锦上添花","slots":{"main":[{"cat":"BEEF","name":"牛肉","score":10.0,"reasons":["宜「动土」+1","宜「上梁」+1","宜「开仓」+2","宜「出货财」+2","宜「置产」+2"]},{"cat":"CHICKEN","name":"鸡肉","score":8.4,"reasons":["宜「开光」+1","宜「出行」+2","宜「求医」+1","宜「入学」+1","宜「牧养」+1"]},{"cat":"FISH","name":"鱼","score":6.2,"reasons":["宜「祭祀」+1","宜「祈福」+1","宜「求嗣」+3","五行水+1.2"]},{"cat":"PORK","name":"猪柳","score":1.2,"reasons":["五行水+1.2"]}],"side":[{"cat":"VEG","name":"蔬果","score":14.6,"reasons":["宜「祭祀」+2","宜「祈福」+1","宜「斋醮」+2","宜「求医」+2","宜「治病」+2"]},{"cat":"POTATO","name":"薯制品","score":8.0,"reasons":["宜「动土」+2","宜「破土」+1","宜「起基」+1","宜「竖柱」+1","宜「上梁」+1"]},{"cat":"FRIED","name":"炸物","score":-0.2,"reasons":["高温油炸−1.2","值「开」宜丰盛+1"]}],"drink":[{"cat":"COFFEE","name":"咖啡","score":5.2,"reasons":["宜「开光」+1","宜「出行」+1","宜「入学」+2","五行水+1.2"]},{"cat":"TEA","name":"茶饮","score":4.6,"reasons":["宜「求医」+2","宜「治病」+1","宜「扫舍」+1","水生木+0.6"]},{"cat":"SODA","name":"碳酸饮","score":2.7,"reasons":["五行水+1.2","高温冷饮+1.5"]}],"dessert":[{"cat":"DESSERT","name":"甜品冰品","score":7.2,"reasons":["宜「祈福」+2","宜「求嗣」+1","宜「嫁娶」+1","五行水+1.2","高温冰品+2"]}]}},"store":{"pickup":{"code":"1410574","name":"麦当劳厦门湖滨南路(华润万象城二期)餐厅","address":"湖滨南路与金榜路交叉口东北侧华润万象城二期","distance":242,"open":"07:00-22:00"},"delivery":{"code":"1410120","name":"麦当劳厦门屿后南里餐厅","beCode":"141012002"},"menu_size":83},"stores":{"pickup":[{"kind":"pickup","code":"1410574","name":"麦当劳厦门湖滨南路(华润万象城二期)餐厅","address":"湖滨南路与金榜路交叉口东北侧华润万象城二期","distance":242,"beCode":"","open":"07:00-22:00","deliverable":false},{"kind":"pickup","code":"1410453","name":"麦当劳厦门湖光路(101聚厂)餐厅","address":"湖光路101-30号“101聚厂”C栋","distance":399,"beCode":"","open":"07:00-00:00","deliverable":false},{"kind":"pickup","code":"1410061","name":"麦当劳厦门梧村餐厅","address":"厦禾路９２３号百源双玺大厦一楼","distance":891,"beCode":"","open":"07:00-23:00","deliverable":false},{"kind":"pickup","code":"1410228","name":"麦当劳厦门梧村中闽百汇地下商场餐厅(出岛公交车站旁)","address":"思明区厦禾路929号梧村负一层商业街","distance":897,"beCode":"","open":"09:00-22:00","deliverable":false},{"kind":"pickup","code":"1410458","name":"麦当劳厦门莲坂国贸餐厅","address":"湖滨南路398号","distance":952,"beCode":"","open":"07:00-23:59","deliverable":false}],"delivery":[{"kind":"delivery","code":"1410120","name":"麦当劳厦门屿后南里餐厅","address":"","distance":null,"beCode":"141012002","open":"06:30-23:59","deliverable":true},{"kind":"delivery","code":"1410448","name":"麦当劳厦门嘉禾路(汇腾大厦)餐厅","address":"","distance":null,"beCode":"141044802","open":"07:00-00:00","deliverable":true},{"kind":"delivery","code":"1410131","name":"麦当劳厦门台湾街餐厅","address":"","distance":null,"beCode":"141013102","open":"00:00-23:59","deliverable":true}],"chosen":{"pickup":"1410574","delivery":"1410120"}},"menu":[{"code":"521953","name":"龙焰芝士棒鸡腿堡","price":27.0,"original":27.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":["上新"],"limited":true},{"code":"521986","name":"马苏里拉拉丝芝士条","price":11.0,"original":16.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"小食甜品/其他","tags":["上新"],"limited":true},{"code":"9900015561","name":"麦咖啡冰爽一夏","price":9.9,"original":23.0,"cat":"drink","cat_name":"饮品","meat":"COFFEE","group":"麦咖啡™","tags":["限时特惠"],"limited":true},{"code":"521817","name":"【美汁源】“多汁柠柠”","price":12.0,"original":12.0,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":["上新"],"limited":true},{"code":"521917","name":"泷愿成真麦旋风——大米风味","price":16.5,"original":16.5,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"小食甜品/其他","tags":["上新"],"limited":true},{"code":"521791","name":"茉莉奶绿雪冰","price":9.9,"original":23.0,"cat":"other","cat_name":"其他","meat":"","group":"麦咖啡™","tags":["限时特惠"],"limited":true},{"code":"521881","name":"马来咖喱风味薄皮肉骨鸡3块","price":15.0,"original":15.0,"cat":"other","cat_name":"其他","meat":"","group":"炸鸡","tags":["上新"],"limited":true},{"code":"9900008747","name":"牛肉堡单品精选","price":14.0,"original":14.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"521952","name":"龙焰鸡腿堡","price":15.9,"original":24.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"人气热卖","tags":[],"limited":false},{"code":"1450","name":"麦香鸡","price":17.0,"original":17.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"1440","name":"麦辣鸡腿汉堡","price":22.5,"original":22.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"521316","name":"高达吉士双牛堡","price":22.5,"original":22.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900015602","name":"大堡口福三件套","price":22.9,"original":48.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"大堡口福单人餐","tags":[],"limited":false},{"code":"1120","name":"双层吉士汉堡","price":23.0,"original":23.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"1406","name":"板烧鸡腿堡","price":23.5,"original":23.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900008746","name":"鸡肉堡单品精选","price":23.5,"original":23.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900005422","name":"汉堡开心乐园餐","price":23.5,"original":23.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"开心乐园","tags":[],"limited":false},{"code":"9900005421","name":"鱼排堡开心乐园餐","price":24.0,"original":24.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"FISH","group":"开心乐园","tags":[],"limited":false},{"code":"9900003586","name":"双层深海鳕鱼堡","price":25.0,"original":25.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"FISH","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"1106","name":"培根蔬萃双层牛堡","price":25.0,"original":25.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900011123","name":"“辣”么快乐套餐","price":25.5,"original":36.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"500大卡套餐","tags":[],"limited":false},{"code":"1100","name":"巨无霸","price":26.0,"original":26.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900005449","name":"吉士汉堡包套餐","price":26.5,"original":40.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900016073","name":"龙焰鸡腿堡三件套","price":26.9,"original":48.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"人气热卖","tags":[],"limited":false},{"code":"4648","name":"不素之霸双层牛堡","price":27.0,"original":27.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900000891","name":"麦辣鸡腿堡四件套","price":28.0,"original":57.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900000890","name":"板烧鸡腿堡四件套","price":28.0,"original":57.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900005453","name":"麦香鸡套餐","price":28.0,"original":41.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900016309","name":"龙焰鸡腿堡四件套","price":29.0,"original":57.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900011128","name":"“堡”你欢乐套餐","price":29.5,"original":42.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"500大卡套餐","tags":[],"limited":false},{"code":"9900016075","name":"龙焰芝士棒鸡腿堡三件套","price":29.9,"original":51.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"人气热卖","tags":[],"limited":false},{"code":"511782","name":"芝士安格斯厚牛堡","price":31.5,"original":31.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"安格斯MAX厚牛堡","tags":[],"limited":false},{"code":"9900016310","name":"龙焰芝士棒鸡腿堡四件套","price":32.0,"original":57.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900000888","name":"巨无霸四件套","price":32.0,"original":59.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900000886","name":"不素之霸双层牛堡四件套","price":32.0,"original":59.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900000885","name":"培根蔬萃双层牛堡四件套","price":32.0,"original":59.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900000893","name":"双层深海鳕鱼堡四件套","price":32.0,"original":59.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"FISH","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900005464","name":"双层吉士汉堡套餐","price":34.0,"original":47.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900004064","name":"精选单人餐三件套","price":34.5,"original":47.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"人气热卖","tags":[],"limited":false},{"code":"9900005462","name":"板烧鸡腿堡三件套","price":34.5,"original":48.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"511781","name":"培根安格斯厚牛堡","price":34.5,"original":34.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"安格斯MAX厚牛堡","tags":[],"limited":false},{"code":"9900005468","name":"培根蔬萃双层牛堡三件套","price":36.0,"original":49.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900009245","name":"牛气满满套餐","price":36.0,"original":48.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"500大卡套餐","tags":[],"limited":false},{"code":"9900005466","name":"巨无霸三件套","price":37.0,"original":50.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900000881","name":"培根安格斯厚牛堡四件套","price":37.0,"original":66.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"安格斯MAX厚牛堡","tags":[],"limited":false},{"code":"9900000882","name":"芝士安格斯厚牛堡四件套","price":37.0,"original":66.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"安格斯MAX厚牛堡","tags":[],"limited":false},{"code":"9900005411","name":"不素之霸双层牛堡三件套","price":38.0,"original":51.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"巨无霸牛鱼肉堡","tags":[],"limited":false},{"code":"9900009242","name":"“苹板”支撑Pro套餐","price":41.0,"original":53.5,"cat":"main","cat_name":"汉堡 / 主食","meat":"CHICKEN","group":"500大卡套餐","tags":[],"limited":false},{"code":"9900005430","name":"芝士安格斯厚牛堡三件套","price":42.5,"original":56.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"安格斯MAX厚牛堡","tags":[],"limited":false},{"code":"9900005428","name":"培根安格斯厚牛堡三件套","price":45.5,"original":59.0,"cat":"main","cat_name":"汉堡 / 主食","meat":"BEEF","group":"安格斯MAX厚牛堡","tags":[],"limited":false},{"code":"521799","name":"日式鲜磨山葵酱","price":3.0,"original":3.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"蘸酱炸鸡","tags":[],"limited":false},{"code":"6102","name":"苹果片","price":7.0,"original":7.0,"cat":"side","cat_name":"小食","meat":"VEG","group":"小食甜品/其他","tags":[],"limited":false},{"code":"521741","name":"脆薯饼","price":8.5,"original":8.5,"cat":"side","cat_name":"小食","meat":"POTATO","group":"小食甜品/其他","tags":[],"limited":false},{"code":"4437","name":"玉米杯","price":13.0,"original":13.0,"cat":"side","cat_name":"小食","meat":"VEG","group":"小食甜品/其他","tags":[],"limited":false},{"code":"1401","name":"麦乐鸡","price":14.0,"original":14.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"炸鸡","tags":[],"limited":false},{"code":"521156","name":"那么大鸡排（椒盐风味）","price":14.0,"original":14.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"炸鸡","tags":[],"limited":false},{"code":"4810","name":"薯条","price":14.5,"original":14.5,"cat":"side","cat_name":"小食","meat":"POTATO","group":"小食甜品/其他","tags":[],"limited":false},{"code":"1700","name":"麦辣鸡翅","price":15.0,"original":15.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"炸鸡","tags":[],"limited":false},{"code":"520445","name":"薄皮焦香V翅","price":16.0,"original":16.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"炸鸡","tags":[],"limited":false},{"code":"9900005423","name":"麦乐鸡开心乐园餐","price":25.0,"original":25.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"开心乐园","tags":[],"limited":false},{"code":"9900005451","name":"麦辣鸡翅4块套餐","price":36.5,"original":50.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"炸鸡","tags":[],"limited":false},{"code":"9900015730","name":"BFF四宫格小食盘","price":38.8,"original":54.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"小食拼盘/多人餐","tags":[],"limited":false},{"code":"9900015729","name":"蘸酱BFF四宫格小食盘","price":41.8,"original":57.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"蘸酱炸鸡","tags":[],"limited":false},{"code":"9900006332","name":"薄皮V翅双拼十翅","price":49.9,"original":77.0,"cat":"side","cat_name":"小食","meat":"FRIED","group":"小食拼盘/多人餐","tags":[],"limited":false},{"code":"3757","name":"纯悦","price":7.5,"original":7.5,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"520689","name":"鲜萃咖啡","price":9.5,"original":9.5,"cat":"drink","cat_name":"饮品","meat":"COFFEE","group":"麦咖啡™","tags":[],"limited":false},{"code":"9900008751","name":"可乐","price":9.5,"original":9.5,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"3010","name":"雪碧","price":9.5,"original":9.5,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"515280","name":"阳光柠檬红茶","price":9.5,"original":9.5,"cat":"drink","cat_name":"饮品","meat":"TEA","group":"饮品","tags":[],"limited":false},{"code":"3755","name":"纯牛奶(盒装)","price":11.0,"original":11.0,"cat":"drink","cat_name":"饮品","meat":"COFFEE","group":"饮品","tags":[],"limited":false},{"code":"515520","name":"怡泉+C","price":11.5,"original":11.5,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"3505","name":"锡兰红茶","price":11.5,"original":11.5,"cat":"drink","cat_name":"饮品","meat":"TEA","group":"饮品","tags":[],"limited":false},{"code":"6362","name":"100% 苹果汁(盒装)","price":12.0,"original":12.0,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"6352","name":"阳光橙麦炫酷","price":12.5,"original":12.5,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"2430","name":"【美汁源】“黄金橙橙”","price":13.0,"original":13.0,"cat":"drink","cat_name":"饮品","meat":"SODA","group":"饮品","tags":[],"limited":false},{"code":"507394","name":"牛奶","price":19.0,"original":19.0,"cat":"drink","cat_name":"饮品","meat":"COFFEE","group":"麦咖啡™","tags":[],"limited":false},{"code":"515837","name":"圆筒冰淇淋","price":5.0,"original":5.0,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"小食甜品/其他","tags":[],"limited":false},{"code":"9900008752","name":"派","price":8.0,"original":8.0,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"小食甜品/其他","tags":[],"limited":false},{"code":"9900008745","name":"新地","price":12.5,"original":12.5,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"小食甜品/其他","tags":[],"limited":false},{"code":"9900008754","name":"经典麦旋风","price":15.5,"original":15.5,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"小食甜品/其他","tags":[],"limited":false},{"code":"521950","name":"蓝莓爆爆珠麦旋风","price":16.5,"original":16.5,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"人气热卖","tags":[],"limited":false},{"code":"521750","name":"泷盐星星麦旋风","price":16.5,"original":16.5,"cat":"dessert","cat_name":"甜品","meat":"DESSERT","group":"小食甜品/其他","tags":[],"limited":false},{"code":"521966","name":"韩式烟熏芝士风味酱","price":3.0,"original":3.0,"cat":"other","cat_name":"其他","meat":"","group":"蘸酱炸鸡","tags":[],"limited":false},{"code":"521797","name":"北美招牌牧场酱","price":3.0,"original":3.0,"cat":"other","cat_name":"其他","meat":"","group":"蘸酱炸鸡","tags":[],"limited":false},{"code":"9900003538","name":"学生专享饮品随心选","price":10.0,"original":10.0,"cat":"other","cat_name":"其他","meat":"","group":"饮品","tags":[],"limited":false},{"code":"9900015568","name":"精选超值随心配","price":13.9,"original":13.9,"cat":"other","cat_name":"其他","meat":"","group":"随心配1+1","tags":[],"limited":false},{"code":"9900013304","name":"人气经典随心配","price":14.9,"original":14.9,"cat":"other","cat_name":"其他","meat":"","group":"随心配1+1","tags":[],"limited":false},{"code":"521740","name":"脆脆薯格","price":16.0,"original":16.0,"cat":"other","cat_name":"其他","meat":"","group":"小食甜品/其他","tags":[],"limited":false},{"code":"9900004236","name":"人气超值四件套随心选","price":28.0,"original":57.0,"cat":"other","cat_name":"其他","meat":"","group":"精选单人餐","tags":[],"limited":false},{"code":"9900003537","name":"学生专享汉堡小食随心选","price":28.0,"original":28.0,"cat":"other","cat_name":"其他","meat":"","group":"鸡肉汉堡/卷","tags":[],"limited":false},{"code":"9900010110","name":"鱼牛汉堡四件套随心选","price":32.0,"original":59.5,"cat":"other","cat_name":"其他","meat":"","group":"精选单人餐","tags":[],"limited":false},{"code":"9900006957","name":"安格斯厚牛堡四件套随心选","price":37.0,"original":66.0,"cat":"other","cat_name":"其他","meat":"","group":"精选单人餐","tags":[],"limited":false},{"code":"9900011056","name":"全明星双人分享餐八件套","price":49.9,"original":117.5,"cat":"other","cat_name":"其他","meat":"","group":"人气热卖","tags":[],"limited":false},{"code":"9900005439","name":"开心亲子双人餐","price":59.5,"original":59.5,"cat":"other","cat_name":"其他","meat":"","group":"开心乐园","tags":[],"limited":false},{"code":"9900005321","name":"BFF四宫格小食盘双人餐","price":62.9,"original":123.5,"cat":"other","cat_name":"其他","meat":"","group":"小食拼盘/多人餐","tags":[],"limited":false},{"code":"9900004066","name":"堡堡随心拼（7件任选）","price":73.0,"original":104.0,"cat":"other","cat_name":"其他","meat":"","group":"小食拼盘/多人餐","tags":[],"limited":false}],"plans":[{"tag":"天命套餐","icon":"🍔","desc":"「牛肉」当令，一件省心","reason":"主餐倾向「牛肉」，值日「开」宜丰盛","notes":[],"items":[{"code":"9900005428","name":"培根安格斯厚牛堡三件套","price":45.5,"cat":"BEEF","cat_name":"安格斯MAX厚牛堡"}],"snapshot":45.5,"verified":true,"total":45.5,"discount":0.0,"coupon":null,"payload":[{"productCode":"9900005428","quantity":1}],"delivery_items":null},{"tag":"手搭三件","icon":"🥢","desc":"主餐 + 小食 + 饮品，口味自己拿主意","reason":"主餐「牛肉」· 小食「蔬果」· 高温，冰饮 + 冰品解暑","notes":[],"items":[{"code":"511781","name":"培根安格斯厚牛堡","price":34.5,"cat":"BEEF","cat_name":"安格斯MAX厚牛堡"},{"code":"4437","name":"玉米杯","price":13.0,"cat":"VEG","cat_name":"小食甜品/其他"},{"code":"9900015561","name":"麦咖啡冰爽一夏","price":9.9,"cat":"COFFEE","cat_name":"麦咖啡™"}],"snapshot":57.4,"verified":true,"total":57.4,"discount":0.0,"coupon":null,"payload":[{"productCode":"511781","quantity":1},{"productCode":"4437","quantity":1},{"productCode":"9900015561","quantity":1}],"delivery_items":null},{"tag":"轻简改运","icon":"🍃","desc":"最便宜的一主一饮，热量与预算都收着","reason":"今日忌安门、安床、裁衣，诸事宜从简","notes":[],"items":[{"code":"1100","name":"巨无霸","price":26.0,"cat":"BEEF","cat_name":"巨无霸牛鱼肉堡"},{"code":"520689","name":"鲜萃咖啡","price":9.5,"cat":"COFFEE","cat_name":"饮品"}],"snapshot":35.5,"verified":true,"total":35.5,"discount":0.0,"coupon":null,"payload":[{"productCode":"1100","quantity":1},{"productCode":"520689","quantity":1}],"delivery_items":null},{"tag":"甜品冲喜","icon":"🍦","desc":"加一件甜品，讨个「甜」字","reason":"宜祈福、求嗣、嫁娶，以甜收尾","notes":[],"items":[{"code":"521950","name":"蓝莓爆爆珠麦旋风","price":16.5,"cat":"DESSERT","cat_name":"小食甜品/其他"}],"snapshot":16.5,"verified":true,"total":16.5,"discount":0.0,"coupon":null,"payload":[{"productCode":"521950","quantity":1}],"delivery_items":[{"code":"521950","name":"蓝莓爆爆珠麦旋风","price":16.5,"cat":"DESSERT"}]},{"tag":"再抽一签","icon":"🎲","desc":"同一份运势，换个搭法","reason":"主餐仍是「牛肉」当家，配菜换个口味","notes":[],"items":[{"code":"511782","name":"芝士安格斯厚牛堡","price":31.5,"cat":"BEEF","cat_name":"安格斯MAX厚牛堡"},{"code":"6102","name":"苹果片","price":7.0,"cat":"VEG","cat_name":"小食甜品/其他"},{"code":"520689","name":"鲜萃咖啡","price":9.5,"cat":"COFFEE","cat_name":"饮品"}],"snapshot":48.0,"verified":true,"total":48.0,"discount":0.0,"coupon":null,"payload":[{"productCode":"511782","quantity":1},{"productCode":"6102","quantity":1},{"productCode":"520689","quantity":1}],"delivery_items":null},{"tag":"再抽一签","icon":"🎲","desc":"同一份运势，换个搭法","reason":"主餐仍是「牛肉」当家，配菜换个口味","notes":[],"items":[{"code":"4648","name":"不素之霸双层牛堡","price":27.0,"cat":"BEEF","cat_name":"巨无霸牛鱼肉堡"},{"code":"4810","name":"薯条","price":14.5,"cat":"POTATO","cat_name":"小食甜品/其他"},{"code":"2430","name":"【美汁源】“黄金橙橙”","price":13.0,"cat":"SODA","cat_name":"饮品"}],"snapshot":54.5,"verified":true,"total":54.5,"discount":0.0,"coupon":null,"payload":[{"productCode":"4648","quantity":1},{"productCode":"4810","quantity":1},{"productCode":"2430","quantity":1}],"delivery_items":[{"code":"900138","name":"不素之霸双层牛堡","price":27.0,"cat":"BEEF"},{"code":"501205","name":"薯条","price":14.5,"cat":"POTATO"},{"code":"906352","name":"【美汁源】“黄金橙橙”","price":13.0,"cat":"SODA"}]}],"coupons":{"wallet_total":2,"usable":[],"upcoming":[{"title":"11.9元麦辣鸡腿堡","reason":"10-26 10:30 起可用","benefit":{"kind":"fixed_price","price":11.9,"target":"麦辣鸡腿堡","qty":1,"threshold":null,"raw":"11.9元麦辣鸡腿堡"}},{"title":"19.9元王牌炸鸡任选2","reason":"10-26 10:30 起可用","benefit":{"kind":"fixed_price","price":19.9,"target":"王牌炸鸡","qty":2,"threshold":null,"raw":"19.9元王牌炸鸡任选2"}}],"store_usable_count":0,"notes":["该门店+点餐方式下 query-store-coupons 返回空：当前没有门店级可用券"],"checked":true,"upcoming_est":[{"title":"11.9元麦辣鸡腿堡","starts":"10-26 10:30 起可用","target":"麦辣鸡腿汉堡","now_price":22.5,"coupon_price":11.9,"est_saving":10.6}],"claimable":["免费脆薯饼"]},"limited":[{"code":"521986","name":"马苏里拉拉丝芝士条","price":11.0,"original_price":16.0,"tags":["上新"],"raw_tags":["上新","趁热拉丝","奶香醇厚"],"category":"小食甜品/其他","cls":["side","FRIED"]},{"code":"521817","name":"【美汁源】“多汁柠柠”","price":12.0,"original_price":12.0,"tags":["上新"],"raw_tags":["上新","清爽上新"],"category":"饮品","cls":["drink","SODA"]},{"code":"521881","name":"马来咖喱风味薄皮肉骨鸡3块","price":15.0,"original_price":15.0,"tags":["上新"],"raw_tags":["上新","浓郁咖喱飘香"],"category":"炸鸡","cls":null},{"code":"521952","name":"龙焰鸡腿堡","price":15.9,"original_price":24.0,"tags":["上新"],"raw_tags":["上新","韩式辣椒黄油风味"],"category":"鸡肉汉堡/卷","cls":["main","CHICKEN"]},{"code":"521950","name":"蓝莓爆爆珠麦旋风","price":16.5,"original_price":16.5,"tags":["上新"],"raw_tags":["上新","蓝莓"],"category":"小食甜品/其他","cls":["dessert","DESSERT"]},{"code":"521917","name":"泷愿成真麦旋风——大米风味","price":16.5,"original_price":16.5,"tags":["上新"],"raw_tags":["上新","快乐旋开吃"],"category":"小食甜品/其他","cls":["dessert","DESSERT"]},{"code":"9900016073","name":"龙焰鸡腿堡三件套","price":26.9,"original_price":48.5,"tags":["上新"],"raw_tags":["上新","韩式辣椒黄油风味"],"category":"鸡肉汉堡/卷","cls":["main","CHICKEN"]},{"code":"521953","name":"龙焰芝士棒鸡腿堡","price":27.0,"original_price":27.0,"tags":["上新"],"raw_tags":["上新","浓郁奶香拉丝芝士"],"category":"鸡肉汉堡/卷","cls":["main","CHICKEN"]},{"code":"9900016075","name":"龙焰芝士棒鸡腿堡三件套","price":29.9,"original_price":51.5,"tags":["上新"],"raw_tags":["上新","浓郁奶香拉丝芝士"],"category":"鸡肉汉堡/卷","cls":["main","CHICKEN"]},{"code":"9900015561","name":"麦咖啡冰爽一夏","price":9.9,"original_price":23.0,"tags":["限时特惠"],"raw_tags":["限定特惠","人气雪冰喝一夏"],"category":"麦咖啡™","cls":["drink","COFFEE"]},{"code":"521791","name":"茉莉奶绿雪冰","price":9.9,"original_price":23.0,"tags":["限时特惠"],"raw_tags":["限定特惠"],"category":"麦咖啡™","cls":null}],"logistics":{"mode":"either","label":"自取外送都行","sub":"当天可以 —— 两种都顺，看你方便","why":"外送只多 ¥6.8，当天可以，看你方便","compare":{"plan_index":3,"plan_tag":"甜品冲喜","pickup":16.5,"delivery":23.3,"delivery_fee":6.0,"packing_fee":0.8,"diff":6.8,"store":"麦当劳厦门屿后南里餐厅"}},"yiji":{"yi":["宜吃麦当劳","宜吃牛肉","宜冰饮","宜出门走走","宜记着明天的券","宜尝新"],"ji":["忌饿着肚子看这篇","忌在太阳底下排队","忌把券放到过期"],"luck":"吉","luck_note":"黄道吉日，吃麦当劳是锦上添花"},"sign":"日头正盛，宜用一杯冰的压住暑气。当天可以 —— 走两步，或者等它来。","calendar":{"2026-09-15":{"lunar":"八月初五","lunar_full":"二〇二六年八月初五","gz":"壬辰","nayin":"长流水","zhixing":"危","yi":["嫁娶","纳采","订盟","祭祀","开光","出行"],"ji":["开市","掘井","开渠","造桥"],"color":"藏蓝","xi":"正南","day_gz":"壬辰"},"2026-09-16":{"lunar":"八月初六","lunar_full":"二〇二六年八月初六","gz":"癸巳","nayin":"长流水","zhixing":"成","yi":["开市","交易","立券","纳财","挂匾","栽种"],"ji":["嫁娶","破土","进人口","出行"],"color":"藏蓝","xi":"东南","day_gz":"癸巳"},"2026-09-17":{"lunar":"八月初七","lunar_full":"二〇二六年八月初七","gz":"甲午","nayin":"沙中金","zhixing":"收","yi":["嫁娶","祭祀","理发","进人口","作灶","移柩"],"ji":["开仓","出货财","伐木","纳畜"],"color":"青绿","xi":"东北","day_gz":"甲午"},"2026-09-18":{"lunar":"八月初八","lunar_full":"二〇二六年八月初八","gz":"乙未","nayin":"沙中金","zhixing":"开","yi":["祭祀","修坟","除服","成服","启钻","移柩"],"ji":["开市","入宅","嫁娶","动土"],"color":"青绿","xi":"西北","day_gz":"乙未"},"2026-09-19":{"lunar":"八月初九","lunar_full":"二〇二六年八月初九","gz":"丙申","nayin":"山下火","zhixing":"闭","yi":["嫁娶","冠笄","安机械","解除","纳畜","牧养"],"ji":["祈福","开光","开市","入宅"],"color":"赤红","xi":"西南","day_gz":"丙申"},"2026-09-20":{"lunar":"八月初十","lunar_full":"二〇二六年八月初十","gz":"丁酉","nayin":"山下火","zhixing":"建","yi":["祭祀","出行","沐浴","扫舍","安葬","馀事勿取"],"ji":["动土","破土","置产","掘井"],"color":"赤红","xi":"正南","day_gz":"丁酉"},"2026-09-21":{"lunar":"八月十一","lunar_full":"二〇二六年八月十一","gz":"戊戌","nayin":"平地木","zhixing":"除","yi":["嫁娶","纳采","祭祀","解除","出行","修造"],"ji":["造庙","行丧","安葬","伐木"],"color":"明黄","xi":"东南","day_gz":"戊戌"},"2026-09-22":{"lunar":"八月十二","lunar_full":"二〇二六年八月十二","gz":"己亥","nayin":"平地木","zhixing":"满","yi":["纳采","订盟","开市","交易","立券","挂匾"],"ji":["斋醮","嫁娶","行丧","动土"],"color":"明黄","xi":"东北","day_gz":"己亥"},"2026-09-23":{"lunar":"八月十三","lunar_full":"二〇二六年八月十三","gz":"庚子","nayin":"壁上土","zhixing":"平","yi":["祭祀","沐浴","修饰垣墙","平治道涂","馀事勿取"],"ji":["嫁娶","入宅","安床","出行"],"color":"银白","xi":"西北","day_gz":"庚子"},"2026-09-24":{"lunar":"八月十四","lunar_full":"二〇二六年八月十四","gz":"辛丑","nayin":"壁上土","zhixing":"定","yi":["开光","祈福","求嗣","斋醮","修造","动土"],"ji":["作灶","出火","进人口","开渠"],"color":"银白","xi":"西南","day_gz":"辛丑"},"2026-09-25":{"lunar":"八月十五","lunar_full":"二〇二六年八月十五","gz":"壬寅","nayin":"金箔金","zhixing":"执","yi":["开光","解除","拆卸","修造","动土","竖柱"],"ji":["出火","入宅","移徙","祈福"],"color":"藏蓝","xi":"正南","day_gz":"壬寅"},"2026-09-26":{"lunar":"八月十六","lunar_full":"二〇二六年八月十六","gz":"癸卯","nayin":"金箔金","zhixing":"破","yi":["破屋","坏垣","求医","治病","馀事勿取"],"ji":["移徙","入宅"],"color":"藏蓝","xi":"东南","day_gz":"癸卯"},"2026-09-27":{"lunar":"八月十七","lunar_full":"二〇二六年八月十七","gz":"甲辰","nayin":"覆灯火","zhixing":"危","yi":["嫁娶","纳采","订盟","祭祀","祈福","求嗣"],"ji":["开市","开仓","安门","安葬"],"color":"青绿","xi":"东北","day_gz":"甲辰"},"2026-09-28":{"lunar":"八月十八","lunar_full":"二〇二六年八月十八","gz":"乙巳","nayin":"覆灯火","zhixing":"成","yi":["嫁娶","纳采","订盟","祭祀","祈福","求嗣"],"ji":["安葬","纳畜","出行","行丧"],"color":"青绿","xi":"西北","day_gz":"乙巳"},"2026-09-29":{"lunar":"八月十九","lunar_full":"二〇二六年八月十九","gz":"丙午","nayin":"天河水","zhixing":"收","yi":["祭祀","冠笄","捕捉","馀事勿取"],"ji":["嫁娶","开市","盖屋","作梁"],"color":"赤红","xi":"西南","day_gz":"丙午"},"2026-09-30":{"lunar":"八月二十","lunar_full":"二〇二六年八月二十","gz":"丁未","nayin":"天河水","zhixing":"开","yi":["祭祀","解除","结网","畋猎","取渔","会亲友"],"ji":["开市","祈福","动土","破土"],"color":"赤红","xi":"正南","day_gz":"丁未"},"2026-10-01":{"lunar":"八月廿一","lunar_full":"二〇二六年八月廿一","gz":"戊申","nayin":"大驿土","zhixing":"闭","yi":["冠笄","沐浴","出行","修造","动土","移徙"],"ji":["嫁娶","开市","祭祀","祈福"],"color":"明黄","xi":"东南","day_gz":"戊申"},"2026-10-02":{"lunar":"八月廿二","lunar_full":"二〇二六年八月廿二","gz":"己酉","nayin":"大驿土","zhixing":"建","yi":["祭祀","出行"],"ji":["嫁娶","入宅","修造","动土"],"color":"明黄","xi":"东北","day_gz":"己酉"},"2026-10-03":{"lunar":"八月廿三","lunar_full":"二〇二六年八月廿三","gz":"庚戌","nayin":"钗钏金","zhixing":"除","yi":["嫁娶","订盟","纳采","祭祀","祈福","出行"],"ji":["针灸","伐木","作梁","造庙"],"color":"银白","xi":"西北","day_gz":"庚戌"},"2026-10-04":{"lunar":"八月廿四","lunar_full":"二〇二六年八月廿四","gz":"辛亥","nayin":"钗钏金","zhixing":"满","yi":["出行","开市","交易","立券","安机械","出火"],"ji":["嫁娶","安葬","动土","造桥"],"color":"银白","xi":"西南","day_gz":"辛亥"},"2026-10-05":{"lunar":"八月廿五","lunar_full":"二〇二六年八月廿五","gz":"壬子","nayin":"桑柘木","zhixing":"平","yi":["祭祀","沐浴","修饰垣墙","平治道涂","馀事勿取"],"ji":["斋醮","嫁娶","移徙","出行"],"color":"藏蓝","xi":"正南","day_gz":"壬子"},"2026-10-06":{"lunar":"八月廿六","lunar_full":"二〇二六年八月廿六","gz":"癸丑","nayin":"桑柘木","zhixing":"定","yi":["嫁娶","造车器","安机械","祭祀","祈福","开光"],"ji":["纳采","订盟","架马","词讼"],"color":"藏蓝","xi":"东南","day_gz":"癸丑"},"2026-10-07":{"lunar":"八月廿七","lunar_full":"二〇二六年八月廿七","gz":"甲寅","nayin":"大溪水","zhixing":"执","yi":["沐浴","捕捉","入殓","除服","成服","破土"],"ji":["祭祀","嫁娶","安床","开市"],"color":"青绿","xi":"东北","day_gz":"甲寅"},"2026-10-08":{"lunar":"八月廿八","lunar_full":"二〇二六年八月廿八","gz":"乙卯","nayin":"大溪水","zhixing":"执","yi":["祭祀","入殓","移柩","开生坟","破土","启钻"],"ji":["无"],"color":"青绿","xi":"西北","day_gz":"乙卯"},"2026-10-09":{"lunar":"八月廿九","lunar_full":"二〇二六年八月廿九","gz":"丙辰","nayin":"沙中土","zhixing":"破","yi":["祭祀","解除","破屋","坏垣","馀事勿取"],"ji":["诸事不宜"],"color":"赤红","xi":"西南","day_gz":"丙辰"},"2026-10-10":{"lunar":"九月初一","lunar_full":"二〇二六年九月初一","gz":"丁巳","nayin":"沙中土","zhixing":"危","yi":["嫁娶","求嗣","纳采","进人口","纳财","结网"],"ji":["上梁","作灶","伐木","出行"],"color":"赤红","xi":"正南","day_gz":"丁巳"},"2026-10-11":{"lunar":"九月初二","lunar_full":"二〇二六年九月初二","gz":"戊午","nayin":"天上火","zhixing":"成","yi":["嫁娶","祭祀","开市","开光","出行","入宅"],"ji":["纳畜","伐木","置产","作梁"],"color":"明黄","xi":"东南","day_gz":"戊午"},"2026-10-12":{"lunar":"九月初三","lunar_full":"二〇二六年九月初三","gz":"己未","nayin":"天上火","zhixing":"收","yi":["嫁娶","祭祀","作灶","纳财"],"ji":["安葬","开市","修坟","立碑"],"color":"明黄","xi":"东北","day_gz":"己未"},"2026-10-13":{"lunar":"九月初四","lunar_full":"二〇二六年九月初四","gz":"庚申","nayin":"石榴木","zhixing":"开","yi":["嫁娶","祭祀","祈福","求嗣","开光","出行"],"ji":["安床","安葬"],"color":"银白","xi":"西北","day_gz":"庚申"},"2026-10-14":{"lunar":"九月初五","lunar_full":"二〇二六年九月初五","gz":"辛酉","nayin":"石榴木","zhixing":"闭","yi":["嫁娶","祭祀","祈福","求嗣","动土","安床"],"ji":["开光","栽种"],"color":"银白","xi":"西南","day_gz":"辛酉"},"2026-10-15":{"lunar":"九月初六","lunar_full":"二〇二六年九月初六","gz":"壬戌","nayin":"大海水","zhixing":"建","yi":["祭祀","祈福","求嗣","开光","出行","解除"],"ji":["伐木","行丧","破土","嫁娶"],"color":"藏蓝","xi":"正南","day_gz":"壬戌"},"2026-10-16":{"lunar":"九月初七","lunar_full":"二〇二六年九月初七","gz":"癸亥","nayin":"大海水","zhixing":"除","yi":["祭祀","开光","出行","解除","理发","伐木"],"ji":["嫁娶","安葬","行丧","词讼"],"color":"藏蓝","xi":"东南","day_gz":"癸亥"},"2026-10-17":{"lunar":"九月初八","lunar_full":"二〇二六年九月初八","gz":"甲子","nayin":"海中金","zhixing":"满","yi":["纳采","订盟","会亲友","沐浴","理发","裁衣"],"ji":["开市","入宅","出行","嫁娶"],"color":"青绿","xi":"东北","day_gz":"甲子"},"2026-10-18":{"lunar":"九月初九","lunar_full":"二〇二六年九月初九","gz":"乙丑","nayin":"海中金","zhixing":"平","yi":["解除","祭祀","修饰垣墙","平治道涂","造畜稠","馀事勿取"],"ji":["嫁娶","开市","交易","入宅"],"color":"青绿","xi":"西北","day_gz":"乙丑"},"2026-10-19":{"lunar":"九月初十","lunar_full":"二〇二六年九月初十","gz":"丙寅","nayin":"炉中火","zhixing":"定","yi":["入殓","破土","启钻","安葬","除服","成服"],"ji":["开市","入宅","祭祀","置产"],"color":"赤红","xi":"西南","day_gz":"丙寅"},"2026-10-20":{"lunar":"九月十一","lunar_full":"二〇二六年九月十一","gz":"丁卯","nayin":"炉中火","zhixing":"执","yi":["嫁娶","祭祀","祈福","求嗣","开光","出行"],"ji":["入宅","移徙","掘井","理发"],"color":"赤红","xi":"正南","day_gz":"丁卯"},"2026-10-21":{"lunar":"九月十二","lunar_full":"二〇二六年九月十二","gz":"戊辰","nayin":"大林木","zhixing":"破","yi":["祭祀","沐浴","破屋","坏垣","馀事勿取"],"ji":["嫁娶","入宅","上梁","出行"],"color":"明黄","xi":"东南","day_gz":"戊辰"},"2026-10-22":{"lunar":"九月十三","lunar_full":"二〇二六年九月十三","gz":"己巳","nayin":"大林木","zhixing":"危","yi":["祭祀","求嗣","冠笄","进人口","会亲友","安门"],"ji":["祈福","斋醮","纳采","订盟"],"color":"明黄","xi":"东北","day_gz":"己巳"},"2026-10-23":{"lunar":"九月十四","lunar_full":"二〇二六年九月十四","gz":"庚午","nayin":"路旁土","zhixing":"成","yi":["嫁娶","纳采","订盟","开市","交易","立券"],"ji":["探病","纳畜","伐木","起基"],"color":"银白","xi":"西北","day_gz":"庚午"},"2026-10-24":{"lunar":"九月十五","lunar_full":"二〇二六年九月十五","gz":"辛未","nayin":"路旁土","zhixing":"收","yi":["祭祀","冠笄","移徙","会亲友","纳财","理发"],"ji":["嫁娶","开市","开池","开厕"],"color":"银白","xi":"西南","day_gz":"辛未"},"2026-10-25":{"lunar":"九月十六","lunar_full":"二〇二六年九月十六","gz":"壬申","nayin":"剑锋金","zhixing":"开","yi":["祭祀","祈福","求嗣","斋醮","开光","出行"],"ji":["安门","安床","裁衣","入宅"],"color":"藏蓝","xi":"正南","day_gz":"壬申"},"2026-10-26":{"lunar":"九月十七","lunar_full":"二〇二六年九月十七","gz":"癸酉","nayin":"剑锋金","zhixing":"闭","yi":["嫁娶","裁衣","冠笄","合帐","祭祀","出行"],"ji":["开市","栽种","置产","词讼"],"color":"藏蓝","xi":"东南","day_gz":"癸酉"},"2026-10-27":{"lunar":"九月十八","lunar_full":"二〇二六年九月十八","gz":"甲戌","nayin":"山头火","zhixing":"建","yi":["祭祀","造车器","出行","修造","上梁","盖屋"],"ji":["出货财","开仓","动土","破土"],"color":"青绿","xi":"东北","day_gz":"甲戌"},"2026-10-28":{"lunar":"九月十九","lunar_full":"二〇二六年九月十九","gz":"乙亥","nayin":"山头火","zhixing":"除","yi":["祭祀","开光","出行","解除","伐木","作梁"],"ji":["造庙","嫁娶","掘井","栽种"],"color":"青绿","xi":"西北","day_gz":"乙亥"},"2026-10-29":{"lunar":"九月二十","lunar_full":"二〇二六年九月二十","gz":"丙子","nayin":"涧下水","zhixing":"满","yi":["纳采","订盟","开市","交易","立券","会亲友"],"ji":["入宅","上梁","斋醮","出火"],"color":"赤红","xi":"西南","day_gz":"丙子"},"2026-10-30":{"lunar":"九月廿一","lunar_full":"二〇二六年九月廿一","gz":"丁丑","nayin":"涧下水","zhixing":"平","yi":["祭祀","平治道涂","馀事勿取"],"ji":["嫁娶","开市"],"color":"赤红","xi":"正南","day_gz":"丁丑"},"2026-10-31":{"lunar":"九月廿二","lunar_full":"二〇二六年九月廿二","gz":"戊寅","nayin":"城头土","zhixing":"定","yi":["捕捉","畋猎","馀事勿取"],"ji":["开市","交易","祭祀","入宅"],"color":"明黄","xi":"东南","day_gz":"戊寅"},"2026-11-01":{"lunar":"九月廿三","lunar_full":"二〇二六年九月廿三","gz":"己卯","nayin":"城头土","zhixing":"执","yi":["嫁娶","纳采","订盟","祭祀","祈福","求嗣"],"ji":["开市","破土","掘井","合寿木"],"color":"明黄","xi":"东北","day_gz":"己卯"},"2026-11-02":{"lunar":"九月廿四","lunar_full":"二〇二六年九月廿四","gz":"庚辰","nayin":"白蜡金","zhixing":"破","yi":["祭祀","沐浴","解除","破屋","坏垣","馀事勿取"],"ji":["开市","嫁娶"],"color":"银白","xi":"西北","day_gz":"庚辰"},"2026-11-03":{"lunar":"九月廿五","lunar_full":"二〇二六年九月廿五","gz":"辛巳","nayin":"白蜡金","zhixing":"危","yi":["订盟","纳采","会亲友","交易","立券","纳财"],"ji":["嫁娶","开市","入宅","祈福"],"color":"银白","xi":"西南","day_gz":"辛巳"},"2026-11-04":{"lunar":"九月廿六","lunar_full":"二〇二六年九月廿六","gz":"壬午","nayin":"杨柳木","zhixing":"成","yi":["造车器","嫁娶","订盟","纳采","会亲友","祭祀"],"ji":["上梁","开光","盖屋","架马"],"color":"藏蓝","xi":"正南","day_gz":"壬午"},"2026-11-05":{"lunar":"九月廿七","lunar_full":"二〇二六年九月廿七","gz":"癸未","nayin":"杨柳木","zhixing":"收","yi":["祭祀","作灶","纳财","捕捉","畋猎","馀事勿取"],"ji":["动土","破土","开市","安葬"],"color":"藏蓝","xi":"东南","day_gz":"癸未"},"2026-11-06":{"lunar":"九月廿八","lunar_full":"二〇二六年九月廿八","gz":"甲申","nayin":"泉中水","zhixing":"开","yi":["嫁娶","订盟","纳采","祭祀","祈福","出行"],"ji":["开市","开仓","出货财","安床"],"color":"青绿","xi":"东北","day_gz":"甲申"},"2026-11-07":{"lunar":"九月廿九","lunar_full":"二〇二六年九月廿九","gz":"乙酉","nayin":"泉中水","zhixing":"开","yi":["解除","馀事勿取"],"ji":["无"],"color":"青绿","xi":"西北","day_gz":"乙酉"},"2026-11-08":{"lunar":"九月三十","lunar_full":"二〇二六年九月三十","gz":"丙戌","nayin":"屋上土","zhixing":"闭","yi":["安床","祭祀","开池","补垣","入殓","移柩"],"ji":["入宅","移徙","嫁娶","掘井"],"color":"赤红","xi":"西南","day_gz":"丙戌"},"2026-11-09":{"lunar":"十月初一","lunar_full":"二〇二六年十月初一","gz":"丁亥","nayin":"屋上土","zhixing":"建","yi":["祭祀","沐浴","馀事勿取"],"ji":["无"],"color":"赤红","xi":"正南","day_gz":"丁亥"},"2026-11-10":{"lunar":"十月初二","lunar_full":"二〇二六年十月初二","gz":"戊子","nayin":"霹雳火","zhixing":"除","yi":["嫁娶","开光","出行","解除","出火","拆卸"],"ji":["置产","安床"],"color":"明黄","xi":"东南","day_gz":"戊子"},"2026-11-11":{"lunar":"十月初三","lunar_full":"二〇二六年十月初三","gz":"己丑","nayin":"霹雳火","zhixing":"满","yi":["开光","裁衣","安门","会亲友","安床","结网"],"ji":["嫁娶","冠笄","出行","祈福"],"color":"明黄","xi":"东北","day_gz":"己丑"},"2026-11-12":{"lunar":"十月初四","lunar_full":"二〇二六年十月初四","gz":"庚寅","nayin":"松柏木","zhixing":"平","yi":["嫁娶","开光","出行","出火","拆卸","修造"],"ji":["祈福","祭祀","伐木","掘井"],"color":"银白","xi":"西北","day_gz":"庚寅"},"2026-11-13":{"lunar":"十月初五","lunar_full":"二〇二六年十月初五","gz":"辛卯","nayin":"松柏木","zhixing":"定","yi":["嫁娶","祭祀","祈福","求嗣","开光","出火"],"ji":["栽种","掘井","置产"],"color":"银白","xi":"西南","day_gz":"辛卯"},"2026-11-14":{"lunar":"十月初六","lunar_full":"二〇二六年十月初六","gz":"壬辰","nayin":"长流水","zhixing":"执","yi":["祭祀","理发","针灸","解除","进人口","整手足甲"],"ji":["嫁娶","动土","造船","开池"],"color":"藏蓝","xi":"正南","day_gz":"壬辰"},"2026-11-15":{"lunar":"十月初七","lunar_full":"二〇二六年十月初七","gz":"癸巳","nayin":"长流水","zhixing":"破","yi":["破屋","坏垣","求医","治病","馀事勿取"],"ji":["嫁娶","安葬"],"color":"藏蓝","xi":"东南","day_gz":"癸巳"},"2026-11-16":{"lunar":"十月初八","lunar_full":"二〇二六年十月初八","gz":"甲午","nayin":"沙中金","zhixing":"危","yi":["纳采","订盟","嫁娶","祭祀","祈福","雕刻"],"ji":["上梁","开仓","出货财","盖屋"],"color":"青绿","xi":"东北","day_gz":"甲午"},"2026-11-17":{"lunar":"十月初九","lunar_full":"二〇二六年十月初九","gz":"乙未","nayin":"沙中金","zhixing":"成","yi":["祭祀","祈福","求嗣","开光","解除","伐木"],"ji":["嫁娶","进人口","入宅","移徙"],"color":"青绿","xi":"西北","day_gz":"乙未"},"2026-11-18":{"lunar":"十月初十","lunar_full":"二〇二六年十月初十","gz":"丙申","nayin":"山下火","zhixing":"收","yi":["沐浴","扫舍","捕捉","畋猎","解除","塞穴"],"ji":["嫁娶","入宅","开市","安床"],"color":"赤红","xi":"西南","day_gz":"丙申"},"2026-11-19":{"lunar":"十月十一","lunar_full":"二〇二六年十月十一","gz":"丁酉","nayin":"山下火","zhixing":"开","yi":["嫁娶","冠笄","祭祀","祈福","求嗣","斋醮"],"ji":["伐木","上梁","修造","入殓"],"color":"赤红","xi":"正南","day_gz":"丁酉"},"2026-11-20":{"lunar":"十月十二","lunar_full":"二〇二六年十月十二","gz":"戊戌","nayin":"平地木","zhixing":"闭","yi":["合帐","裁衣","嫁娶","安床","入殓","移柩"],"ji":["置产","造船","开光","掘井"],"color":"明黄","xi":"东南","day_gz":"戊戌"},"2026-11-21":{"lunar":"十月十三","lunar_full":"二〇二六年十月十三","gz":"己亥","nayin":"平地木","zhixing":"建","yi":["解除","修饰垣墙","冠笄","出行","馀事勿取"],"ji":["开市","动土","破土","嫁娶"],"color":"明黄","xi":"东北","day_gz":"己亥"},"2026-11-22":{"lunar":"十月十四","lunar_full":"二〇二六年十月十四","gz":"庚子","nayin":"壁上土","zhixing":"除","yi":["纳采","订盟","嫁娶","祭祀","祈福","求嗣"],"ji":["作灶","经络","安床"],"color":"银白","xi":"西北","day_gz":"庚子"},"2026-11-23":{"lunar":"十月十五","lunar_full":"二〇二六年十月十五","gz":"辛丑","nayin":"壁上土","zhixing":"满","yi":["祭祀","塑绘","理发","会亲友","牧养","开池"],"ji":["祈福","谢土","安葬","上梁"],"color":"银白","xi":"西南","day_gz":"辛丑"},"2026-11-24":{"lunar":"十月十六","lunar_full":"二〇二六年十月十六","gz":"壬寅","nayin":"金箔金","zhixing":"平","yi":["出行","纳财","开市","交易","立券","动土"],"ji":["造庙","谢土","作灶","作梁"],"color":"藏蓝","xi":"正南","day_gz":"壬寅"},"2026-11-25":{"lunar":"十月十七","lunar_full":"二〇二六年十月十七","gz":"癸卯","nayin":"金箔金","zhixing":"定","yi":["嫁娶","纳采","订盟","祭祀","斋醮","开光"],"ji":["置产","掘井","词讼","栽种"],"color":"藏蓝","xi":"东南","day_gz":"癸卯"},"2026-11-26":{"lunar":"十月十八","lunar_full":"二〇二六年十月十八","gz":"甲辰","nayin":"覆灯火","zhixing":"执","yi":["嫁娶","纳采","订盟","祭祀","开光","出行"],"ji":["破土","动土","安门","作灶"],"color":"青绿","xi":"东北","day_gz":"甲辰"},"2026-11-27":{"lunar":"十月十九","lunar_full":"二〇二六年十月十九","gz":"乙巳","nayin":"覆灯火","zhixing":"破","yi":["祭祀","解除","破屋","坏垣","求医","治病"],"ji":["嫁娶","安葬"],"color":"青绿","xi":"西北","day_gz":"乙巳"},"2026-11-28":{"lunar":"十月二十","lunar_full":"二〇二六年十月二十","gz":"丙午","nayin":"天河水","zhixing":"危","yi":["祭祀","扫舍","破土","安葬","除服","成服"],"ji":["嫁娶","入宅","修造","动土"],"color":"赤红","xi":"西南","day_gz":"丙午"},"2026-11-29":{"lunar":"十月廿一","lunar_full":"二〇二六年十月廿一","gz":"丁未","nayin":"天河水","zhixing":"成","yi":["订盟","纳采","会亲友","祭祀","祈福","修造"],"ji":["嫁娶","移徙","出火","开市"],"color":"赤红","xi":"正南","day_gz":"丁未"},"2026-11-30":{"lunar":"十月廿二","lunar_full":"二〇二六年十月廿二","gz":"戊申","nayin":"大驿土","zhixing":"收","yi":["祭祀","沐浴","捕捉","畋猎","结网","扫舍"],"ji":["嫁娶","纳采","订盟","安床"],"color":"明黄","xi":"东南","day_gz":"戊申"},"2026-12-01":{"lunar":"十月廿三","lunar_full":"二〇二六年十月廿三","gz":"己酉","nayin":"大驿土","zhixing":"开","yi":["开市","纳财","出行","祭祀","祈福","求嗣"],"ji":["移徙","入宅","出火","入殓"],"color":"明黄","xi":"东北","day_gz":"己酉"},"2026-12-02":{"lunar":"十月廿四","lunar_full":"二〇二六年十月廿四","gz":"庚戌","nayin":"钗钏金","zhixing":"闭","yi":["祭祀","理发","置产","塞穴","除服","成服"],"ji":["嫁娶","入宅","安床","掘井"],"color":"银白","xi":"西北","day_gz":"庚戌"},"2026-12-03":{"lunar":"十月廿五","lunar_full":"二〇二六年十月廿五","gz":"辛亥","nayin":"钗钏金","zhixing":"建","yi":["祭祀","沐浴","出行","馀事勿取"],"ji":["开市","动土","破土","行丧"],"color":"银白","xi":"西南","day_gz":"辛亥"},"2026-12-04":{"lunar":"十月廿六","lunar_full":"二〇二六年十月廿六","gz":"壬子","nayin":"桑柘木","zhixing":"除","yi":["嫁娶","造车器","出行","会亲友","移徙","入宅"],"ji":["开市","纳采","造庙","安床"],"color":"藏蓝","xi":"正南","day_gz":"壬子"}},"warnings":[]};</script>
+<script>/* ── 麦麦黄道吉日 · 原创插画与小票 ──────────────────────────────
+   插画全部用基础几何体手绘感拼出来：圆角汉堡、带表情薯条、
+   雨伞/草帽/热饮/云、金拱门、鸡块蘸酱、红白饮料杯、外卖纸袋。
+   颜色取麦当劳经典红黄，风格是简洁可爱的轻微手绘扁平插画。 */
+
+const ART = (() => {
+  const C = {
+    bun: '#EFB871', bunDark: '#D9954B', bunTop: '#F7CB8C',
+    patty: '#6E4526', cheese: '#F5B71E', lettuce: '#86B36B',
+    red: '#C8102E', yellow: '#FFC72C', cream: '#FFF6E2',
+    ink: '#3A2418', blush: '#F09A9A', cup: '#FBF6EC', steam: '#C9B49A',
+    sun: '#FFC72C', cloud: '#EADFCA', drip: '#8FB8D6'
+  };
+
+  const round = (x, y, w, h, r, fill, extra = '') =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" ${extra}/>`;
+
+  /* 一个圆角汉堡，带表情。y 是「贴地」的位置 */
+  function burger(x, y, s = 1, opts = {}) {
+    const happy = opts.happy !== false;
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <ellipse cx="0" cy="3" rx="52" ry="6" fill="#3A2418" opacity=".12"/>
+      ${round(-46, -17, 92, 17, 8, C.bunDark)}
+      ${round(-50, -29, 100, 13, 5, C.patty)}
+      <path d="M-52,-33 L52,-33 L40,-26 L28,-33 L16,-26 L4,-33 L-8,-26 L-20,-33 L-32,-26 L-44,-33 Z" fill="${C.cheese}"/>
+      <path d="M-52,-36 q11,-9 22,0 t22,0 t22,0 t22,0 t22,0 l0,3 l-110,0 Z" fill="${C.lettuce}"/>
+      <path d="M-50,-38 a50,40 0 0 1 100,0 Z" fill="${C.bunTop}"/>
+      <ellipse cx="-14" cy="-62" rx="13" ry="7" fill="#FFDFAE" opacity=".55"/>
+      <ellipse cx="18" cy="-52" rx="2.6" ry="1.6" fill="${C.cream}" opacity=".9"/>
+      <ellipse cx="-2" cy="-46" rx="2.6" ry="1.6" fill="${C.cream}" opacity=".9"/>
+      <ellipse cx="34" cy="-44" rx="2.4" ry="1.5" fill="${C.cream}" opacity=".8"/>
+      <circle cx="-15" cy="-55" r="3" fill="${C.ink}"/>
+      <circle cx="13" cy="-55" r="3" fill="${C.ink}"/>
+      <circle cx="-14" cy="-56" r="1" fill="#fff"/>
+      <circle cx="14" cy="-56" r="1" fill="#fff"/>
+      <ellipse cx="-26" cy="-47" rx="5" ry="3" fill="${C.blush}" opacity=".5"/>
+      <ellipse cx="24" cy="-47" rx="5" ry="3" fill="${C.blush}" opacity=".5"/>
+      ${happy
+        ? `<path d="M-7,-47 q7,6 14,0" stroke="${C.ink}" stroke-width="1.9" fill="none" stroke-linecap="round"/>`
+        : `<path d="M-6,-45 q6,-3 12,0" stroke="${C.ink}" stroke-width="1.9" fill="none" stroke-linecap="round"/>`}
+    </g>`;
+  }
+
+  /* 薯条杯，带表情；opts.outline 给盒子加一圈描边（按钮红底上用） */
+  function fries(x, y, s = 1, lean = 0, opts = {}) {
+    let sticks = '';
+    const cols = [C.yellow, '#EFB922', C.yellow, '#F7D06A', C.yellow, '#EFB922'];
+    for (let i = 0; i < 6; i++) {
+      const px = -20 + i * 8;
+      const rot = (i - 2.5) * 3.2;
+      const hgt = 30 + (i % 3) * 5;
+      sticks += `<g transform="translate(${px},-52) rotate(${rot})">
+        ${round(-3.4, -hgt, 6.8, hgt + 4, 3.2, cols[i])}
+      </g>`;
+    }
+    return `<g transform="translate(${x},${y}) scale(${s}) rotate(${lean})">
+      <ellipse cx="0" cy="3" rx="34" ry="5" fill="#3A2418" opacity=".12"/>
+      <path d="M-27,0 L27,0 L21,-54 L-21,-54 Z" fill="${opts.box || C.red}"
+        ${opts.outline ? `stroke="${opts.outline}" stroke-width="2.2"` : ''}/>
+      <path d="M-24.5,-13 L24.5,-13 L23.4,-24 L-23.4,-24 Z" fill="${C.yellow}" opacity=".92"/>
+      <circle cx="-9" cy="-38" r="2.6" fill="${C.cream}"/>
+      <circle cx="9" cy="-38" r="2.6" fill="${C.cream}"/>
+      <circle cx="-8.6" cy="-38" r="1.1" fill="${C.ink}"/>
+      <circle cx="9.4" cy="-38" r="1.1" fill="${C.ink}"/>
+      <path d="M-5,-31 q5,4 10,0" stroke="${C.cream}" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      ${sticks}
+    </g>`;
+  }
+
+  function umbrella(x, y, s = 1, rot = -10) {
+    return `<g transform="translate(${x},${y}) scale(${s}) rotate(${rot})">
+      <path d="M0,0 L0,-64" stroke="#8A6A4A" stroke-width="3" stroke-linecap="round"/>
+      <path d="M0,-64 q10,2 12,12" stroke="#8A6A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M-54,-62 a54,44 0 0 1 108,0 q-18,10 -36,0 q-18,10 -36,0 q-18,10 -36,0 Z" fill="${C.red}"/>
+      <path d="M-54,-62 a54,44 0 0 1 27,-38 q-6,22 -3,38 Z" fill="#A80C24" opacity=".5"/>
+      <path d="M-27,-100 a54,44 0 0 1 27,-1" fill="none" stroke="${C.yellow}" stroke-width="2" opacity=".5"/>
+    </g>`;
+  }
+
+  function hotcup(x, y, s = 1) {
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <path d="M-15,-40 L15,-40 L12,0 L-12,0 Z" fill="${C.cup}"/>
+      <path d="M-14,-27 L14,-27 L13,-11 L-13,-11 Z" fill="${C.red}"/>
+      <path d="M-15,-40 L15,-40 L15,-44 L-15,-44 Z" fill="#E8DCC4"/>
+      <path d="M0,-56 q-6,-8 0,-14 q6,-6 0,-12" stroke="${C.steam}" stroke-width="2.4"
+        fill="none" stroke-linecap="round" opacity=".85"/>
+      <path d="M-9,-54 q-5,-7 0,-12" stroke="${C.steam}" stroke-width="2"
+        fill="none" stroke-linecap="round" opacity=".55"/>
+      <path d="M9,-52 q5,-7 0,-12" stroke="${C.steam}" stroke-width="2"
+        fill="none" stroke-linecap="round" opacity=".55"/>
+      <circle cx="-5" cy="-20" r="1.9" fill="${C.cream}"/>
+      <circle cx="5" cy="-20" r="1.9" fill="${C.cream}"/>
+      <path d="M-3,-15 q3,3 6,0" stroke="${C.cream}" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>`;
+  }
+
+  function icecup(x, y, s = 1) {
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <path d="M-14,-40 L14,-40 L11,0 L-11,0 Z" fill="#DCEEF7" opacity=".95"/>
+      <path d="M-13,-30 L13,-30 L11,0 L-11,0 Z" fill="${C.drip}" opacity=".45"/>
+      <path d="M2,-44 L9,-70" stroke="${C.red}" stroke-width="4" stroke-linecap="round"/>
+      ${round(-9, -26, 8, 7, 2, '#fff', 'opacity=".85"')}
+      ${round(2, -18, 8, 7, 2, '#fff', 'opacity=".7"')}
+      <circle cx="-4" cy="-10" r="1.7" fill="#5B4B3C" opacity=".5"/>
+    </g>`;
+  }
+
+  function sun(x, y, r = 20) {
+    let rays = '';
+    for (let i = 0; i < 8; i++) {
+      const a = (i * Math.PI) / 4;
+      const x1 = Math.cos(a) * (r + 5), y1 = Math.sin(a) * (r + 5);
+      const x2 = Math.cos(a) * (r + 12), y2 = Math.sin(a) * (r + 12);
+      rays += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}"
+        y2="${y2.toFixed(1)}" stroke="${C.yellow}" stroke-width="3" stroke-linecap="round"/>`;
+    }
+    return `<g transform="translate(${x},${y})" opacity=".95">
+      ${rays}<circle r="${r}" fill="${C.sun}"/>
+      <circle cx="-6" cy="-4" r="2.2" fill="#8A6112"/>
+      <circle cx="6" cy="-4" r="2.2" fill="#8A6112"/>
+      <path d="M-5,4 q5,4 10,0" stroke="#8A6112" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </g>`;
+  }
+
+  function cloud(x, y, s = 1) {
+    return `<g transform="translate(${x},${y}) scale(${s})" opacity=".92">
+      <circle cx="-16" cy="0" r="15" fill="${C.cloud}"/>
+      <circle cx="4" cy="-7" r="19" fill="${C.cloud}"/>
+      <circle cx="24" cy="1" r="13" fill="${C.cloud}"/>
+      ${round(-30, 0, 68, 14, 7, C.cloud)}
+    </g>`;
+  }
+
+  function drops(seed = 0) {
+    const pts = [[-150, -116], [-92, -128], [-40, -108], [22, -124], [86, -112], [140, -126], [-116, -84], [58, -86], [166, -92], [-16, -80]];
+    return pts.map(([x, y], i) => {
+      const yy = y + (seed + i) % 5;
+      return `<line x1="${x}" y1="${yy}" x2="${x - 6}" y2="${yy + 16}" stroke="${C.drip}"
+        stroke-width="3" stroke-linecap="round" opacity=".6"/>`;
+    }).join('');
+  }
+
+  function flakes() {
+    const pts = [[-146, -110], [-70, -126], [10, -114], [96, -128], [162, -104], [-24, -86], [130, -80]];
+    return pts.map(([x, y]) => `
+      <g transform="translate(${x},${y})" stroke="${C.drip}" stroke-width="2.2" stroke-linecap="round" opacity=".65">
+        <line x1="-6" y1="0" x2="6" y2="0"/><line x1="0" y1="-6" x2="0" y2="6"/>
+        <line x1="-4.2" y1="-4.2" x2="4.2" y2="4.2"/><line x1="-4.2" y1="4.2" x2="4.2" y2="-4.2"/>
+      </g>`).join('');
+  }
+
+  /* ── 品牌小件：金拱门 / 星星 / 鸡块蘸酱 / 红白饮料杯 / 纸袋 ── */
+
+  /* 金色双拱门：两个清晰拱形 + 中间 M 形凹口（别画成饼） */
+  function arches(x, y, s = 1, stroke = C.yellow, w = 8) {
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <path d="M-19,22 C-19,-6 -14,-14 -9.5,-14 C-4.5,-14 -2.5,-6 -1.6,4
+               M1.6,4 C2.5,-6 4.5,-14 9.5,-14 C14,-14 19,-6 19,22"
+        fill="none" stroke="${stroke}" stroke-width="${w}" stroke-linecap="round"/>
+    </g>`;
+  }
+
+  /* 四角闪光星星 */
+  function star(x, y, r = 7, fill = C.yellow, rot = 0) {
+    const k = (r * .18).toFixed(1);
+    return `<g transform="translate(${x},${y}) rotate(${rot})">
+      <path d="M0,${-r} Q${k},${-k} ${r},0 Q${k},${k} 0,${r} Q${-k},${k} ${-r},0 Q${-k},${-k} 0,${-r} Z" fill="${fill}"/>
+    </g>`;
+  }
+
+  /* 两块鸡块 + 一盒红色蘸酱 */
+  function nuggets(x, y, s = 1) {
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <ellipse cx="2" cy="16" rx="30" ry="4" fill="#3A2418" opacity=".12"/>
+      <g transform="rotate(-8)">
+        <path d="M-25,4 Q-27,-8 -14,-10 Q-2,-11 -1,-1 L-1,7 Q-2,12 -12,13 Q-24,13 -25,9 Z" fill="#E8A33D"/>
+        <ellipse cx="-17" cy="-3" rx="2.2" ry="1.4" fill="#F7D9A0" opacity=".85"/>
+        <ellipse cx="-8" cy="4" rx="1.8" ry="1.2" fill="#F7D9A0" opacity=".7"/>
+      </g>
+      <g transform="translate(13,0) rotate(10)">
+        <path d="M-12,-12 Q-13,-21 -3,-21 Q7,-21 6,-11 L6,0 Q5,5 -3,5 Q-12,5 -12,0 Z" fill="#EFB765"/>
+        <ellipse cx="-4" cy="-13" rx="1.8" ry="1.2" fill="#F7D9A0" opacity=".8"/>
+      </g>
+      <g transform="translate(4,10)">
+        <circle r="8.4" fill="${C.red}"/>
+        <circle r="5.8" fill="#A80C24"/>
+        <ellipse cx="-2" cy="-2" rx="3.6" ry="2.2" fill="#E4663C"/>
+      </g>
+    </g>`;
+  }
+
+  /* 红白配色的冷饮杯，杯身印迷你金拱门 */
+  function cup(x, y, s = 1) {
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <ellipse cx="0" cy="2" rx="22" ry="4" fill="#3A2418" opacity=".12"/>
+      <path d="M-16,-34 L16,-34 L12.6,0 L-12.6,0 Z" fill="#FFF6E6"/>
+      <path d="M-14.8,-23 L14.8,-23 L13.8,-12 L-13.8,-12 Z" fill="${C.red}"/>
+      ${arches(0, -17.5, .16, C.yellow, 11)}
+      <path d="M-16,-34 L16,-34 L15.4,-37.6 L-15.4,-37.6 Z" fill="#EFE3CB"/>
+      <path d="M-15.4,-37.6 L15.4,-37.6 L14.8,-40.6 L-14.8,-40.6 Z" fill="${C.red}"/>
+      <path d="M4,-40.6 L11,-55" stroke="${C.yellow}" stroke-width="4" stroke-linecap="round"/>
+    </g>`;
+  }
+
+  /* 红色外卖纸袋，金色提手 + 拱门 */
+  function bag(x, y, s = 1) {
+    return `<g transform="translate(${x},${y}) scale(${s})">
+      <ellipse cx="0" cy="2" rx="32" ry="4.5" fill="#3A2418" opacity=".12"/>
+      <path d="M-25,-44 L25,-44 L28.5,0 L-28.5,0 Z" fill="${C.red}"/>
+      <path d="M-25,-44 L25,-44 L24.7,-39 L-24.7,-39 Z" fill="#9E1226"/>
+      ${arches(0, -14, .42, C.yellow, 10)}
+      <path d="M-13,-44 Q-11,-53 0,-53 Q11,-53 13,-44" fill="none" stroke="${C.yellow}" stroke-width="3.2" stroke-linecap="round"/>
+    </g>`;
+  }
+
+  /* 复古印刷线稿：薯条 / 汉堡 / 饮料杯，用于纸张角落的淡纹 */
+  function lineArt() {
+    const st = 'fill="none" stroke="#A8835A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"';
+    return `<g>
+      <g transform="translate(16,66)">
+        <path d="M-11,12 L11,12 L8,-8 L-8,-8 Z" ${st}/>
+        <path d="M-5,-8 L-7,-18 M0,-8 L0,-19 M5,-8 L7,-18" ${st}/>
+      </g>
+      <g transform="translate(52,62)">
+        <path d="M-12,-2 A12,9 0 0 1 12,-2" ${st}/>
+        <line x1="-14" y1="-2" x2="14" y2="-2" ${st}/>
+        <path d="M-12,2 L12,2 L9,9 L-9,9 Z" ${st}/>
+      </g>
+      <g transform="translate(86,68)">
+        <path d="M-6,-10 L6,-10 L4.4,10 L-4.4,10 Z" ${st}/>
+        <line x1="-6" y1="-10" x2="6" y2="-10" ${st}/>
+      </g>
+    </g>`;
+  }
+
+  const svgWrap = (vb, w, h, inner) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" width="${w}" height="${h}" aria-hidden="true">${inner}</svg>`;
+
+  /* ── 页面级组合（独立 <svg>，可直接 innerHTML） ─────────── */
+
+  /* 页面右上方：薯条盒 + 芝麻汉堡 + 星星 */
+  function hero() {
+    return svgWrap('0 0 200 124', 200, 124, `
+      ${star(170, 26, 9, C.yellow, -12)}
+      ${star(148, 52, 5, '#E0A32E', 18)}
+      ${star(24, 34, 6, '#E0A32E', 0)}
+      ${fries(46, 108, 1.05, -5)}
+      ${burger(132, 112, .88)}`);
+  }
+
+  /* 标题旁：一小包薯条 + 两颗星 */
+  function brandDeco() {
+    return svgWrap('0 0 64 54', 64, 54, `
+      ${star(50, 12, 7, C.yellow, 10)}
+      ${star(10, 18, 4.5, '#E0A32E', -8)}
+      ${fries(26, 48, .42, 7)}`);
+  }
+
+  /* 大号金拱门（标题左侧） */
+  function archBrand() {
+    return svgWrap('0 0 48 52', 48, 52, arches(24, 27, 1.05, C.yellow, 9.5));
+  }
+
+  function archMini() { return svgWrap('0 0 44 40', 44, 40, arches(22, 17, .8, C.yellow, 10)); }
+  function archTiny() { return svgWrap('0 0 40 36', 40, 36, arches(20, 14, .72, '#E0A32E', 10)); }
+
+  /* 日期旁的小装饰：星星 + 迷你薯条 */
+  function dayDeco() {
+    return svgWrap('0 0 30 44', 30, 44, `
+      ${star(20, 8, 5.5, C.yellow, 12)}
+      ${star(7, 18, 3.6, '#E0A32E', -10)}
+      ${fries(13, 40, .19, 6)}`);
+  }
+
+  /* 撕开手势：往下撕的箭头 */
+  function pull() {
+    return svgWrap('0 0 20 30', 20, 30, `
+      <path d="M10,2 C8,6 12,9 10,13 L10,21" fill="none" stroke="#FFE9AE" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M4,16 L10,25 L16,16" fill="none" stroke="#FFE9AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`);
+  }
+
+  /* 按钮闪光 */
+  function spark(i = 0) {
+    const cols = [C.yellow, '#FFD966', '#E0A32E'];
+    return svgWrap('0 0 16 16', 12, 12, star(8, 8, 7, cols[i % 3], i * 42));
+  }
+
+  /* 露出层底部的小食（半透明） */
+  function revealFood() {
+    return svgWrap('0 0 130 44', 130, 44, `
+      <g opacity=".62">${cup(26, 40, .52)}${nuggets(74, 28, .55)}${star(112, 14, 5, C.yellow, 14)}</g>`);
+  }
+
+  function doodle() { return svgWrap('0 0 100 84', 100, 84, lineArt()); }
+
+  /* 迷你开运小票（今日页入口卡用）：锯齿纸边 + 抬头 + 虚线 + 吉章 + 条码 */
+  function miniTicket() {
+    let h = 7, bars = '', x = 22;
+    for (let i = 0; i < 26; i++) {
+      h = (h * 48271) % 2147483647;
+      const w = 1 + (h % 2);
+      if (i % 2 === 0) bars += `<rect x="${x}" y="95" width="${w}" height="13" fill="${C.ink}" opacity=".5"/>`;
+      x += w + 2.2;
+    }
+    const zig = (y, dir) => {
+      let d = `M0,${y}`, xx = 0;
+      while (xx < 200) { d += ` L${xx + 5},${y + 4.5 * dir} L${xx + 10},${y}`; xx += 10; }
+      return `${d} L200,${y} Z`;
+    };
+    return svgWrap('0 0 200 140', 200, 140, `
+      <path d="${zig(8, 1)}" fill="#F6EBD2"/>
+      <rect x="0" y="8" width="200" height="124" fill="#FBF3DF"/>
+      <path d="${zig(132, -1)}" fill="#F6EBD2"/>
+      ${arches(27, 32, .5, C.red, 9)}
+      <text x="50" y="36" font-family="'Songti SC','STSong',serif" font-size="15.5" font-weight="700"
+        fill="${C.red}" letter-spacing="2">麦麦开运小票</text>
+      <line x1="18" y1="50" x2="182" y2="50" stroke="#9A8873" stroke-width="1" stroke-dasharray="3 3" opacity=".6"/>
+      <line x1="18" y1="62" x2="148" y2="62" stroke="#6E5B4B" stroke-width="2.4" opacity=".32"/>
+      <line x1="18" y1="70" x2="166" y2="70" stroke="#6E5B4B" stroke-width="2.4" opacity=".26"/>
+      <line x1="18" y1="78" x2="130" y2="78" stroke="#6E5B4B" stroke-width="2.4" opacity=".32"/>
+      <g transform="translate(158,68) rotate(-8)">
+        <rect x="-15" y="-13" width="30" height="26" rx="5" fill="none" stroke="${C.red}" stroke-width="2"/>
+        <text x="0" y="5" text-anchor="middle" font-family="'Songti SC',serif" font-size="12.5"
+          font-weight="700" fill="${C.red}">吉</text>
+      </g>
+      ${bars}
+      <line x1="18" y1="90" x2="182" y2="90" stroke="#9A8873" stroke-width="1" stroke-dasharray="3 3" opacity=".6"/>
+      <text x="100" y="114" text-anchor="middle" font-size="8.5" fill="#9A8873"
+        letter-spacing="1.5">下单后由出票机现打 · 非支付凭证</text>
+    `);
+  }
+
+  /* 宜忌小图标：按关键词返回对应美食 mini */
+  function icon(name) {
+    const map = {
+      burger: () => burger(18, 26, .21),
+      fries: () => fries(18, 25, .2),
+      nuggets: () => nuggets(18, 13, .52),
+      cup: () => cup(18, 24, .36),
+      bag: () => bag(18, 25, .3),
+      star: () => star(18, 15, 10)
+    };
+    const draw = map[name] || map.star;
+    return svgWrap('0 0 36 30', 16, 13.5, draw());
+  }
+
+  function foodKey(text) {
+    const t = String(text || '');
+    if (/牛|汉堡|安格斯/.test(t)) return 'burger';
+    if (/鸡/.test(t)) return 'nuggets';
+    if (/饮|可乐|冰|冷|椰|柠檬/.test(t)) return 'cup';
+    if (/薯/.test(t)) return 'fries';
+    if (/袋|自取|外送|取餐/.test(t)) return 'bag';
+    return '';
+  }
+
+  /* ── 四幕场景（400 × 150） ───────────────────────────── */
+  const scenes = {
+    // 雨天：汉堡撑伞，薯条在旁边躲雨
+    rain: () => `
+      <g>${drops(1)}</g>
+      ${cloud(300, 46, .9)}
+      ${umbrella(96, 132, 1.02, -12)}
+      ${burger(96, 132, .92)}
+      ${fries(268, 132, .86, 6)}
+      ${round(180, 136, 150, 3, 2, '#C9B49A', 'opacity=".35"')}`,
+
+    // 晴天：薯条戴墨镜晒太阳，汉堡戴草帽
+    hot: () => `
+      ${sun(330, 44, 21)}
+      <g transform="translate(300,120) scale(.72)">
+        <path d="M-40,0 a40,26 0 0 1 80,0 Z" fill="#F2D08A"/>
+        <ellipse cx="0" cy="0" rx="56" ry="9" fill="#F7DFA8"/>
+        <path d="M-38,-4 q38,8 76,0" stroke="${C.red}" stroke-width="5" fill="none" opacity=".85"/>
+      </g>
+      ${fries(96, 132, 1.0, -5)}
+      ${icecup(196, 132, 1.0)}
+      ${burger(288, 132, .84)}
+      ${round(60, 136, 300, 3, 2, '#C9B49A', 'opacity=".35"')}`,
+
+    // 冷天：汉堡捧着热饮
+    cold: () => `
+      <g>${flakes()}</g>
+      ${burger(92, 132, .95)}
+      ${hotcup(196, 128, 1.06)}
+      ${fries(300, 132, .82, 5)}
+      ${round(60, 136, 290, 3, 2, '#C9B49A', 'opacity=".35"')}`,
+
+    // 多云 / 常温：小小阳光，慢慢吃
+    mild: () => `
+      ${sun(348, 40, 13)}
+      ${cloud(268, 60, .82)}
+      ${burger(112, 132, .95)}
+      ${fries(272, 132, .9, 4)}
+      ${round(66, 136, 286, 3, 2, '#C9B49A', 'opacity=".35"')}`
+  };
+
+  function scene(key) {
+    return `<g>${(scenes[key] || scenes.mild)()}</g>`;
+  }
+
+  return {
+    scene, C, arches, star, fries, burger, cup, nuggets, bag,
+    icon, foodKey,
+    svg: {
+      hero, brandDeco, archBrand, archMini, archTiny, dayDeco,
+      pull, spark, revealFood, doodle, miniTicket
+    }
+  };
+})();
+
+/* ── 小票 ──────────────────────────────────────────────────────
+   全 SVG，导出 PNG 时逐字逐画都在，不会被裁掉。 */
+
+const RECEIPT = (() => {
+  const W = 460;          // 票面宽
+  const M = 30;           // 左右留白
+  const CW = W - M * 2;   // 内容宽
+  const INK = '#2B211C', INK2 = '#6E5B4B', INK3 = '#9A8873';
+  const RED = '#C8102E', GOLD = '#E0A32E', PAPER = '#FBF3DF';
+  const SERIF = `'Songti SC','STSong','SimSun',Georgia,serif`;
+  const SANS = `'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif`;
+
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+  // 中英混排的粗估宽度：汉字算满宽，ASCII 算半宽
+  const width = (s, size) => {
+    let w = 0;
+    for (const ch of String(s)) w += /[\u3000-\u9fff\uff00-\uffef]/.test(ch) ? size : size * 0.55;
+    return w;
+  };
+
+  function wrap(text, maxW, size) {
+    const out = [];
+    let line = '';
+    for (const ch of String(text)) {
+      if (width(line + ch, size) > maxW) { out.push(line); line = ch; }
+      else line += ch;
+    }
+    if (line) out.push(line);
+    return out;
+  }
+
+  const text = (x, y, str, o = {}) =>
+    `<text x="${x}" y="${y}" font-family="${o.serif ? SERIF : SANS}" font-size="${o.size || 12}"
+      fill="${o.fill || INK}" ${o.weight ? `font-weight="${o.weight}"` : ''}
+      ${o.anchor ? `text-anchor="${o.anchor}"` : ''}
+      ${o.ls ? `letter-spacing="${o.ls}"` : ''}
+      ${o.op ? `opacity="${o.op}"` : ''}>${esc(str)}</text>`;
+
+  const dashed = (y, op = 1) =>
+    `<line x1="${M}" y1="${y}" x2="${W - M}" y2="${y}" stroke="${INK3}" stroke-width="1"
+      stroke-dasharray="4 4" opacity="${op * 0.6}"/>`;
+
+  /* 撕纸锯齿：向上/向下 */
+  function teeth(y, dir, color) {
+    // 手撕的边不会等宽等高：用固定种子做伪随机，保证每次渲染一致
+    let seed = 7, rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+    let d = `M0,${y}`, x = 0;
+    while (x < W) {
+      const step = 10 + rnd() * 9;
+      const h = (6 + rnd() * 8) * (dir < 0 ? -1 : 1);
+      d += ` L${(x + step / 2).toFixed(1)},${(y + h).toFixed(1)} L${(x + step).toFixed(1)},${y}`;
+      x += step;
+    }
+    d += ` L${W},${y} Z`;
+    return `<path d="${d}" fill="${color}"/>`;
+  }
+
+  /* 红色印章 */
+  function seal(cx, cy, chars = '大吉', s = 38) {
+    return `<g transform="translate(${cx},${cy}) rotate(-9)" opacity=".93">
+      <rect x="${-s}" y="${-s}" width="${s * 2}" height="${s * 2}" rx="8"
+        fill="none" stroke="${RED}" stroke-width="3.6"/>
+      <rect x="${-s + 7}" y="${-s + 7}" width="${(s - 7) * 2}" height="${(s - 7) * 2}" rx="4"
+        fill="none" stroke="${RED}" stroke-width="1" opacity=".7"/>
+      ${text(0, -2, chars[0], { serif: 1, size: Math.round(s * 0.72), fill: RED, weight: 700, anchor: 'middle' })}
+      ${text(0, Math.round(s * 0.78), chars[1], { serif: 1, size: Math.round(s * 0.72), fill: RED, weight: 700, anchor: 'middle' })}
+    </g>`;
+  }
+
+  /* 条码：日期算出来的，纯装饰 */
+  function barcode(y, seed) {
+    let h = 0;
+    for (const ch of String(seed)) h = (h * 31 + ch.charCodeAt(0)) % 9973;
+    let x = M, bars = '';
+    for (let i = 0; i < 44; i++) {
+      h = (h * 1103515245 + 12345) & 0x7fffffff;
+      const w = 1 + (h % 3);
+      if (i % 2 === 0) bars += `<rect x="${x}" y="${y}" width="${w}" height="26" fill="${INK}" opacity=".62"/>`;
+      x += w + 2;
+    }
+    return bars;
+  }
+
+  function build(d) {
+    const p = d.plan || {};
+    const w = d.weather || {};
+    const parts = [];
+    let y = 34;
+
+    // ── 抬头
+    parts.push(text(M, y + 12, '麦麦开运小票', { serif: 1, size: 23, weight: 700, fill: RED, ls: 2 }));
+    parts.push(text(W - M, y + 4, d.dateText, { size: 10.5, fill: INK2, anchor: 'end', ls: 1 }));
+    parts.push(text(W - M, y + 20, `No.${d.ticketNo}`, { size: 9.5, fill: INK3, anchor: 'end' }));
+    y += 34;
+    parts.push(text(M, y, '万事皆有宜忌 · 唯有吃麦当劳 · 日日皆宜',
+      { serif: 1, size: 9.8, fill: INK3, ls: 1.2 }));
+    y += 10;
+    parts.push(dashed(y));
+    y += 12;
+
+    // ── 插画
+    const AH = 150;
+    parts.push(`<g transform="translate(${M},${y}) scale(${CW / 400},${AH / 150})">${ART.scene(d.scene)}</g>`);
+    y += AH + 6;
+
+    // ── 天气 / 开运食材 / 取餐方式
+    const info = [
+      ['今日天气', d.weatherText],
+      ['开运食材', d.meatText],
+      ['幸运取餐', d.modeText],
+    ];
+    info.forEach(([k, v]) => {
+      parts.push(text(M, y + 11, k, { size: 10.5, fill: INK3, ls: 1 }));
+      parts.push(text(W - M, y + 11, v, { size: 11.5, fill: INK, anchor: 'end' }));
+      y += 19;
+    });
+    y += 4;
+    parts.push(dashed(y));
+    y += 16;
+
+    // ── 宜 / 忌（右侧给印章留出固定宽度，不让字压到章上）
+    const sealW = 104;
+    const colW = CW - sealW - 22;
+    const yiLines = wrap(d.yiText, colW, 11).slice(0, 3);
+    const jiLines = wrap(d.jiText, colW, 11).slice(0, 3);
+    parts.push(text(M, y + 4, '宜', { serif: 1, size: 13, fill: RED, weight: 700 }));
+    yiLines.forEach((ln, i) => {
+      parts.push(text(M + 21, y + 4 + i * 15, ln, { size: 11, fill: INK }));
+    });
+    let yy = y + yiLines.length * 15 + 2;
+    parts.push(text(M, yy + 6, '忌', { serif: 1, size: 13, fill: INK2, weight: 700 }));
+    jiLines.forEach((ln, i) => {
+      parts.push(text(M + 21, yy + 6 + i * 15, ln, { size: 11, fill: INK2 }));
+    });
+    yy += jiLines.length * 15 + 10;
+    parts.push(seal(M + colW + sealW / 2 + 8, (y + yy) / 2 + 2, '大吉', 34));
+    y = yy + 10;
+
+    parts.push(dashed(y));
+    y += 22;
+
+    // ── 品项
+    parts.push(text(M, y, '品项', { size: 10, fill: INK3, ls: 1.5 }));
+    parts.push(text(W - M, y, '金额', { size: 10, fill: INK3, anchor: 'end', ls: 1.5 }));
+    y += 8;
+    (p.items || []).forEach(it => {
+      const nm = width(it.name, 11.5) > CW - 60
+        ? it.name.slice(0, 15) + '…' : it.name;
+      parts.push(text(M, y + 12, nm, { size: 11.5, fill: INK }));
+      parts.push(text(W - M, y + 12, `¥${(+it.price).toFixed(1)}`, { size: 11.5, fill: INK, anchor: 'end' }));
+      y += 19;
+    });
+
+    if (p.adjust) {
+      parts.push(text(M, y + 10, p.adjust.label, { size: 10.5, fill: INK3 }));
+      parts.push(text(W - M, y + 10,
+        `${p.adjust.kind === 'discount' ? '-' : '+'}¥${(+p.adjust.amount).toFixed(1)}`,
+        { size: 10.5, fill: INK3, anchor: 'end' }));
+      y += 17;
+    }
+
+    if (p.coupon) {
+      parts.push(text(M, y + 11, `券 · ${p.coupon.title}`, { size: 10.5, fill: RED }));
+      parts.push(text(W - M, y + 11, `-¥${(+p.coupon.saving).toFixed(1)}`,
+        { size: 10.5, fill: RED, anchor: 'end' }));
+      y += 19;
+      parts.push(text(M, y + 2, `核价实测省下 · 作用于「${p.coupon.on_item || '-'}」`,
+        { size: 9, fill: INK3 }));
+      y += 12;
+    }
+
+    y += 4;
+    parts.push(dashed(y));
+    y += 10;
+
+    // ── 合计
+    parts.push(text(M, y + 16, '合计', { serif: 1, size: 12.5, fill: INK2, ls: 2 }));
+    parts.push(text(W - M, y + 20, `¥${(+p.total).toFixed(2)}`,
+      { serif: 1, size: 27, fill: RED, weight: 700, anchor: 'end' }));
+    y += 34;
+    parts.push(text(M, y, d.ate
+      ? `✓ 今日已吃${d.ate.pickupCode ? ' · 取餐码 ' + d.ate.pickupCode : ''}${d.ate.time ? ' · ' + d.ate.time : ''}`
+      : d.payNote, { size: 9.2, fill: d.ate ? RED : INK3 }));
+    y += 18;
+
+    // ── 签语
+    const signLines = wrap(d.sign, CW - 34, 11).slice(0, 3);
+    const boxH = 24 + signLines.length * 16;
+    parts.push(`<rect x="${M}" y="${y}" width="${CW}" height="${boxH}" rx="9"
+      fill="#FFF8E6" stroke="${GOLD}" stroke-width="1" stroke-dasharray="5 4" opacity=".95"/>`);
+    parts.push(text(M + 14, y + 18, '今日签', { serif: 1, size: 9.5, fill: GOLD, ls: 1.5 }));
+    signLines.forEach((ln, i) => {
+      parts.push(text(M + 14, y + 34 + i * 16, ln, { serif: 1, size: 11, fill: INK }));
+    });
+    y += boxH + 20;
+
+    // ── 页脚
+    parts.push(dashed(y));
+    y += 14;
+    parts.push(text(W / 2, y, d.ate ? '今日已吃 · 这一顿记在今天头上' : '本票为今日趣味推荐 · 未下单 · 非支付凭证',
+      { size: 9, fill: d.ate ? RED : INK3, anchor: 'middle' }));
+    y += 14;
+    parts.push(barcode(y, d.ticketNo));
+    y += 38;
+    parts.push(text(W / 2, y, d.storeText, { size: 8.6, fill: INK3, anchor: 'middle', op: .9 }));
+    y += 26;
+
+    const H = y;
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+      <defs>
+        <filter id="paperGrain" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+          <feColorMatrix type="saturate" values="0"/>
+        </filter>
+        <linearGradient id="paperG" x1="0" y1="0" x2="0.3" y2="1">
+          <stop offset="0" stop-color="#FDF7E7"/><stop offset="0.55" stop-color="${PAPER}"/>
+          <stop offset="1" stop-color="#F6EBD2"/>
+        </linearGradient>
+      </defs>
+      ${teeth(9, -1, PAPER)}
+      <rect x="0" y="9" width="${W}" height="${H - 18}" fill="url(#paperG)"/>
+      <rect x="0" y="9" width="${W}" height="${H - 18}" filter="url(#paperGrain)" opacity=".045"/>
+      ${teeth(H - 9, 1, PAPER)}
+      ${d.ate ? `<g transform="translate(${W / 2},${H * 0.44}) rotate(-15)" opacity=".07">
+        ${text(0, 0, '已吃', { serif: 1, size: 132, fill: RED, weight: 700, anchor: 'middle' })}
+      </g>` : ''}
+      ${parts.join('\n      ')}
+    </svg>`;
+  }
+
+  return { build, W };
+})();
+</script>
+<script>/* ── 麦麦黄道吉日 · 交互 ────────────────────────────────────────
+   页面只消费 MCD_DATA 里的真实数据：天气、门店菜单、券、核价。
+   拿不到的（别的日期的天气/菜单/价格）一律标「需当天实时查询」。 */
+
+(function () {
+  let D = window.MCD_DATA;
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+  const MEAT = {
+    BEEF: '牛肉', FISH: '鳕鱼', CHICKEN: '鸡肉', PORK: '猪柳', FRIED: '炸物',
+    VEG: '蔬果', POTATO: '薯条', DESSERT: '甜品', COFFEE: '咖啡',
+    TEA: '茶饮', SODA: '汽水', SHARE: '分享餐'
+  };
+  const WD = ['日', '一', '二', '三', '四', '五', '六'];
+
+  const state = { planIdx: 0, sel: D.meta.today, cursor: null, view: 'tear', order: null, quote: null,
+                  basket: {}, takeWay: '', storeKind: 'pickup' };
+
+  /* ── 工具 ─────────────────────────────────────────── */
+  const key = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const parse = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
+  const fmtCN = k => { const d = parse(k); return `${d.getMonth() + 1}月${d.getDate()}日`; };
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const money = n => `¥${(+n || 0).toFixed(2)}`;
+
+  function toast(msg, ms = 2200) {
+    let t = $('.toast');
+    if (!t) { t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('on');
+    clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), ms);
+  }
+
+  function go(view) {
+    state.view = view;
+    $$('.view').forEach(v => v.classList.toggle('on', v.id === 'view-' + view));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ── 数据边界 ─────────────────────────────────────── */
+  let days = Object.keys(D.calendar).sort();
+  let minK = days[0], maxK = days[days.length - 1];
+  const plan = () => (D.plans && D.plans.length ? D.plans[state.planIdx % D.plans.length] : null);
+
+  /* ── 篮子：菜单和小票共用同一份选中状态 ──────────────
+     进页先把推荐套餐配进篮子（先帮玩家配好），玩家在菜单卡
+     里加减货，小票实时跟着换；动过之后就算「自选」。 */
+  function basketList() {
+    const all = D.menu || [];
+    return Object.keys(state.basket).map(c => {
+      const m = all.find(x => x.code === c);
+      return m ? { ...m, qty: state.basket[c] }
+        : { code: c, name: '（这家店没有此商品）', price: 0, qty: state.basket[c], cat: '' };
+    });
+  }
+  const basketSum = () => basketList().reduce((s, i) => s + i.price * i.qty, 0);
+
+  function prefillBasket() {
+    const p = plan();
+    state.basket = {};
+    (p ? p.items : []).forEach(i => { if (i.code) state.basket[i.code] = i.qty || 1; });
+    state.basketTouched = false;
+  }
+
+  /* 动过篮子（且不为空）→ 小票按自选画；没动过 → 按推荐套餐（已核价）画 */
+  function basketMode() {
+    return !!state.basketTouched && basketList().length > 0;
+  }
+
+  function effectivePlan() {
+    if (basketMode()) {
+      const list = basketList();
+      return {
+        tag: '自选', verified: false, coupon: null, adjust: null, delivery_items: null,
+        items: list.map(i => ({
+          code: i.code, cat: i.cat || '',
+          name: i.qty > 1 ? `${i.name} ×${i.qty}` : i.name,
+          price: i.price * i.qty
+        })),
+        total: basketSum()
+      };
+    }
+    return plan();
+  }
+
+  /* ── 置顶菜单卡：进页先看到，先配好、可增减、跟小票同步 ── */
+  function renderMenuCard() {
+    const host = $('#menuCard');
+    if (!host) return;
+    const list = basketList();
+    const limited = D.limited || [];
+    const rows = list.map(it => `
+      <div class="mt-item on" data-code="${esc(it.code)}">
+        <div class="mt-names">
+          <div class="mt-name">${esc(it.name)}
+            ${(it.tags || []).slice(0, 1).map(t => `<span class="tagline">${esc(t)}</span>`).join('')}</div>
+          <div class="mt-meta">${esc(it.group || it.cat_name || '')}</div>
+        </div>
+        <div class="mt-act">
+          <span class="mt-price">${money(it.price * it.qty)}</span>
+          <div class="stepper"><button data-m="-1">−</button><b>${it.qty}</b><button data-m="1">＋</button></div>
+        </div>
+      </div>`).join('')
+      || `<div class="note" style="padding:10px 2px">菜单暂不可用，先看看黄历。</div>`;
+
+    const chips = limited.slice(0, 4).map(it => `
+      <button class="lim-chip${state.basket[it.code] ? ' on' : ''}" data-add="${esc(it.code)}">
+        ${esc(it.name)}<i>${money(it.price)}</i></button>`).join('');
+
+    host.innerHTML = `<div class="card">
+      <div class="alm-title" style="font-size:17px">今日菜单 · 已替你配好一份
+        <small>${(D.menu || []).length} 款实时在售 · 限定 ${limited.length} 款 · 改了小票就跟着换</small></div>
+      <div class="mt-list">${rows}</div>
+      ${chips ? `<div class="lim-row">${chips}</div>` : ''}
+      <div class="basket-bar" style="margin-top:12px">
+        <div><b>合计（菜单价）</b><span>${money(basketSum())} · 下单前由 calculate-price 再核一次</span></div>
+        <button class="btn btn-ghost" id="resetPlan">换回推荐</button>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="btn btn-primary" id="menuOrder">使用优惠 · 一键下单</button>
+        <button class="btn btn-ghost" id="menuMore">整份菜单</button>
+      </div>
+    </div>`;
+
+    $$('#menuCard .mt-item').forEach(row => {
+      row.onclick = ev => {
+        const btn = ev.target.closest('[data-m]');
+        if (!btn) return;
+        const code = row.dataset.code;
+        const next = Math.max(0, (state.basket[code] || 0) + Number(btn.dataset.m));
+        if (next) state.basket[code] = next; else delete state.basket[code];
+        state.basketTouched = true;
+        renderMenuCard();
+        renderReceipt();
+      };
+    });
+    $$('#menuCard .lim-chip').forEach(chip => {
+      chip.onclick = () => {
+        const code = chip.dataset.add;
+        if (!state.basket[code]) { state.basket[code] = 1; state.basketTouched = true; }
+        renderMenuCard();
+        renderReceipt();
+      };
+    });
+    $('#resetPlan').onclick = () => {
+      prefillBasket();
+      renderMenuCard();
+      renderReceipt();
+      toast('换回今天的推荐搭配');
+    };
+    $('#menuOrder').onclick = () => {
+      const o = orderParams(
+        basketList().map(i => ({ code: i.code, name: i.name, price: i.price, cat: i.cat, qty: i.qty })),
+        basketSum(), basketMode() ? '自选' : (plan() ? plan().tag : ''));
+      if (!o) { toast('当前取餐方式下这单没法下'); return; }
+      openOrder(o);
+    };
+    $('#menuMore').onclick = openMenu;
+  }
+
+  /* 换一家店 = 换一整套菜单 / 券 / 价，页面得整块重画 */
+  function applyData(d) {
+    D = d;
+    state.planIdx = 0;
+    state.sel = D.meta.today;
+    state.cursor = null;
+    state.basket = {};
+    state.takeWay = '';
+    days = Object.keys(D.calendar).sort();
+    minK = days[0]; maxK = days[days.length - 1];
+    $('#locName').textContent = D.meta.place.replace(/^.*?(省|市)/, '') || D.meta.place;
+    $('#locSrc').textContent = D.meta.loc_source;
+    $('#genAt').textContent = D.meta.generated_at;
+    $('#warnHost').innerHTML = warnHTML();
+    renderCalendar();
+    renderSide(D.meta.today);
+    renderToday();
+    renderAte();
+    prefillBasket();
+    renderMenuCard();
+    renderOrderReceipt();
+  }
+
+  function warnHTML() {
+    return (D.warnings || []).length
+      ? `<div class="warnbar" style="max-width:1080px;margin:0 auto 14px"><span>⚠ 数据提示</span><span>${D.warnings.map(esc).join('；')}</span></div>` : '';
+  }
+
+  function sceneKey() {
+    const w = D.weather;
+    if (!w) return 'mild';
+    if ((w.precip_mm || 0) > 0 || (w.pop_max || 0) >= 60) return 'rain';
+    if ((w.feels_like ?? 20) >= 28) return 'hot';
+    if ((w.feels_like ?? 20) < 10) return 'cold';
+    return 'mild';
+  }
+
+  /* ── 月历 ─────────────────────────────────────────── */
+  function renderCalendar() {
+    const base = parse(state.sel === D.meta.today ? D.meta.today : state.sel);
+    if (!state.cursor) state.cursor = new Date(base.getFullYear(), base.getMonth(), 1);
+    const c = state.cursor;
+    const y = c.getFullYear(), m = c.getMonth();
+
+    $('#monthLabel').textContent = `${y} 年 ${m + 1} 月`;
+    $('#monthSub').textContent = `农历${D.calendar[D.meta.today] ? D.calendar[D.meta.today].lunar_full.replace(/二〇.+\u5e74/, '') : ''} · 每日皆吉`;
+
+    const first = new Date(y, m, 1);
+    const startPad = first.getDay();
+    const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+    let html = '';
+    for (let i = 0; i < startPad; i++) html += `<div class="day dim"></div>`;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const k = key(new Date(y, m, d));
+      const info = D.calendar[k];
+      const isToday = k === D.meta.today;
+      const cls = ['day'];
+      if (!info) cls.push('dim');
+      if (isToday) cls.push('today');
+      if (k === state.sel && !isToday) cls.push('sel');
+      if (k < D.meta.today) cls.push('past');
+      const lun = info ? info.lunar.replace(/^.*?月/, '') : '';
+      html += `<div class="${cls.join(' ')}" data-k="${k}" role="button" tabindex="0"
+          aria-label="${fmtCN(k)}${info ? '，农历' + info.lunar : '，超出可查范围'}">
+        ${isToday ? '<span class="deco star">✦</span>' : ''}
+        <span class="n">${d}</span>
+        ${info ? `<span class="l">${esc(lun)}</span><span class="ji">吉</span>` : ''}
+        ${isToday ? smallDoodle() : ''}
+      </div>`;
+    }
+    const tail = (7 - ((startPad + daysInMonth) % 7)) % 7;
+    for (let i = 0; i < tail; i++) html += `<div class="day dim"></div>`;
+
+    const grid = $('#grid');
+    grid.innerHTML = html;
+    grid.onclick = e => {
+      const cell = e.target.closest('.day[data-k]');
+      if (!cell || cell.classList.contains('dim')) return;
+      pick(cell.dataset.k);
+    };
+
+    const curK = key(new Date(y, m, 1));
+    $('#prevM').disabled = key(new Date(y, m - 1, 1)) < minK.slice(0, 7) + '-01' && (y === parse(minK).getFullYear() && m - 1 < parse(minK).getMonth());
+    $('#nextM').disabled = key(new Date(y, m + 1, 1)) > maxK;
+  }
+
+  function smallDoodle() {
+    // 今天的小薯条装饰
+    return `<svg class="deco fries" viewBox="0 0 12 14" aria-hidden="true">
+      <rect x="1.5" y="0.5" width="1.6" height="7" fill="#F2C14E" rx=".8"/>
+      <rect x="4" y="0" width="1.6" height="7.5" fill="#EFB922" rx=".8"/>
+      <rect x="6.6" y="1" width="1.6" height="6.5" fill="#F2C14E" rx=".8"/>
+      <rect x="9" y="1.5" width="1.6" height="6" fill="#EFB922" rx=".8"/>
+      <path d="M1 6.5h10l-1.2 7H2.2z" fill="#C8102E"/>
+    </svg>`;
+  }
+
+  function pick(k) {
+    state.sel = k;
+    if (k === D.meta.today) { go('today'); renderToday(); return; }
+    renderCalendar();
+    renderSide(k);
+    if (window.innerWidth <= 860) $('#side').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* 非今日：只有黄历可查，天气/菜单/价格必须标注不可用 */
+  function localSign(info) {
+    const yi = (info.yi || [])[0] || '诸事皆宜';
+    const ji = (info.ji || [])[0];
+    const tail = ji ? `忌${ji}，那就别硬来。` : '没有要忌的事，正好吃顿好的。';
+    return `今日宜「${yi}」，宜顺手开一顿麦当劳。${tail}`;
+  }
+
+  function renderSide(k) {
+    const info = D.calendar[k];
+    const d = parse(k);
+    $('#side').innerHTML = `
+      <div class="card">
+        <div class="side-date"><span class="big">${d.getDate()}</span>
+          <span class="sub">${d.getFullYear()}年${d.getMonth() + 1}月 · 周${WD[d.getDay()]}</span></div>
+        <div class="side-lunar">${esc(info.lunar_full)}</div>
+        <div class="side-gz">${esc(info.day_gz)}日 · ${esc(info.nayin)} · 值日「${esc(info.zhixing)}」</div>
+        <div class="side-yiji">
+          <div><span class="k yi">宜</span><span class="v">${esc((info.yi || []).join('、') || '无')}</span></div>
+          <div><span class="k ji">忌</span><span class="v">${esc((info.ji || []).join('、') || '无')}</span></div>
+        </div>
+        <div class="sign-box">${esc(localSign(info))}</div>
+        <div class="note">这一天只可查黄历。天气、门店菜单与价格必须当天实时查询 —— 不能拿今天的数字充数。</div>
+        ${k === D.meta.today ? '' : `<button class="btn btn-ghost btn-block" style="margin-top:12px" onclick="MCD.today()">回到今天 · 生成今日套餐</button>`}
+      </div>
+      <div class="card">
+        <div class="row"><span class="lab">幸运色</span><span class="val">${esc(info.color)}</span></div>
+        <div class="row" style="margin:0"><span class="lab">喜神</span><span class="val">${esc(info.xi)}</span></div>
+      </div>`;
+  }
+
+  /* ── 今日黄历牌 ───────────────────────────────────── */
+  function weatherBlock() {
+    const w = D.weather;
+    if (!w) {
+      return `<div class="weather-strip"><div class="d"><b>天气暂不可用</b><br>查询失败，今日不作天气相关推荐</div></div>`;
+    }
+    return `<div class="weather-strip">
+      <svg class="ico" viewBox="0 0 40 40" aria-hidden="true">${weatherIcon(w)}</svg>
+      <div>
+        <div class="t">${w.temp}° <span class="tt">${esc(w.desc)}</span></div>
+        <div class="d">体感 ${w.feels_like}° · 降水概率 ${w.pop_max}%<br>
+        ${esc(D.meta.city)}${D.meta.district ? ' ' + esc(D.meta.district) : ''}</div>
+      </div>
+    </div>`;
+  }
+
+  function weatherIcon(w) {
+    const s = sceneKey();
+    if (s === 'rain') {
+      return `<circle cx="20" cy="15" r="9" fill="#EADFCA"/>
+        <circle cx="11" cy="18" r="6" fill="#EADFCA"/><circle cx="29" cy="18" r="6" fill="#EADFCA"/>
+        <path d="M13 25l-2 6M20 25l-2 7M27 25l-2 6" stroke="#8FB8D6" stroke-width="2.6" stroke-linecap="round"/>`;
+    }
+    if (s === 'hot') {
+      return `<circle cx="20" cy="20" r="8" fill="#FFC72C"/>
+        <g stroke="#FFC72C" stroke-width="2.4" stroke-linecap="round">
+          <line x1="20" y1="4" x2="20" y2="8"/><line x1="20" y1="32" x2="20" y2="36"/>
+          <line x1="4" y1="20" x2="8" y2="20"/><line x1="32" y1="20" x2="36" y2="20"/>
+          <line x1="8.6" y1="8.6" x2="11.4" y2="11.4"/><line x1="28.6" y1="28.6" x2="31.4" y2="31.4"/>
+        </g>`;
+    }
+    if (s === 'cold') {
+      return `<g stroke="#8FB8D6" stroke-width="2.4" stroke-linecap="round" transform="translate(20,20)">
+        <line x1="-11" y1="0" x2="11" y2="0"/><line x1="0" y1="-11" x2="0" y2="11"/>
+        <line x1="-7.8" y1="-7.8" x2="7.8" y2="7.8"/><line x1="-7.8" y1="7.8" x2="7.8" y2="-7.8"/></g>`;
+    }
+    return `<circle cx="27" cy="13" r="7" fill="#FFC72C"/>
+      <circle cx="16" cy="22" r="8" fill="#EADFCA"/><circle cx="26" cy="24" r="6.5" fill="#EADFCA"/>
+      <rect x="9" y="22" width="24" height="7" rx="3.5" fill="#EADFCA"/>`;
+  }
+
+  function renderToday() {
+    const a = D.almanac, p = plan();
+    const yi = D.yiji.yi, ji = D.yiji.ji;
+    const coupons = D.coupons;
+
+    const save = coupons.usable.length ? `${coupons.usable.length} 张今日可用`
+      : (coupons.upcoming.length ? `${coupons.upcoming.length} 张明天起可用` : '今日暂无可用券');
+
+    // 宜忌小图标：按真实文案/推荐食材动态匹配，不是写死的
+    const yiIcon = x => { const k = ART.foodKey(x); return k ? ART.icon(k) : ''; };
+    const meatWord = p ? (MEAT[p.items[0].cat] || '—') : '待定（菜单不可用）';
+    const meatIcon = p ? ART.icon(ART.foodKey(meatWord) || 'star') : '';
+
+    $('#almCard').innerHTML = `
+      <div class="alm-head">
+        <div>
+          <div class="alm-title">今日麦麦黄历
+            <small>${a.solar} · 农历${a.lunar.replace(/二〇.+\u5e74/, '')} · ${a.day_gz}日 ${a.nayin}</small></div>
+        </div>
+        <div class="chips">
+          <span class="chip ${D.yiji.luck === '凶' ? '' : 'gold'}">${D.yiji.luck === '凶' ? '凶日 · 宜吃麦当劳转运' : '黄道吉日'}</span>
+          <span class="chip gold">值日「${esc(a.zhixing)}」</span>
+          <span class="chip gold">${esc(a.xiu)}</span>
+          <span class="chip">喜神 ${esc(a.xi_position)}</span>
+          <span class="chip">幸运色 ${esc(a.lucky_color)}</span>
+        </div>
+      </div>
+      <div class="alm-grid">
+        <div class="alm-left">
+          ${weatherBlock()}
+          <div class="yj-line"><span class="k yi">宜</span>
+            <div class="chips">${yi.map(x => `<span class="chip yi">${yiIcon(x)}<span>${esc(x)}</span></span>`).join('')}</div></div>
+          <div class="yj-line"><span class="k ji">忌</span>
+            <div class="chips">${ji.map(x => `<span class="chip ji"><span>${esc(x)}</span></span>`).join('')}</div></div>
+        </div>
+        <div class="alm-right">
+          <div class="mode-box">
+            <div class="m">${ART.icon('bag')}<span>${esc(D.logistics.label)}</span></div>
+            <div class="w">${esc(D.logistics.why)}</div>
+            ${D.store.pickup ? `<div class="w" style="margin-top:6px">
+              ${esc(D.store.pickup.name)}${D.store.pickup.distance != null ? ' · ' + D.store.pickup.distance + 'm' : ''}
+              <button class="linkbtn" id="chgStore2">换一家</button></div>` : ''}
+            ${D.logistics.compare ? `<div class="w" style="margin-top:6px;opacity:.9">
+              自取 ${money(D.logistics.compare.pickup)} · 外送 ${money(D.logistics.compare.delivery)}
+              （配送 ${money(D.logistics.compare.delivery_fee)} + 打包 ${money(D.logistics.compare.packing_fee)}）</div>` : ''}
+          </div>
+          <div class="row" style="margin-top:12px"><span class="lab">开运食材</span>
+            <span class="val meat-val">${meatIcon}<b>${esc(meatWord)}</b></span></div>
+          <div class="row"><span class="lab">省钱妙招</span><span class="val">${esc(save)}</span></div>
+          <div class="row" style="margin-bottom:0"><span class="lab">指向强度</span>
+            <span class="val">${esc(D.fortune.confidence_note)}</span></div>
+        </div>
+      </div>
+      <div class="alm-doodle" aria-hidden="true">${ART.svg.doodle()}</div>`;
+
+    renderReceipt();
+    renderLimited();
+    const c2 = $('#chgStore2');
+    if (c2) c2.onclick = openStores;
+  }
+
+  /* 今日限定 / 上新：只认菜单标签，不认想象。
+     限定已经并进整份菜单（openMenu 里置顶），这块只做入口与摘要。 */
+  function renderLimited() {
+    const host = $('#limCard');
+    if (!host) return;
+    const menu = D.menu || [];
+    const items = D.limited || [];
+    const menuCount = menu.length;
+    if (!menuCount) {
+      host.innerHTML = `<div class="card"><div class="row" style="margin:0">
+        <span class="lab">本店菜单</span><span class="val">菜单暂不可用</span></div></div>`;
+      return;
+    }
+    const tags = {};
+    items.forEach(it => ((it.tags || ['上新'])[0] && (tags[(it.tags || ['上新'])[0]] = (tags[(it.tags || ['上新'])[0]] || 0) + 1)));
+    const tagLine = Object.keys(tags).map(t => `${esc(t)} ${tags[t]}`).join(' · ') || '本店当前没有打「上新 / 限定」标签的商品';
+    host.innerHTML = `<div class="card">
+      <div class="alm-title" style="font-size:17px">本店菜单
+        <small>${menuCount} 款 · 限定已并进菜单，置顶显示 · 实时现拉</small></div>
+      <div class="row"><span class="lab">限定 / 上新</span><span class="val">${tagLine}</span></div>
+      <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px">
+        ${items.slice(0, 4).map(it => `<div class="kv" style="padding:3px 0">
+          <span class="k" style="color:var(--ink)">${esc(it.name)}
+            ${(it.tags || []).slice(0, 1).map(t => `<span class="tagline">${esc(t)}</span>`).join('')}</span>
+          <span class="v">${money(it.price)}</span></div>`).join('')}
+        ${items.length > 4 ? `<div class="note">还有 ${items.length - 4} 款限定在菜单里</div>` : ''}
+      </div>
+      <div style="margin-top:12px"><button class="btn btn-ghost btn-block" id="openMenu">打开整份菜单 · 挑自己的</button></div>
+    </div>`;
+    $('#openMenu').onclick = openMenu;
+  }
+
+  /* ── 今日吃了麦当劳 ──────────────────────────────────
+     付款在麦当劳 App 里完成，页面看不见那一下。所以两条路：
+     ① 查订单状态自己认（状态里出现「已支付 / 制作中 / 已完成」）
+     ② 你自己点一下「我吃到了」 */
+  function ateKey() { return 'mcd-ate-' + D.meta.today; }
+
+  function ateGet() {
+    try { return JSON.parse(localStorage.getItem(ateKey()) || 'null'); } catch (e) { return null; }
+  }
+
+  function ateSet(v) {
+    try { localStorage.setItem(ateKey(), JSON.stringify(v)); } catch (e) { }
+    renderAte();
+    renderReceipt();
+    renderCalendar();
+  }
+
+  function renderAte() {
+    const host = $('#ateCard');
+    if (!host) return;
+    const a = ateGet();
+    if (!a) {
+      host.innerHTML = `<div class="ate-empty">
+        <span>今天这一顿，吃完再回来盖章</span>
+        <button class="btn btn-ghost" id="ateManual">我今天吃了麦当劳</button>
+      </div>`;
+      $('#ateManual').onclick = () => askAte();
+      return;
+    }
+    host.innerHTML = `<div class="ate-card">
+      <div class="ate-seal">已吃</div>
+      <div class="ate-main">
+        <div class="ate-title">今日吃了麦当劳</div>
+        <div class="ate-sub">${esc(a.dateText || fmtCN(D.meta.today))} · ${esc(a.time || '')}
+          ${a.store ? ' · ' + esc(a.store) : ''}</div>
+        <div class="ate-meta">
+          ${a.pickupCode ? `<span class="ate-code">取餐码 ${esc(a.pickupCode)}</span>` : ''}
+          ${a.orderId ? `<span>订单 ${esc(String(a.orderId).slice(-8))}</span>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function askAte() {
+    showSheet('今天吃了麦当劳？', `
+      <div class="note">盖个章，今天这一页就算圆满。要写在这一天的记录里，
+      不吃也可以留白。</div>
+      <div style="height:10px"></div>
+      <div class="kv"><span class="k">门店</span><span class="v">${esc((D.store.pickup || {}).name || '—')}</span></div>
+      <div class="kv"><span class="k">这一顿</span><span class="v">${esc(plan() ? plan().tag : '—')}</span></div>`,
+      `<button class="btn btn-ghost" id="ateNo">还没吃</button>
+       <button class="btn btn-primary" id="ateYes">盖章：已吃</button>`);
+    $('#ateNo').onclick = () => $('#modal').classList.remove('on');
+    $('#ateYes').onclick = () => {
+      markAte({ time: new Date().toTimeString().slice(0, 5), store: (D.store.pickup || {}).name });
+      showSheet('今日已圆满', `
+        <div class="note">「${esc(D.sign.split('。')[0])}」<br>这一顿算你今天做对的事之一。</div>`, '');
+    };
+  }
+
+  function markAte(extra) {
+    const prev = ateGet() || {};
+    ateSet({ ...prev, ...extra, dateText: fmtCN(D.meta.today) });
+  }
+
+  /* ── 整份菜单（限定置顶，能自己挑） ───────────────── */
+  const MENU_FILTERS = [
+    ['all', '全部'], ['limited', '限定 / 上新'], ['main', '汉堡主食'],
+    ['side', '小食'], ['drink', '饮品'], ['dessert', '甜品']
+  ];
+
+  /* ── 订单小票：下单成功后生成，跟着这单的支付状态走 ── */
+  function orderRecGet() {
+    try { return JSON.parse(localStorage.getItem('mcd-order-latest') || 'null'); } catch (e) { return null; }
+  }
+
+  function orderRecSet(rec) {
+    try { localStorage.setItem('mcd-order-latest', JSON.stringify(rec)); } catch (e) { }
+    renderOrderReceipt();
+  }
+
+  function renderOrderReceipt() {
+    const o = orderRecGet();
+    // 今日页和小票页各放一张，状态同步
+    ['#orderCard', '#orderCardRp'].forEach(sel => {
+      const host = $(sel);
+      if (!host) return;
+      if (!o) { host.innerHTML = ''; return; }
+      const rows = (o.items || []).map(i => `
+        <div class="or-row item"><span class="k"></span>
+          <span class="v"><b>${esc(i.name)}</b>${i.qty > 1 ? ` ×${i.qty}` : ''}</span></div>`).join('');
+      const exp = o.expireAt ? new Date(String(o.expireAt).replace(/-/g, '/')) : null;
+
+      host.innerHTML = `<div class="order-rec">
+        <div class="or-head">麦麦订单小票<span>No.${esc(String(o.orderId || '').slice(-10))}</span></div>
+        <div class="or-body">
+          <div class="or-stamp">${o.paid ? '已付' : (o.canceled ? '已取消' : '待付')}</div>
+          <div class="or-row"><span class="k">门店</span><span class="v">${esc(o.storeName || '—')}</span></div>
+          <div class="or-row"><span class="k">取餐</span><span class="v">${esc(o.takeWay || '—')}</span></div>
+          ${o.paid && o.pickupCode ? `<div class="or-row"><span class="k">取餐码</span>
+            <span class="v" style="font-family:var(--serif);font-size:19px;color:var(--red)"><b>${esc(o.pickupCode)}</b></span></div>` : ''}
+          ${rows}
+          ${o.couponTitle ? `<div class="or-row"><span class="k">优惠券</span><span class="v" style="color:var(--red)">${esc(o.couponTitle)}</span></div>` : ''}
+          <div class="or-row total"><span class="k">应付</span><span class="v">${money(o.total || 0)}</span></div>
+          <span class="or-status">已下单 · ${o.paid ? '已支付' : '待支付'}${o.time ? ' · ' + esc(o.time) : ''}</span>
+          ${exp && !o.paid ? `<div class="or-row" style="margin-top:4px"><span class="k">支付剩余</span>
+            <span class="v or-cd" data-exp="${exp.getTime()}">—</span></div>` : ''}
+          ${o.jump && !o.paid ? `<div class="note" style="margin:8px 0 2px">点「去支付」会打开麦当劳官方中转页，
+            再点一下黄色按钮就唤起 App 收银台，不用重新选商品。</div>` : ''}
+          <div class="or-btns">
+            ${o.jump && !o.paid ? `<a class="btn btn-primary" href="${esc(o.jump)}" target="_blank" rel="noopener">去支付 ${money(o.total || 0)}</a>` : ''}
+            ${o.h5 && !o.paid ? `<button class="btn btn-ghost js-orQr">扫码付</button>` : ''}
+            ${o.orderId ? `<button class="btn btn-ghost js-orStatus">查状态</button>` : ''}
+            <button class="btn btn-ghost js-orClear">划掉这张</button>
+          </div>
+        </div>
+      </div>`;
+
+      // 倒数到支付截止
+      const cd = host.querySelector('.or-cd');
+      if (cd) {
+        const tick = () => {
+          const left = Math.floor((Number(cd.dataset.exp) - Date.now()) / 1000);
+          if (left <= 0) { cd.textContent = '已超时'; clearInterval(cd._h); return; }
+          cd.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`;
+        };
+        tick(); cd._h = setInterval(tick, 1000);
+      }
+      const st = host.querySelector('.js-orStatus');
+      if (st) st.onclick = () => checkStatus(o.orderId);
+      const qr = host.querySelector('.js-orQr');
+      if (qr) qr.onclick = () => showQr(o.h5, o.orderId);
+      host.querySelector('.js-orClear').onclick = () => {
+        try { localStorage.removeItem('mcd-order-latest'); } catch (e) { }
+        renderOrderReceipt();
+      };
+    });
+  }
+
+  /* 回到页面时自动核对上一单：付过了就直接盖章「已付」，不用手动点查状态 */
+  let orderSyncing = false;
+  async function syncOrderSilent() {
+    const rec = orderRecGet();
+    if (!rec || rec.paid || !rec.orderId || orderSyncing) return;
+    if (rec.expireAt && new Date(String(rec.expireAt).replace(/-/g, '/')) < new Date()) return;
+    orderSyncing = true;
+    try {
+      const r = await api('/api/status?orderId=' + encodeURIComponent(rec.orderId));
+      const d = r.data || {};
+      const paid = /已支付|制作中|待取餐|已完成|已取餐|配送中|已送达/.test(String(d.orderStatus || ''));
+      const canceled = /已取消|已退款/.test(String(d.orderStatus || ''));
+      if (canceled) {
+        orderRecSet({ ...rec, canceled: true });
+      } else if (paid) {
+        markAte({ time: rec.time || new Date().toTimeString().slice(0, 5), orderId: rec.orderId,
+                  pickupCode: d.pickupCode || '', store: d.storeName || rec.storeName });
+        orderRecSet({ ...rec, paid: true, pickupCode: d.pickupCode || rec.pickupCode || '' });
+        toast('上一单付好了，小票已盖章「已付」');
+      }
+    } catch (e) { /* 静默失败，不打扰 */ }
+    orderSyncing = false;
+  }
+
+  function openMenu() {
+    const all = D.menu || [];
+    if (!all.length) { toast('本店菜单暂不可用'); return; }
+    let filter = 'all';
+
+    const find = c => all.find(x => x.code === c);
+    const basketItems = () => Object.keys(state.basket).map(c => ({ ...find(c), qty: state.basket[c] }))
+      .filter(x => x.code);
+    const basketTotal = () => basketItems().reduce((s, i) => s + i.price * i.qty, 0);
+    const basketCount = () => basketItems().reduce((s, i) => s + i.qty, 0);
+
+    const rowHTML = it => {
+      const q = state.basket[it.code] || 0;
+      return `<div class="mt-item${q ? ' on' : ''}" data-code="${esc(it.code)}">
+        <div class="mt-names">
+          <div class="mt-name">${esc(it.name)}
+            ${(it.tags || []).map(t => `<span class="tagline">${esc(t)}</span>`).join('')}</div>
+          <div class="mt-meta">${esc(it.group || it.cat_name)}</div>
+        </div>
+        <div class="mt-act">
+          <span class="mt-price">${money(it.price)}</span>
+          ${q
+            ? `<div class="stepper"><button data-m="-1">−</button><b>${q}</b><button data-m="1">+</button></div>`
+            : `<button class="add" data-m="1" aria-label="加入">＋</button>`}
+        </div>
+      </div>`;
+    };
+
+    const show = list => list.map(rowHTML).join('') ||
+      `<div class="note" style="padding:18px 2px">这一类里没有商品。</div>`;
+
+    function paint() {
+      const list = filter === 'all'
+        ? all
+        : (filter === 'limited' ? all.filter(x => x.limited) : all.filter(x => x.cat === filter));
+      const chips = MENU_FILTERS.map(([k, label]) => {
+        const n = k === 'all' ? all.length
+          : (k === 'limited' ? all.filter(x => x.limited).length : all.filter(x => x.cat === k).length);
+        return `<button class="mf${filter === k ? ' on' : ''}" data-f="${k}">${label}<i>${n}</i></button>`;
+      }).join('');
+
+      $('#menuBody').innerHTML = `
+        <div class="note" style="margin-top:0">本店实时菜单 ${all.length} 款，限定/上新直接排在菜单最前面。
+        标价是菜单价，真正付款前会由 calculate-price 再核一次。</div>
+        <div class="mf-bar">${chips}</div>
+        <div class="mt-list">${show(list)}</div>`;
+
+      const n = basketCount();
+      $('#menuFoot').innerHTML = n
+        ? `<div class="basket-bar">
+             <div><b>${n} 件</b><span>菜单价 ${money(basketTotal())}</span></div>
+             <button class="btn btn-primary" id="basketGo">就点这些</button>
+           </div>`
+        : `<button class="btn btn-ghost btn-block" id="menuClose">先看看，不下单</button>`;
+
+      $$('#menuBody .mf').forEach(b => b.onclick = () => { filter = b.dataset.f; paint(); });
+      $$('#menuBody .mt-item').forEach(row => {
+        row.onclick = ev => {
+          const btn = ev.target.closest('[data-m]');
+          if (!btn) return;
+          const code = row.dataset.code;
+          const d = Number(btn.dataset.m);
+          const next = Math.max(0, (state.basket[code] || 0) + d);
+          if (next) state.basket[code] = next; else delete state.basket[code];
+          paint();
+        };
+      });
+      const go = $('#basketGo');
+      if (go) go.onclick = () => {
+        const items = basketItems();
+        const o = orderParams(items.map(i => ({ code: i.code, name: i.name, price: i.price, cat: i.cat, qty: i.qty })),
+          basketTotal(), '自选');
+        if (!o) { toast('当前取餐方式下这单没法下'); return; }
+        $('#modal').classList.remove('on');
+        openOrder(o);
+      };
+      const cl = $('#menuClose');
+      if (cl) cl.onclick = () => $('#modal').classList.remove('on');
+    }
+
+    showSheet('本店菜单', `<div id="menuBody"></div>`, `<div id="menuFoot"></div>`);
+    // showSheet 的 foot 是独立容器，这里把两段都接管
+    paint();
+  }
+
+  /* ── 换餐厅：自动定位后先替你选最近的，不满意再换 ──── */
+  function openStores() {
+    const s = D.stores || { pickup: [], delivery: [] };
+    const pk = s.pickup || [], dv = s.delivery || [];
+    state.storeKind = state.storeKind || 'pickup';
+
+    const fmtDist = d => (d == null ? '' : (d >= 1000 ? `${(d / 1000).toFixed(1)}km` : `${d}m`));
+
+    function rows(kind) {
+      const list = kind === 'pickup' ? pk : dv;
+      const chosen = (s.chosen || {})[kind];
+      if (!list.length) {
+        return `<div class="note">${kind === 'delivery'
+          ? (D.meta.address_id ? '这个地址暂时查不到麦乐送门店。' : '还没有存过外送地址，先定位或存一个地址才有麦乐送。')
+          : '附近没查到营业中的门店。'}</div>`;
+      }
+      return list.map((x, i) => `<button class="st-row${x.code === chosen ? ' on' : ''}" data-code="${esc(x.code)}" data-kind="${kind}">
+        <span class="st-rank">${i === 0 ? '最近' : i + 1}</span>
+        <span class="st-main">
+          <span class="st-name">${esc(x.name)}</span>
+          <span class="st-sub">${esc(x.address || '')}</span>
+          <span class="st-meta">${fmtDist(x.distance)}${x.open ? ' · 营业 ' + esc(x.open) : ''}${x.code === chosen ? ' · 现在就这家' : ''}</span>
+        </span>
+        <span class="st-go">${x.code === chosen ? '✓' : ''}</span>
+      </button>`).join('');
+    }
+
+    function paint() {
+      const kind = state.storeKind;
+      $('#stBody').innerHTML = `
+        <div class="note" style="margin-top:0">定位到 <b>${esc(D.meta.place)}</b>（${esc(D.meta.loc_source)}），
+        已经按距离替你排好序、选中最近那家。想换随时换 —— 换店会重新拉这家的菜单、券和价。</div>
+        <div class="seg" id="stSeg">
+          <button class="${kind === 'pickup' ? 'on' : ''}" data-k="pickup">到店 · 堂食/自取 <i>${pk.length}</i></button>
+          <button class="${kind === 'delivery' ? 'on' : ''}" data-k="delivery">麦乐送 <i>${dv.length}</i></button>
+        </div>
+        <div class="mt-list" style="margin-top:10px">${rows(kind)}</div>
+        ${kind === 'pickup' ? `<div class="note">堂食还是外带，会在确认下单那一步让你点头。</div>` : ''}`;
+
+      $$('#stSeg button').forEach(b => b.onclick = () => { state.storeKind = b.dataset.k; paint(); });
+      $$('#stBody .st-row').forEach(b => b.onclick = () => switchStore(b.dataset.code, b.dataset.kind));
+    }
+
+    showSheet('选择餐厅', `<div id="stBody"></div>`, '');
+    paint();
+  }
+
+  async function switchStore(code, kind) {
+    if (!code) return;
+    if (!ONLINE) { toast('本地打开时不能换店（要连服务端）'); return; }
+    showSheet('正在换店', `<div class="note">重新拉这家店的菜单、限定、券，再核一遍价…大概几秒。</div>`, '');
+    let r;
+    try { r = await api('/api/store', { storeCode: code, kind }); }
+    catch (e) { showSheet('换店失败', `<div class="note">${esc(e.message)}</div>`, ''); return; }
+    if (!r.ok) {
+      showSheet('没换成', `<div class="note">${esc(r.message || '这家店当前不可用')}</div>
+        <div class="note">还留在原来那家，价格没变。</div>`, '');
+      return;
+    }
+    applyData(r.data);
+    const got = kind === 'pickup' ? (r.data.store.pickup || {}).name : (r.data.store.delivery || {}).name;
+    showSheet('换好了', `
+      <div class="kv"><span class="k">现在的店</span><span class="v">${esc(got || '')}</span></div>
+      <div class="kv"><span class="k">菜单</span><span class="v">${(r.data.menu || []).length} 款</span></div>
+      <div class="kv"><span class="k">限定</span><span class="v">${(r.data.limited || []).length} 款</span></div>`,
+      `<button class="btn btn-primary" id="okStore">看这一家</button>`);
+    $('#okStore').onclick = () => $('#modal').classList.remove('on');
+  }
+
+  /* ── 小票 ─────────────────────────────────────────── */
+  function receiptData(p) {
+    p = p || effectivePlan();
+    const a = D.almanac, w = D.weather;
+    const d = parse(D.meta.today);
+    const self = basketMode();
+    const idx = self ? 0 : D.plans.indexOf(p) + 1;
+    const wi = w ? `${w.desc} ${w.temp}°` : '数据暂不可用';
+    return {
+      plan: p,
+      weather: w,
+      scene: sceneKey(),
+      ate: ateGet(),
+      dateText: `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')} 周${WD[d.getDay()]}`,
+      ticketNo: `${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-${String(idx).padStart(2, '0')}${self ? 'S' : ''}`,
+      weatherText: wi,
+      meatText: p && p.items && p.items.length ? (MEAT[p.items[0].cat] || '—') : '—',
+      modeText: D.logistics.label,
+      yiText: D.yiji.yi.join(' · '),
+      jiText: D.yiji.ji.join(' · '),
+      sign: D.sign,
+      payNote: self
+        ? '自己挑的一篮 · 菜单快照价，下单前再核'
+        : p && p.verified
+          ? '金额由麦当劳 calculate-price 实时核出 · 未下单'
+          : '价格暂未核验，以下为菜单快照价',
+      storeText: D.store.pickup
+        ? `${D.store.pickup.name} · ${D.store.pickup.distance != null ? D.store.pickup.distance + 'm' : ''}`
+        : '门店数据暂不可用'
+    };
+  }
+
+  function renderReceipt() {
+    const host = $('#receiptHost');
+    if (!host) return;
+    const p = effectivePlan();
+    if (!p || !p.items || !p.items.length) {
+      host.innerHTML = `<div class="card" style="text-align:center;padding:34px 20px">
+        <div style="font-family:var(--serif);font-size:17px;color:var(--red)">小票暂不可用</div>
+        <div class="note" style="margin-top:8px">${(D.warnings || []).join('；') || '本店菜单未取到'}<br>
+        不作演示数据兜底。</div></div>`;
+      return;
+    }
+    host.innerHTML = RECEIPT.build(receiptData(p));
+  }
+
+  /* ── 优惠 ─────────────────────────────────────────── */
+  function openCoupons() {
+    const c = D.coupons;
+    const row = (x, cls, badge) => `<div class="coupon-item ${cls}">
+      <div class="t">${esc(x.title)}<span class="badge">${badge}</span></div>
+      <div class="s">${esc(x.reason || '')}${x.toast ? ' · ' + esc(x.toast) : ''}</div></div>`;
+
+    const body = `
+      <div class="kv"><span class="k">卡包</span><span class="v">${c.wallet_total} 张</span></div>
+      <div class="kv"><span class="k">本店可用</span><span class="v">${c.store_usable_count} 张</span></div>
+      <div class="kv"><span class="k">今日可用</span><span class="v">${c.usable.length} 张</span></div>
+      ${c.claimable && c.claimable.length ? `<div class="kv"><span class="k">可领取（麦麦省）</span><span class="v">${c.claimable.length} 张</span></div>` : ''}
+      <div style="height:12px"></div>
+      ${c.usable.map(x => row(x, 'ok', '今日可用')).join('')}
+      ${c.upcoming.map(x => row(x, 'wait', '稍后生效')).join('')}
+      ${!c.usable.length && !c.upcoming.length ? `<div class="note">卡包里暂时没有能用的券。</div>` : ''}
+      ${c.claimable && c.claimable.length ? `<div style="margin-top:14px">
+        <div class="note" style="margin-bottom:8px">麦麦省可领：${c.claimable.map(x => esc(x)).join('、')}</div>
+        <div class="note">领取会一次领走全部可领券（官方 auto-bind-coupons 的行为），需要你在对话里确认；
+        本页不会自动领。</div></div>` : ''}
+      ${(c.notes || []).map(n => `<div class="note">· ${esc(n)}</div>`).join('')}
+      <div class="note" style="margin-top:12px">所有省下的钱都由 calculate-price 带券前后各核一次价得出，
+      核价不降价就不写省了钱。</div>`;
+    showSheet('优惠明细', body, '');
+  }
+
+  /* ── 撕日历：一进页面只有这一张纸，撕开才给今天 ────── */
+  const tear = {
+    t: 0, maxDy: 0, W: 0, H: 0, jag: [], active: false, done: false, el: {},
+
+    init() {
+      this.el.box = $('#paperBox');
+      this.el.stub = $('#sheetStub');
+      this.el.piece = $('#sheetPiece');
+      this.el.hint = $('#tearHint');
+      this.el.auto = $('#tearAuto');
+      this.el.rvSub = $('#rvSub');
+      this.paint();
+      this.measure();
+      this.bind();
+      window.addEventListener('resize', () => {
+        if (!this.done) { this.measure(); this.draw(this.t); }
+      });
+    },
+
+    /* 残留条和被撕走的整页必须是同一份内容，撕开的锯齿才对得上 */
+    paint() {
+      const html = faceHTML();
+      this.el.stub.innerHTML = html;
+      this.el.piece.innerHTML = html;
+      const a = D.almanac;
+      if (this.el.rvSub) {
+        const unluck = D.yiji && D.yiji.luck === '凶';
+        this.el.rvSub.textContent = unluck
+          ? '凶日也大吉 · 吃了麦当劳就转运'
+          : `农历${(a.lunar || '').replace(/^.*?年/, '')} · 值日「${a.zhixing}」`;
+      }
+    },
+
+    measure() {
+      this.W = this.el.box.clientWidth || 320;
+      this.H = this.el.box.clientHeight || 440;
+      this.maxDy = Math.max(160, this.H * 0.88);
+      // 撕口锯齿：一次撕只随机一次，拖动过程中不能抖
+      const N = 36, DEPTH = 16 + Math.random() * 8;
+      this.jag = [];
+      for (let i = 0; i <= N; i++) {
+        const edge = (i === 0 || i === N) ? 0.25 : 1;
+        this.jag.push(3 + (i % 2 ? 1 : 0.45) * Math.random() * DEPTH * edge);
+      }
+      // 装订残留：撕完后上缘留一条锯齿纸边
+      const pts = [[0, 0]];
+      for (let i = 0; i <= N; i++) pts.push([(this.W * i) / N, this.jag[i]]);
+      pts.push([this.W, 0]);
+      this.el.stub.style.clipPath =
+        `polygon(${pts.map(p => `${p[0].toFixed(1)}px ${p[1].toFixed(1)}px`).join(',')})`;
+    },
+
+    /* 拖动：上端还咬在装订口，纸身跟着手往下坠、歪斜越来越狠 */
+    draw(t) {
+      this.t = Math.max(0, Math.min(1, t));
+      const dy = this.t * this.maxDy;
+      this.el.piece.style.transform =
+        `translateY(${(dy * 0.24).toFixed(1)}px) rotate(${(this.t * 7).toFixed(2)}deg) skewX(${(-this.t * 2.2).toFixed(2)}deg)`;
+    },
+
+    bind() {
+      const box = this.el.box;
+      let startY = 0, base = 0;
+
+      const down = e => {
+        if (this.done) return;
+        this.active = true;
+        box.classList.add('dragging');
+        startY = e.clientY;
+        base = this.t * this.maxDy;
+        try { box.setPointerCapture(e.pointerId); } catch (err) { }
+        if (e.cancelable) e.preventDefault();
+      };
+      const move = e => {
+        if (!this.active || this.done) return;
+        const dy = Math.max(0, Math.min(this.maxDy, base + (e.clientY - startY)));
+        this.draw(dy / this.maxDy);
+        if (dy > 8 && this.el.hint) this.el.hint.style.opacity = '0';
+        if (e.cancelable) e.preventDefault();
+      };
+      const up = () => {
+        if (!this.active) return;
+        this.active = false;
+        box.classList.remove('dragging');
+        if (this.done) return;
+        if (this.t >= 0.42) this.finish();
+        else this.springBack();
+      };
+
+      box.addEventListener('pointerdown', down);
+      box.addEventListener('pointermove', move);
+      box.addEventListener('pointerup', up);
+      box.addEventListener('pointercancel', up);
+
+      // 不想拖也行：点一下按钮，自动撕给你看
+      this.el.auto.onclick = () => { if (!this.done) this.autoTear(); };
+    },
+
+    springBack() {
+      const from = this.t, t0 = performance.now(), dur = 260;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur);
+        const e = 1 - Math.pow(1 - k, 3);
+        this.draw(from * (1 - e));
+        if (k < 1) requestAnimationFrame(step);
+        else { this.draw(0); if (this.el.hint) this.el.hint.style.opacity = ''; }
+      };
+      requestAnimationFrame(step);
+    },
+
+    autoTear() {
+      if (this.done) return;
+      const t0 = performance.now(), dur = 760;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur);
+        const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        this.draw(e);
+        if (k < 1) requestAnimationFrame(step);
+        else this.finish();
+      };
+      requestAnimationFrame(step);
+    },
+
+    finish() {
+      if (this.done || this._finishing) return;
+      this._finishing = true;
+      this.done = true;
+      this.el.box.classList.remove('dragging');
+      if (this.el.hint) this.el.hint.style.opacity = '0';
+
+      // 撕脱：锯齿撕口成形（残留条与页面两片严丝合缝），整页脱开坠走
+      const N = this.jag.length - 1;
+      const top = [];
+      for (let i = 0; i <= N; i++) top.push([(this.W * i) / N, this.jag[i]]);
+      this.el.piece.style.transform = '';
+      this.el.piece.style.clipPath =
+        `polygon(${top.concat([[this.W, this.H], [0, this.H]])
+          .map(p => `${p[0].toFixed(1)}px ${p[1].toFixed(1)}px`).join(',')})`;
+      this.el.piece.classList.add('gone');
+
+      setTimeout(() => this.shred(), 120);
+      setTimeout(() => {
+        renderToday();
+        go('today');
+        this.el.box.style.pointerEvents = 'none';
+      }, 820);
+    },
+
+    /* 纸屑：从撕口（顶部锯齿线）崩出来，纯装饰 */
+    shred() {
+      const r = this.el.box.getBoundingClientRect();
+      for (let i = 0; i < 16; i++) {
+        const b = document.createElement('i');
+        b.className = 'shred';
+        const w = 4 + Math.random() * 7, h = 3 + Math.random() * 6;
+        b.style.cssText = `left:${r.left + Math.random() * r.width}px;`
+          + `top:${r.top + Math.random() * 26}px;`
+          + `width:${w}px;height:${h}px;border-radius:1px;`
+          + `--dx:${(Math.random() - 0.5) * 160}px;--dy:${60 + Math.random() * 180}px;`
+          + `--rot:${(Math.random() - 0.5) * 560}deg;`
+          + `animation-delay:${Math.random() * 0.16}s`;
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 1500);
+      }
+    },
+
+    rearm() {
+      this._finishing = false;
+      this.done = false;
+      this.t = 0;
+      this.el.box.style.pointerEvents = '';
+      this.el.piece.classList.remove('gone');
+      this.el.piece.style.clipPath = '';
+      this.el.piece.style.transform = '';
+      this.el.piece.style.opacity = '';
+      if (this.el.hint) this.el.hint.style.opacity = '';
+      this.measure();
+      this.draw(0);
+    }
+  };
+
+  function faceHTML() {
+    const a = D.almanac, d = parse(D.meta.today);
+    const unluck = D.yiji && D.yiji.luck === '凶';
+    const yi = (D.yiji.yi || []).slice(0, 4).join(' · ') || '诸事皆宜';
+    const ji = (D.yiji.ji || []).slice(0, 4).join(' · ') || '无忌';
+    const lunar = (a.lunar || '').replace(/^.*?年/, '');
+    const doy = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
+    return `<div class="face">
+      <div class="f-brand"><b><span class="fb-arch">${ART.svg.archMini()}</span>麦麦黄道吉日</b><i>第 ${doy} 天</i></div>
+      <div class="f-year">${d.getFullYear()}</div>
+      <div class="f-month">${d.getMonth() + 1} 月 · ${esc(a.zhixing)}日值</div>
+      <div class="f-dayrow">
+        <div class="f-day">${d.getDate()}</div>
+        <span class="f-daydeco" aria-hidden="true">${ART.svg.dayDeco()}</span>
+        <div class="f-week">周${WD[d.getDay()]}<small>${esc(a.xiu || '')}</small></div>
+      </div>
+      <div class="f-mark">吉</div>
+      <div class="f-lunar">农历${esc(lunar)}</div>
+      <div class="f-gz">${esc(a.day_gz)}日 · ${esc(a.nayin)} · 值日「${esc(a.zhixing)}」</div>
+      <div class="f-meta">
+        <span>${esc(a.xiu || '—')}</span>
+        <span>喜神 ${esc(a.xi_position || '—')}</span>
+        <span>幸运色 ${esc(a.lucky_color || '—')}</span>
+      </div>
+      <div class="f-seal${unluck ? ' two' : ''}" aria-hidden="true">
+        <span class="fs-arch">${ART.svg.archTiny()}</span>
+        <b>${unluck ? '转运' : '吉'}</b>
+        <i>今日宜吃麦</i>
+      </div>
+      <div class="f-doodle" aria-hidden="true">${ART.svg.doodle()}</div>
+      <div class="f-yj">
+        <div class="ln"><span class="k yi">宜</span><span class="v">${esc(yi)}</span></div>
+        <div class="ln"><span class="k ji">忌</span><span class="v">${esc(ji)}</span></div>
+      </div>
+      <div class="f-guide"><span class="sc">✂</span><span>${unluck ? '凶日不慌 · 撕了这页吃麦当劳转运' : '按住纸的下沿 · 往下撕'}</span><span class="sc">✂</span></div>
+    </div>`;
+  }
+
+  /* ── 下单 ─────────────────────────────────────────── */
+  /* items 不传就用推荐的这套方案；传了就是菜单里自己挑的一篮 */
+  function orderParams(items, total, tag) {
+    const p = plan();
+    let mode = D.logistics.mode === 'delivery' ? 'delivery' : 'pickup';
+    let list = items || (p ? p.items : null);
+    if (!list || !list.length) return null;
+
+    // 外送门店和到店门店的 SKU 不通用：没有同名映射就只能自取
+    if (mode === 'delivery' && p && !items && !p.delivery_items) mode = 'pickup';
+
+    const st = mode === 'delivery' ? D.store.delivery : D.store.pickup;
+    if (!st) return null;
+
+    if (mode === 'delivery' && p && !items) list = p.delivery_items;
+
+    return {
+      mode,
+      tag: tag || (p ? p.tag : ''),
+      storeCode: st.code,
+      storeName: st.name,
+      orderType: mode === 'delivery' ? 2 : 1,
+      beType: mode === 'delivery' ? 2 : 1,
+      beCode: mode === 'delivery' ? st.beCode : '',
+      addressId: mode === 'delivery' ? (D.meta.address_id || '') : '',
+      takeWayCode: state.takeWay || '',
+      items: list.map(i => ({ productCode: i.code, quantity: i.qty || 1 })),
+      names: list.map(i => i.name),
+      // 自选篮也先猜推荐套餐那张券去核价：满减类券能不能用由 calculate-price 说了算，
+      // 核不出来确认页上就看不到优惠，不会虚报。
+      coupon: (p && p.coupon) || null,
+      total: total != null ? total : (p ? p.total : 0)
+    };
+  }
+
+  function commandText(o) {
+    const items = o.items.map(i => `${i.productCode}:${i.quantity}`).join(',');
+    const lines = [
+      `python3 scripts/order.py quote --store-code ${o.storeCode} --order-type ${o.orderType} --be-type ${o.beType}`
+      + (o.beCode ? ` --be-code ${o.beCode}` : '')
+      + (o.addressId ? ` --address-id ${o.addressId}` : '')
+      + ` --items ${items}`
+      + (o.coupon ? ` --coupon-id ${o.coupon.id} --coupon-code ${o.coupon.code || ''}` : '')
+    ];
+    return lines.join(' ');
+  }
+
+  /* 确认页必须先核一次真实价：确认页上写的数，就是建单会用的数 */
+  async function openOrder(o) {
+    o = o || orderParams();
+    if (!o) { toast('还没有可下单的套餐'); return; }
+    state.order = o;
+
+    showSheet('正在核价', `<div class="note">把这一单交给麦当劳 calculate-price 算实付，
+      顺便看看门店现在给哪些取餐方式…</div>`, '');
+
+    let q = null;
+    if (ONLINE) {
+      try { q = await api('/api/quote', o); } catch (e) { q = null; }
+    }
+
+    const live = q && q.ok;
+    const totalFen = live ? q.total : Math.round((o.total || 0) * 100);
+    state.quote = live ? q : null;
+
+    const rows = o.items.map((it, i) =>
+      `<div class="kv"><span class="k">${esc(o.names[i])}</span><span class="v">×${it.quantity}</span></div>`).join('');
+    const feeRows = live && (q.delivery_fee || q.packing_fee)
+      ? `${q.delivery_fee ? `<div class="kv"><span class="k">配送费</span><span class="v">${money(q.delivery_fee / 100)}</span></div>` : ''}
+         ${q.packing_fee ? `<div class="kv"><span class="k">打包费</span><span class="v">${money(q.packing_fee / 100)}</span></div>` : ''}`
+      : '';
+    const discRow = live && q.discount
+      ? `<div class="kv"><span class="k">优惠</span><span class="v">-${money(q.discount / 100)}</span></div>` : '';
+
+    const note = live
+      ? `金额由 calculate-price 刚刚核出。点「确认下单」会再核一次，一致才建单；
+         建单后门店会在 <b>15 分钟</b>内等付款，超时自动取消。`
+      : (ONLINE ? `核价失败：${esc((q && q.message) || '未知原因')}。可以照菜单价先下，服务端会重算。`
+        : `当前离线打开，页面不能直接调麦当劳接口（也不能把 Token 放进网页）。
+           点「确认下单」会给你一条本机指令，回到对话里说一声就行。`);
+
+    // 取餐方式：堂食 / 外带 由 calculate-price 的 takeWayList 说了算，不硬编码
+    const ways = (live && o.orderType === 1 && (q.take_way || []).length) ? q.take_way : [];
+    const picked = state.takeWay || (ways[0] ? ways[0].code : '');
+    const waySeg = ways.length
+      ? `<div class="seg" id="waySeg">${ways.map(w => `<button data-w="${esc(w.code)}"
+           class="${w.code === picked ? 'on' : ''}">${esc(w.title || w.code)}</button>`).join('')}</div>`
+      : (o.orderType === 1 ? `<div class="note">这家店没返回取餐方式（takeWayList 为空），下单会被拒。</div>`
+        : `<div class="note">麦乐送：送到 ${esc(D.meta.address || '已存地址')}</div>`);
+
+    showSheet('确认下单', `
+      <div class="kv"><span class="k">餐厅</span><span class="v">${esc(o.storeName)}
+        ${o.storeCode ? `<button class="linkbtn" id="chgStore">换一家</button>` : ''}</span></div>
+      ${waySeg}
+      <div style="height:8px"></div>
+      ${rows}${feeRows}${discRow}
+      ${o.coupon ? `<div class="kv"><span class="k">优惠券</span><span class="v">${esc(o.coupon.title)}</span></div>` : ''}
+      <div class="kv total"><span class="k">应付</span><span class="v">${money(totalFen / 100)}</span></div>
+      <div class="note" style="margin-top:12px">${note}</div>
+      ${live && q.original && q.original > q.total
+        ? `<div class="note">原价 ${money(q.original / 100)}，省 ${money((q.original - q.total) / 100)}</div>` : ''}
+      ${ONLINE ? '' : `<div class="cmd" style="margin-top:10px">${esc(commandText(o))}</div>`}`,
+      `${ONLINE ? '' : '<button class="btn btn-ghost" id="copyCmd">复制作业指令</button>'}
+       <button class="btn btn-primary" id="doOrder">确认下单</button>`);
+
+    const cc = $('#copyCmd');
+    if (cc) cc.onclick = () => copy(commandText(o));
+    const cs = $('#chgStore');
+    if (cs) cs.onclick = () => { $('#modal').classList.remove('on'); openStores(); };
+    $$('#waySeg button').forEach(b => b.onclick = () => {
+      state.takeWay = b.dataset.w;
+      o.takeWayCode = b.dataset.w;
+      $$('#waySeg button').forEach(x => x.classList.toggle('on', x === b));
+    });
+    if (ways.length && !state.takeWay) state.takeWay = ways[0].code;
+    $('#doOrder').onclick = () => submitOrder(totalFen);
+  }
+
+  async function submitOrder(totalFen, acceptChange) {
+    const o = state.order;
+    if (!o) return;
+
+    if (!ONLINE) {
+      copy(commandText(o));
+      showSheet('已复制作业指令', `
+        <div class="note">此页面是本地文件打开的，前端不能直接调麦当劳接口，也不该把 Token 放进网页。
+        指令已复制，回到对话里说「确认下单」，我这边会真实建单并把支付链接给你。</div>
+        <div class="cmd" style="margin-top:10px">${esc(commandText(o))}</div>`, '');
+      return;
+    }
+
+    showSheet('正在下单', `<div class="note">重算价 → 创建订单 → 取支付入口…</div>`, '');
+    let r;
+    try {
+      r = await api('/api/order', {
+        ...o,
+        total: (totalFen || 0) / 100,
+        acceptChange: !!acceptChange,
+        confirm: true
+      });
+    } catch (e) {
+      showSheet('网络断了', `<div class="note">${esc(e.message)}<br>
+        结果不确定的时候不要重复点，先用订单号查一下状态。</div>`, '');
+      return;
+    }
+
+    if (r.stage === 'price-changed') {
+      showSheet('价格变了', `
+        <div class="note">核价从 <b>${money((r.before || 0) / 100)}</b> 变成了
+          <b>${money((r.after || 0) / 100)}</b>，我没有提交。
+          多办是券换了时段、或者门店调价。</div>
+        <div class="note">接受新价就点下面这个按钮，我再下一单。</div>`,
+        `<button class="btn btn-primary" id="acceptPrice">按 ${money((r.after || 0) / 100)} 下单</button>`);
+      $('#acceptPrice').onclick = () => submitOrder(r.after, true);
+      return;
+    }
+
+    if (!r.ok) {
+      showSheet('没下成', `
+        <div class="note">${esc(r.message || '接口返回失败')}</div>
+        ${r.timeout ? `<div class="note">⚠ 超时：结果不确定，先去麦当劳 App「我的订单」看看有没有这笔，
+          别急着重下。</div>` : ''}
+        <div class="cmd" style="margin-top:10px">${esc(JSON.stringify(r.detail || {}, null, 1).slice(0, 700))}</div>`,
+        `<button class="btn btn-ghost" id="retryOrder">再试一次</button>`);
+      const rb = $('#retryOrder');
+      if (rb) rb.onclick = () => submitOrder(totalFen, acceptChange);
+      return;
+    }
+
+    orderCreated(r, o);
+  }
+
+  /* 建单成功：不弹窗，直接带去出票页 —— 打印机现打小票，
+     支付入口 / 倒计时 / 取餐码 / 取消都跟在订单小票上
+     —— payH5Url 只是个二维码页，真正一点就到收银台的是 /mcp/jumpToApp?orderId= */
+  function orderCreated(r, o) {
+    const od = r.order || {};
+    const pay = r.pay || {};
+    const jump = pay.jump || r.appUrl || '';
+    const deep = pay.deep || r.deepLink || '';
+    const h5 = pay.h5 || r.payUrl || '';
+
+    orderRecSet({
+      orderId: r.orderId || '',
+      storeName: od.storeName || o.storeName || '',
+      takeWay: od.takeWay || D.logistics.label || '',
+      items: o.items.map((it, i) => ({ name: (o.names || [])[i] || it.productCode, qty: it.quantity || 1 })),
+      couponTitle: o.coupon ? o.coupon.title : '',
+      total: (r.total || 0) / 100,
+      expireAt: r.expire_at || '',
+      jump: jump || '', deep: deep || '', h5: h5 || '',
+      paid: false,
+      time: new Date().toTimeString().slice(0, 5)
+    });
+
+    $('#modal').classList.remove('on');
+    goReceipt(true);          // 出票机开工：滋滋滋打出这张小票
+  }
+
+  /* 二维码：官方 payH5Url 本身就是「扫码进入麦当劳APP支付」的页面 */
+  function showQr(url, orderId) {
+    showSheet('扫码付款', `
+      <div class="qr-wrap"><iframe class="qr-frame" src="${esc(url)}" title="麦当劳付款二维码"></iframe></div>
+      <div class="note" style="text-align:center">用<b>另一台设备</b>上的麦当劳 App 或微信扫这个码。
+        同一台手机扫不了自己的屏 —— 那就用上面那个「去麦当劳 App 付款」按钮。</div>
+      <div class="cmd" style="margin-top:10px">${esc(url)}</div>
+      <div class="note">订单号 ${esc(orderId || '')}</div>`, '');
+  }
+
+  async function cancelOrder(orderId) {
+    if (!orderId) return;
+    showSheet('取消这单？', `<div class="note">会调 cancel-order 真的取消这笔订单，不可撤销。</div>`,
+      `<button class="btn btn-ghost" id="noCancel">算了</button>
+       <button class="btn btn-primary" id="yesCancel">确认取消</button>`);
+    $('#noCancel').onclick = () => $('#modal').classList.remove('on');
+    $('#yesCancel').onclick = async () => {
+      showSheet('正在取消', `<div class="note">…</div>`, '');
+      try {
+        const r = await api('/api/cancel', { orderId, reason: '1', confirm: true });
+        showSheet(r.ok ? '已取消' : '没取消成',
+          `<div class="note">${esc(r.message || (r.ok ? '订单已取消' : '接口返回失败'))}</div>`, '');
+      } catch (e) {
+        showSheet('网络断了', `<div class="note">${esc(e.message)}</div>`, '');
+      }
+    };
+  }
+
+  async function checkStatus(orderId) {
+    if (!orderId) return;
+    showSheet('正在查状态', `<div class="note">…</div>`, '');
+    let r;
+    try { r = await api('/api/status?orderId=' + encodeURIComponent(orderId)); }
+    catch (e) { showSheet('网络断了', `<div class="note">${esc(e.message)}</div>`, ''); return; }
+    const d = r.data || {};
+    if (!r.ok && !d.orderStatus) {
+      showSheet('查不到', `<div class="note">${esc(r.message || '接口返回失败')}</div>`, '');
+      return;
+    }
+    // 付款成功的几个状态：见了就盖章「今日已吃」，不用等吃完
+    const paid = /已支付|制作中|待取餐|已完成|已取餐|配送中|已送达/.test(String(d.orderStatus || ''));
+    if (paid) {
+      markAte({ time: new Date().toTimeString().slice(0, 5), orderId,
+                pickupCode: d.pickupCode || '', store: d.storeName || (D.store.pickup || {}).name });
+      // 订单小票同步盖章
+      const rec = orderRecGet();
+      if (rec && rec.orderId === orderId && !rec.paid) {
+        rec.paid = true;
+        rec.pickupCode = d.pickupCode || '';
+        orderRecSet(rec);
+      }
+    }
+    showSheet(paid ? '付好了 · 今日已吃' : '订单状态', `
+      ${paid ? `<div class="ate-inline"><span class="ate-mini">已吃</span>
+        这一顿记在 ${esc(fmtCN(D.meta.today))} 上了</div>` : ''}
+      <div class="kv"><span class="k">状态</span><span class="v"><b>${esc(d.orderStatus || '—')}</b></span></div>
+      ${d.pickupCode ? `<div class="kv"><span class="k">取餐码</span>
+        <span class="v" style="font-family:var(--serif);font-size:22px;color:var(--red)">${esc(d.pickupCode)}</span></div>`
+        : `<div class="note">还没有取餐码 —— 付款后才会出。</div>`}
+      <div class="kv"><span class="k">餐厅</span><span class="v">${esc(d.storeName || '—')}</span></div>
+      <div class="kv"><span class="k">取餐</span><span class="v">${esc(d.takeWay || '—')}</span></div>
+      <div class="kv total"><span class="k">实付</span><span class="v">${money(d.realTotalAmount || d.totalAmount || 0)}</span></div>
+      <div style="height:10px"></div>
+      <div class="cmd">${esc(JSON.stringify(d, null, 1).slice(0, 900))}</div>`,
+      `<button class="btn btn-ghost" id="reCheck">再查一次</button>`);
+    const rc = $('#reCheck');
+    if (rc) rc.onclick = () => checkStatus(orderId);
+  }
+
+  /* ── 弹层 ─────────────────────────────────────────── */
+  function showSheet(title, body, foot) {
+    const m = $('#modal');
+    m.innerHTML = `<div class="sheet">
+      <div class="sheet-head"><h3>${esc(title)}</h3>
+        <button class="x" aria-label="关闭">✕</button></div>
+      <div class="sheet-body">${body}</div>
+      ${foot ? `<div class="sheet-foot">${foot}</div>` : ''}
+    </div>`;
+    m.classList.add('on');
+    m.querySelector('.x').onclick = () => m.classList.remove('on');
+    m.onclick = e => { if (e.target === m) m.classList.remove('on'); };
+  }
+
+  function copy(t) {
+    const ta = document.createElement('textarea');
+    ta.value = t;
+    ta.style.cssText = 'position:fixed;left:-9999px';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) { }
+    document.body.removeChild(ta);
+    toast('已复制作业指令');
+  }
+
+  /* ── PNG 导出 ─────────────────────────────────────── */
+  async function savePNG() {
+    const svg = $('#receiptHost svg');
+    if (!svg) { toast('还没有小票'); return; }
+    const clone = svg.cloneNode(true);
+    // 不要手动补 xmlns —— XMLSerializer 自己会加上，重复定义会让浏览器拒绝解析这张 SVG
+    clone.setAttribute('width', svg.viewBox.baseVal.width);
+    clone.setAttribute('height', svg.viewBox.baseVal.height);
+    const src = new XMLSerializer().serializeToString(clone);
+    const url = URL.createObjectURL(new Blob([src], { type: 'image/svg+xml;charset=utf-8' }));
+
+    const img = new Image();
+    const done = new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = url; });
+    try { await done; } catch (e) { toast('导出失败：浏览器拒绝了 SVG 渲染'); return; }
+
+    const w = +(clone.getAttribute('width')) || 460;
+    const h = +(clone.getAttribute('height')) || 900;
+    const scale = 2.6;
+    const cv = document.createElement('canvas');
+    cv.width = Math.round(w * scale);
+    cv.height = Math.round(h * scale);
+    // 背景留透明：撕边在任何底色上都能看出来，也方便直接发出去
+    const ctx = cv.getContext('2d');
+    ctx.drawImage(img, 0, 0, cv.width, cv.height);
+
+    cv.toBlob(b => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = `麦麦开运小票-${D.meta.today}.png`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      toast('小票已保存');
+    }, 'image/png');
+    URL.revokeObjectURL(url);
+  }
+
+  /* ── 出票页：麦麦出票机现打小票 ───────────────────── */
+  let printTimer = null;
+  function goReceipt(animate) {
+    renderReceipt();
+    go('receipt');
+    playPrint(animate !== false);
+  }
+
+  function playPrint(animate) {
+    const stage = $('#prStage'), status = $('#prStatus');
+    if (!stage) return;
+    stage.classList.remove('printing');
+    clearTimeout(printTimer);
+    if (!animate) {
+      status.textContent = orderRecGet() && !orderRecGet().canceled
+        ? '这张小票已经是你的了 · 长按或点「保存小票」带走'
+        : '还没下单 · 这台机器随时为你开工';
+      return;
+    }
+    status.textContent = '正在打印今日好运…';
+    void stage.offsetWidth;              // 强制重排，动画从头放
+    stage.classList.add('printing');
+    printTimer = setTimeout(() => {
+      stage.classList.remove('printing');
+      status.textContent = orderRecGet() && !orderRecGet().paid
+        ? '打印完成 · 付完款回来盖「已付」章'
+        : '打印完成 · 撕下来吧';
+    }, 2700);
+  }
+
+  /* ── 启动 ─────────────────────────────────────────── */
+  const ONLINE = location.protocol === 'http:' || location.protocol === 'https:';
+
+  async function api(path, body) {
+    const r = await fetch(path, {
+      method: body ? 'POST' : 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    return r.json();
+  }
+
+  function boot() {
+    $('#locName').textContent = D.meta.place.replace(/^.*?(省|市)/, '') || D.meta.place;
+    $('#locSrc').textContent = D.meta.loc_source;
+    $('#genAt').textContent = D.meta.generated_at;
+
+    // 麦麦品牌装饰：金拱门 / 薯条汉堡 hero / 标签拱门 / 撕纸按钮小件
+    const put = (sel, html) => { const el = $(sel); if (el) el.innerHTML = html; };
+    put('#archesIco', ART.svg.archBrand());
+    put('#brandDeco', ART.svg.brandDeco());
+    put('#heroDeco', ART.svg.hero());
+    put('#taFries', ART.icon('fries'));
+    put('#taPull', ART.svg.pull());
+    put('#rvArch', ART.svg.archMini());
+    put('#rvFood', ART.svg.revealFood());
+    put('#bagSeal', `${ART.svg.archTiny()}<span>麦麦外卖封签 · 撕开有好运</span>${ART.svg.archTiny()}`);
+    put('#stArch', ART.svg.archMini());
+    put('#stYi', '宜');
+    put('#reIco', ART.svg.miniTicket());
+    put('#prArch', ART.svg.archMini());
+    $$('#tearAuto .spark').forEach((el, i) => { el.innerHTML = ART.svg.spark(i); });
+
+    const warn = warnHTML();
+
+    $('#warnHost').innerHTML = warn;
+
+    renderCalendar();
+    renderSide(D.meta.today);
+    renderToday();           // 先备好，撕完立刻就有内容
+    renderAte();
+    prefillBasket();         // 先帮玩家把推荐套餐配进篮子
+    renderMenuCard();
+    renderOrderReceipt();
+    syncOrderSilent();       // 回到页面先核对上一单，付过了自动盖章
+    tear.init();             // 一进页面只给一张纸
+    const h = location.hash;
+    if (/receipt/.test(h)) goReceipt(true);                        // #receipt 深链：直达出票页
+    else go(/today/.test(h) ? 'today' : 'tear');                   // #today 深链：跳过撕日历
+
+    $('#prevM').onclick = () => { state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth() - 1, 1); renderCalendar(); };
+    $('#nextM').onclick = () => { state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth() + 1, 1); renderCalendar(); };
+    $('#openToday').onclick = () => { state.sel = D.meta.today; state.cursor = null; renderCalendar(); tear.rearm(); go('tear'); };
+    $('#backToday').onclick = () => { renderToday(); renderAte(); go('today'); };
+    $('#backCal').onclick = () => { renderCalendar(); renderSide(state.sel); go('cal'); };
+    $('#backMenu').onclick = () => go('today');
+    $('#goReceipt').onclick = () => goReceipt(true);
+    $('#planSwitch').onclick = () => {
+      state.planIdx = (state.planIdx + 1) % Math.max(1, D.plans.length);
+      if (!state.basketTouched) prefillBasket();   // 没动过篮子就跟新方案走
+      renderMenuCard();
+      renderReceipt();
+      toast(`换了一份：${plan().tag}`);
+    };
+    $('#openCoupons').onclick = openCoupons;
+    $('#savePng').onclick = savePNG;
+    const mb = $('#openMenuBtn'); if (mb) mb.onclick = openMenu;
+    const sb = $('#openStores'); if (sb) sb.onclick = openStores;
+  }
+
+  window.MCD = {
+    today: () => { state.sel = D.meta.today; state.cursor = null; renderCalendar(); renderToday(); go('today'); },
+    receipt: () => goReceipt(true)
+  };
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>
